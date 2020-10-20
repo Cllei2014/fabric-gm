@@ -310,8 +310,8 @@ $(BUILD_DIR)/gotools.tar.bz2: $(BUILD_DIR)/docker/gotools
 	(cd $</bin && tar -jc *) > $@
 
 $(BUILD_DIR)/goshim.tar.bz2: $(GOSHIM_DEPS)
-	@echo "Creating $@"
-	@tar -jhc -C $(GOPATH)/src $(patsubst $(GOPATH)/src/%,%,$(GOSHIM_DEPS)) > $@
+	@echo "Creating11 $@"
+	@echo "$(patsubst $(GOPATH)/src/%,%,$(GOSHIM_DEPS))" | xargs tar -jhc -C $(GOPATH)/src > $@
 
 $(BUILD_DIR)/sampleconfig.tar.bz2: $(shell find sampleconfig -type f)
 	(cd sampleconfig && tar -jc *) > $@
