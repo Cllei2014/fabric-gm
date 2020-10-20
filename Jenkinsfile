@@ -15,6 +15,8 @@ void setBuildStatus(String message, String state) {
   ]);
 }
 
+def projectName = "tw-bc-group/fabric-gm"
+
 pipeline {
     agent any
 
@@ -29,7 +31,7 @@ pipeline {
             steps {
                 setBuildStatus("Build Started", "PENDING");
 
-                dir('gopath/src/github.com/hyperledger/fabric') {
+                dir("gopath/src/github.com/$projectName") {
                     checkout scm
 
                     sh '''
@@ -42,7 +44,7 @@ pipeline {
 
         stage('Upload Image') {
             steps {
-                dir('gopath/src/github.com/hyperledger/fabric') {
+                dir("gopath/src/github.com/$projectName") {
                     sh 'aws ecr get-login-password | docker login --username AWS --password-stdin ${DOCKER_REGISTRY}'
                     sh '''
                     make docker-list 2>/dev/null | grep "$DOCKER_NS" | while read line
@@ -61,7 +63,7 @@ pipeline {
         }
         stage('Test Fabcar') {
             steps {
-                dir('gopath/src/github.com/hyperledger/fabric') {
+                dir("gopath/src/github.com/$projectName") {
                     catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                         script {
                             def result = build(
