@@ -10,10 +10,10 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/hyperledger/fabric/core/endorser/mocks"
-	mocks2 "github.com/hyperledger/fabric/core/handlers/endorsement/builtin/mocks"
-	plgn "github.com/hyperledger/fabric/core/handlers/endorsement/plugin"
-	"github.com/hyperledger/fabric/protos/peer"
+	"github.com/tw-bc-group/fabric-gm/core/endorser/mocks"
+	mocks2 "github.com/tw-bc-group/fabric-gm/core/handlers/endorsement/builtin/mocks"
+	plgn "github.com/tw-bc-group/fabric-gm/core/handlers/endorsement/plugin"
+	"github.com/tw-bc-group/fabric-gm/protos/peer"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )

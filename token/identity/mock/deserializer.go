@@ -4,8 +4,8 @@ package mock
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/msp"
-	"github.com/hyperledger/fabric/token/identity"
+	"github.com/tw-bc-group/fabric-gm/msp"
+	"github.com/tw-bc-group/fabric-gm/token/identity"
 )
 
 type Deserializer struct {

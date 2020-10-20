@@ -26,8 +26,8 @@ import (
 	"fmt"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/common/attrmgr"
-	"github.com/hyperledger/fabric/protos/msp"
+	"github.com/tw-bc-group/fabric-gm/common/attrmgr"
+	"github.com/tw-bc-group/fabric-gm/protos/msp"
 	"github.com/pkg/errors"
 )
 

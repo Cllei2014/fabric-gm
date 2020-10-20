@@ -13,9 +13,9 @@ import (
 	"testing"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/core/common/privdata"
-	"github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/ledger/rwset"
+	"github.com/tw-bc-group/fabric-gm/core/common/privdata"
+	"github.com/tw-bc-group/fabric-gm/protos/common"
+	"github.com/tw-bc-group/fabric-gm/protos/ledger/rwset"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )

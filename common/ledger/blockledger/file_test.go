@@ -20,10 +20,10 @@ import (
 	"io/ioutil"
 	"os"
 
-	. "github.com/hyperledger/fabric/common/ledger/blockledger"
-	fileledger "github.com/hyperledger/fabric/common/ledger/blockledger/file"
-	"github.com/hyperledger/fabric/common/metrics/disabled"
-	genesisconfig "github.com/hyperledger/fabric/common/tools/configtxgen/localconfig"
+	. "github.com/tw-bc-group/fabric-gm/common/ledger/blockledger"
+	fileledger "github.com/tw-bc-group/fabric-gm/common/ledger/blockledger/file"
+	"github.com/tw-bc-group/fabric-gm/common/metrics/disabled"
+	genesisconfig "github.com/tw-bc-group/fabric-gm/common/tools/configtxgen/localconfig"
 )
 
 func init() {

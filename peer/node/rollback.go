@@ -7,8 +7,8 @@ SPDX-License-Identifier: Apache-2.0
 package node
 
 import (
-	"github.com/hyperledger/fabric/core/ledger/kvledger"
-	"github.com/hyperledger/fabric/peer/common"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/kvledger"
+	"github.com/tw-bc-group/fabric-gm/peer/common"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 )

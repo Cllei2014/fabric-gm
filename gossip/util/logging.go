@@ -9,7 +9,7 @@ package util
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/common/flogging"
+	"github.com/tw-bc-group/fabric-gm/common/flogging"
 	"go.uber.org/zap/zapcore"
 )
 

@@ -53,9 +53,9 @@ BASEIMAGE_RELEASE=0.4.20
 # the PROJECT_NAME env variable, for example,
 # export PROJECT_NAME=hyperledger/fabric-test
 ifeq ($(PROJECT_NAME),true)
-PROJECT_NAME = $(PROJECT_NAME)/fabric
+PROJECT_NAME = $(PROJECT_NAME)/fabric-gm
 else
-PROJECT_NAME = hyperledger/fabric
+PROJECT_NAME = tw-bc-group/fabric-gm
 endif
 
 BUILD_DIR ?= .build

@@ -23,7 +23,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/hyperledger/fabric/bccsp"
+	"github.com/tw-bc-group/fabric-gm/bccsp"
 )
 
 //定义国密 Key的驱动 ，实现 KeyDeriver 接口

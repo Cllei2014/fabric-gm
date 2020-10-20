@@ -8,15 +8,15 @@ package lockbasedtxmgr
 import (
 	"testing"
 
-	commonledger "github.com/hyperledger/fabric/common/ledger"
-	"github.com/hyperledger/fabric/common/ledger/testutil"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/privacyenabledstate"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/rwsetutil"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/version"
-	btltestutil "github.com/hyperledger/fabric/core/ledger/pvtdatapolicy/testutil"
-	"github.com/hyperledger/fabric/core/ledger/util"
-	"github.com/hyperledger/fabric/protos/ledger/queryresult"
-	"github.com/hyperledger/fabric/protos/ledger/rwset/kvrwset"
+	commonledger "github.com/tw-bc-group/fabric-gm/common/ledger"
+	"github.com/tw-bc-group/fabric-gm/common/ledger/testutil"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/kvledger/txmgmt/privacyenabledstate"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/kvledger/txmgmt/rwsetutil"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/kvledger/txmgmt/version"
+	btltestutil "github.com/tw-bc-group/fabric-gm/core/ledger/pvtdatapolicy/testutil"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/util"
+	"github.com/tw-bc-group/fabric-gm/protos/ledger/queryresult"
+	"github.com/tw-bc-group/fabric-gm/protos/ledger/rwset/kvrwset"
 	"github.com/stretchr/testify/assert"
 )
 

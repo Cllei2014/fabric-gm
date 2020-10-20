@@ -10,12 +10,12 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/hyperledger/fabric/common/channelconfig"
-	"github.com/hyperledger/fabric/common/crypto"
-	mockconfig "github.com/hyperledger/fabric/common/mocks/config"
-	cb "github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/orderer"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/tw-bc-group/fabric-gm/common/channelconfig"
+	"github.com/tw-bc-group/fabric-gm/common/crypto"
+	mockconfig "github.com/tw-bc-group/fabric-gm/common/mocks/config"
+	cb "github.com/tw-bc-group/fabric-gm/protos/common"
+	"github.com/tw-bc-group/fabric-gm/protos/orderer"
+	"github.com/tw-bc-group/fabric-gm/protos/utils"
 	"github.com/stretchr/testify/assert"
 )
 

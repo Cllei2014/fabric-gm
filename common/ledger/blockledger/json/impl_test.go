@@ -12,11 +12,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/ledger/blockledger"
-	genesisconfig "github.com/hyperledger/fabric/common/tools/configtxgen/localconfig"
-	cb "github.com/hyperledger/fabric/protos/common"
-	ab "github.com/hyperledger/fabric/protos/orderer"
+	"github.com/tw-bc-group/fabric-gm/common/flogging"
+	"github.com/tw-bc-group/fabric-gm/common/ledger/blockledger"
+	genesisconfig "github.com/tw-bc-group/fabric-gm/common/tools/configtxgen/localconfig"
+	cb "github.com/tw-bc-group/fabric-gm/protos/common"
+	ab "github.com/tw-bc-group/fabric-gm/protos/orderer"
 	"github.com/stretchr/testify/assert"
 )
 

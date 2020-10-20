@@ -20,12 +20,12 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/hyperledger/fabric/common/policies"
-	"github.com/hyperledger/fabric/msp"
-	"github.com/hyperledger/fabric/msp/mgmt"
-	"github.com/hyperledger/fabric/protos/common"
-	pb "github.com/hyperledger/fabric/protos/peer"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/tw-bc-group/fabric-gm/common/policies"
+	"github.com/tw-bc-group/fabric-gm/msp"
+	"github.com/tw-bc-group/fabric-gm/msp/mgmt"
+	"github.com/tw-bc-group/fabric-gm/protos/common"
+	pb "github.com/tw-bc-group/fabric-gm/protos/peer"
+	"github.com/tw-bc-group/fabric-gm/protos/utils"
 )
 
 // PolicyChecker offers methods to check a signed proposal against a specific policy

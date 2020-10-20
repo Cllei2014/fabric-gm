@@ -12,8 +12,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/tw-bc-group/fabric-gm/core/chaincode/shim"
+	pb "github.com/tw-bc-group/fabric-gm/protos/peer"
 )
 
 // MarblesPrivateChaincode example Chaincode implementation

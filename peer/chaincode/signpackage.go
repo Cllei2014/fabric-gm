@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/hyperledger/fabric/core/common/ccpackage"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/tw-bc-group/fabric-gm/core/common/ccpackage"
+	"github.com/tw-bc-group/fabric-gm/protos/utils"
 	"github.com/spf13/cobra"
 )
 

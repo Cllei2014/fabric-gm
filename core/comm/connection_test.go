@@ -18,7 +18,7 @@ import (
 	"testing"
 	"time"
 
-	testpb "github.com/hyperledger/fabric/core/comm/testdata/grpc"
+	testpb "github.com/tw-bc-group/fabric-gm/core/comm/testdata/grpc"
 	"github.com/stretchr/testify/assert"
 	credentials "github.com/tjfoc/gmtls/gmcredentials"
 	"google.golang.org/grpc"

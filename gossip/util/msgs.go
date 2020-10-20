@@ -9,8 +9,8 @@ package util
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/gossip/common"
-	proto "github.com/hyperledger/fabric/protos/gossip"
+	"github.com/tw-bc-group/fabric-gm/gossip/common"
+	proto "github.com/tw-bc-group/fabric-gm/protos/gossip"
 )
 
 // MembershipStore struct which encapsulates

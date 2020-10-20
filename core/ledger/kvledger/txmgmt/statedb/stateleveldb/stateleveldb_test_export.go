@@ -20,8 +20,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb"
-	"github.com/hyperledger/fabric/core/ledger/ledgerconfig"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/kvledger/txmgmt/statedb"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/ledgerconfig"
 )
 
 // TestVDBEnv provides a level db backed versioned db for testing

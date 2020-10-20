@@ -8,7 +8,7 @@ package couchdb
 import (
 	"time"
 
-	"github.com/hyperledger/fabric/common/metrics"
+	"github.com/tw-bc-group/fabric-gm/common/metrics"
 )
 
 var (

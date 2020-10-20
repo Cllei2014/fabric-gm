@@ -4,8 +4,8 @@ package mocks
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/common/channelconfig"
-	"github.com/hyperledger/fabric/discovery/support/acl"
+	"github.com/tw-bc-group/fabric-gm/common/channelconfig"
+	"github.com/tw-bc-group/fabric-gm/discovery/support/acl"
 )
 
 type ChanConfig struct {

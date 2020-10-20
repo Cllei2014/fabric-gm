@@ -9,8 +9,8 @@ package channelconfig
 import (
 	"fmt"
 
-	cb "github.com/hyperledger/fabric/protos/common"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	cb "github.com/tw-bc-group/fabric-gm/protos/common"
+	pb "github.com/tw-bc-group/fabric-gm/protos/peer"
 	"github.com/pkg/errors"
 )
 

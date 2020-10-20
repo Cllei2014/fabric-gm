@@ -21,9 +21,9 @@ import (
 	"testing"
 
 	"github.com/golang/protobuf/proto"
-	bccspfactory "github.com/hyperledger/fabric/bccsp/factory"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/version"
-	"github.com/hyperledger/fabric/protos/ledger/rwset/kvrwset"
+	bccspfactory "github.com/tw-bc-group/fabric-gm/bccsp/factory"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/kvledger/txmgmt/version"
+	"github.com/tw-bc-group/fabric-gm/protos/ledger/rwset/kvrwset"
 	"github.com/stretchr/testify/assert"
 )
 

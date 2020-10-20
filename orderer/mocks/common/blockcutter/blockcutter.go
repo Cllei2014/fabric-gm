@@ -9,8 +9,8 @@ package blockcutter
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	cb "github.com/hyperledger/fabric/protos/common"
+	"github.com/tw-bc-group/fabric-gm/common/flogging"
+	cb "github.com/tw-bc-group/fabric-gm/protos/common"
 )
 
 var logger = flogging.MustGetLogger("orderer.mocks.common.blockcutter")

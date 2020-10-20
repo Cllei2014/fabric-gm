@@ -7,10 +7,10 @@ SPDX-License-Identifier: Apache-2.0
 package manager
 
 import (
-	"github.com/hyperledger/fabric/msp/mgmt"
-	"github.com/hyperledger/fabric/token/identity"
-	"github.com/hyperledger/fabric/token/tms/plain"
-	"github.com/hyperledger/fabric/token/transaction"
+	"github.com/tw-bc-group/fabric-gm/msp/mgmt"
+	"github.com/tw-bc-group/fabric-gm/token/identity"
+	"github.com/tw-bc-group/fabric-gm/token/tms/plain"
+	"github.com/tw-bc-group/fabric-gm/token/transaction"
 	"github.com/pkg/errors"
 )
 

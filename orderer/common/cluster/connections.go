@@ -11,7 +11,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/hyperledger/fabric/common/metrics"
+	"github.com/tw-bc-group/fabric-gm/common/metrics"
 	"github.com/pkg/errors"
 	"github.com/tjfoc/gmsm/sm2"
 	"google.golang.org/grpc"

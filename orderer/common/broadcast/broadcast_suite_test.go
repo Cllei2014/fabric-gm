@@ -9,8 +9,8 @@ package broadcast_test
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric/common/metrics"
-	ab "github.com/hyperledger/fabric/protos/orderer"
+	"github.com/tw-bc-group/fabric-gm/common/metrics"
+	ab "github.com/tw-bc-group/fabric-gm/protos/orderer"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"

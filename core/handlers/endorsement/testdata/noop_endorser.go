@@ -7,8 +7,8 @@ SPDX-License-Identifier: Apache-2.0
 package main
 
 import (
-	"github.com/hyperledger/fabric/core/handlers/endorsement/api"
-	"github.com/hyperledger/fabric/protos/peer"
+	"github.com/tw-bc-group/fabric-gm/core/handlers/endorsement/api"
+	"github.com/tw-bc-group/fabric-gm/protos/peer"
 )
 
 type NoOpEndorser struct {

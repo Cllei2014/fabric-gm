@@ -10,12 +10,12 @@ import (
 	"errors"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/ledger/util/leveldbhelper"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/protos/ledger/rwset"
-	"github.com/hyperledger/fabric/protos/transientstore"
+	"github.com/tw-bc-group/fabric-gm/common/flogging"
+	"github.com/tw-bc-group/fabric-gm/common/ledger/util/leveldbhelper"
+	"github.com/tw-bc-group/fabric-gm/common/util"
+	"github.com/tw-bc-group/fabric-gm/core/ledger"
+	"github.com/tw-bc-group/fabric-gm/protos/ledger/rwset"
+	"github.com/tw-bc-group/fabric-gm/protos/transientstore"
 	"github.com/syndtr/goleveldb/leveldb/iterator"
 )
 

@@ -10,8 +10,8 @@ package mocks
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/discovery/support/acl"
-	common2 "github.com/hyperledger/fabric/protos/common"
+	"github.com/tw-bc-group/fabric-gm/discovery/support/acl"
+	common2 "github.com/tw-bc-group/fabric-gm/protos/common"
 )
 
 type Evaluator struct {

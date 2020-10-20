@@ -7,9 +7,9 @@ SPDX-License-Identifier: Apache-2.0
 package transaction
 
 import (
-	"github.com/hyperledger/fabric/protos/token"
-	"github.com/hyperledger/fabric/token/identity"
-	"github.com/hyperledger/fabric/token/ledger"
+	"github.com/tw-bc-group/fabric-gm/protos/token"
+	"github.com/tw-bc-group/fabric-gm/token/identity"
+	"github.com/tw-bc-group/fabric-gm/token/ledger"
 )
 
 //go:generate counterfeiter -o mock/tms_tx_processor.go -fake-name TMSTxProcessor . TMSTxProcessor

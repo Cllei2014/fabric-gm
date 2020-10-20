@@ -24,36 +24,36 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
-	bccsp "github.com/hyperledger/fabric/bccsp/utils"
-	"github.com/hyperledger/fabric/common/cauthdsl"
-	"github.com/hyperledger/fabric/common/configtx"
-	"github.com/hyperledger/fabric/common/crypto/tlsgen"
-	policiesmocks "github.com/hyperledger/fabric/common/mocks/policies"
-	"github.com/hyperledger/fabric/common/policies"
-	"github.com/hyperledger/fabric/common/tools/configtxgen/encoder"
-	genesisconfig "github.com/hyperledger/fabric/common/tools/configtxgen/localconfig"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/core/cclifecycle"
-	lifecyclemocks "github.com/hyperledger/fabric/core/cclifecycle/mocks"
-	"github.com/hyperledger/fabric/core/comm"
-	"github.com/hyperledger/fabric/core/common/ccprovider"
-	"github.com/hyperledger/fabric/discovery"
-	disc "github.com/hyperledger/fabric/discovery/client"
-	"github.com/hyperledger/fabric/discovery/endorsement"
-	discsupport "github.com/hyperledger/fabric/discovery/support"
-	discacl "github.com/hyperledger/fabric/discovery/support/acl"
-	ccsupport "github.com/hyperledger/fabric/discovery/support/chaincode"
-	"github.com/hyperledger/fabric/discovery/support/config"
-	"github.com/hyperledger/fabric/discovery/support/mocks"
-	"github.com/hyperledger/fabric/gossip/api"
-	gcommon "github.com/hyperledger/fabric/gossip/common"
-	gdisc "github.com/hyperledger/fabric/gossip/discovery"
-	"github.com/hyperledger/fabric/msp"
-	"github.com/hyperledger/fabric/protos/common"
-	. "github.com/hyperledger/fabric/protos/discovery"
-	"github.com/hyperledger/fabric/protos/gossip"
-	msprotos "github.com/hyperledger/fabric/protos/msp"
-	"github.com/hyperledger/fabric/protos/utils"
+	bccsp "github.com/tw-bc-group/fabric-gm/bccsp/utils"
+	"github.com/tw-bc-group/fabric-gm/common/cauthdsl"
+	"github.com/tw-bc-group/fabric-gm/common/configtx"
+	"github.com/tw-bc-group/fabric-gm/common/crypto/tlsgen"
+	policiesmocks "github.com/tw-bc-group/fabric-gm/common/mocks/policies"
+	"github.com/tw-bc-group/fabric-gm/common/policies"
+	"github.com/tw-bc-group/fabric-gm/common/tools/configtxgen/encoder"
+	genesisconfig "github.com/tw-bc-group/fabric-gm/common/tools/configtxgen/localconfig"
+	"github.com/tw-bc-group/fabric-gm/common/util"
+	"github.com/tw-bc-group/fabric-gm/core/cclifecycle"
+	lifecyclemocks "github.com/tw-bc-group/fabric-gm/core/cclifecycle/mocks"
+	"github.com/tw-bc-group/fabric-gm/core/comm"
+	"github.com/tw-bc-group/fabric-gm/core/common/ccprovider"
+	"github.com/tw-bc-group/fabric-gm/discovery"
+	disc "github.com/tw-bc-group/fabric-gm/discovery/client"
+	"github.com/tw-bc-group/fabric-gm/discovery/endorsement"
+	discsupport "github.com/tw-bc-group/fabric-gm/discovery/support"
+	discacl "github.com/tw-bc-group/fabric-gm/discovery/support/acl"
+	ccsupport "github.com/tw-bc-group/fabric-gm/discovery/support/chaincode"
+	"github.com/tw-bc-group/fabric-gm/discovery/support/config"
+	"github.com/tw-bc-group/fabric-gm/discovery/support/mocks"
+	"github.com/tw-bc-group/fabric-gm/gossip/api"
+	gcommon "github.com/tw-bc-group/fabric-gm/gossip/common"
+	gdisc "github.com/tw-bc-group/fabric-gm/gossip/discovery"
+	"github.com/tw-bc-group/fabric-gm/msp"
+	"github.com/tw-bc-group/fabric-gm/protos/common"
+	. "github.com/tw-bc-group/fabric-gm/protos/discovery"
+	"github.com/tw-bc-group/fabric-gm/protos/gossip"
+	msprotos "github.com/tw-bc-group/fabric-gm/protos/msp"
+	"github.com/tw-bc-group/fabric-gm/protos/utils"
 	"github.com/onsi/gomega/gexec"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
@@ -586,12 +586,12 @@ func createPolicyManagerGetter(t *testing.T, mspMgr msp.MSPManager) *mocks.Chann
 
 func buildBinaries() error {
 	var err error
-	cryptogen, err = gexec.Build("github.com/hyperledger/fabric/common/tools/cryptogen")
+	cryptogen, err = gexec.Build("github.com/tw-bc-group/fabric-gm/common/tools/cryptogen")
 	if err != nil {
 		return errors.WithStack(err)
 	}
 
-	idemixgen, err = gexec.Build("github.com/hyperledger/fabric/common/tools/idemixgen")
+	idemixgen, err = gexec.Build("github.com/tw-bc-group/fabric-gm/common/tools/idemixgen")
 	if err != nil {
 		return errors.WithStack(err)
 	}

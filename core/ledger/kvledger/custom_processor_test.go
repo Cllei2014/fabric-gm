@@ -10,14 +10,14 @@ import (
 	"testing"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/common/ledger/testutil"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/core/ledger/customtx"
-	lgrutil "github.com/hyperledger/fabric/core/ledger/util"
-	"github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/ledger/rwset/kvrwset"
-	"github.com/hyperledger/fabric/protos/peer"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/tw-bc-group/fabric-gm/common/ledger/testutil"
+	"github.com/tw-bc-group/fabric-gm/core/ledger"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/customtx"
+	lgrutil "github.com/tw-bc-group/fabric-gm/core/ledger/util"
+	"github.com/tw-bc-group/fabric-gm/protos/common"
+	"github.com/tw-bc-group/fabric-gm/protos/ledger/rwset/kvrwset"
+	"github.com/tw-bc-group/fabric-gm/protos/peer"
+	"github.com/tw-bc-group/fabric-gm/protos/utils"
 	"github.com/stretchr/testify/assert"
 )
 

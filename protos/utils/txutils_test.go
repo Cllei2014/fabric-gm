@@ -13,11 +13,11 @@ import (
 	"testing"
 
 	"github.com/golang/protobuf/proto"
-	mockmsp "github.com/hyperledger/fabric/common/mocks/msp"
-	"github.com/hyperledger/fabric/common/util"
-	cb "github.com/hyperledger/fabric/protos/common"
-	pb "github.com/hyperledger/fabric/protos/peer"
-	"github.com/hyperledger/fabric/protos/utils"
+	mockmsp "github.com/tw-bc-group/fabric-gm/common/mocks/msp"
+	"github.com/tw-bc-group/fabric-gm/common/util"
+	cb "github.com/tw-bc-group/fabric-gm/protos/common"
+	pb "github.com/tw-bc-group/fabric-gm/protos/peer"
+	"github.com/tw-bc-group/fabric-gm/protos/utils"
 	"github.com/stretchr/testify/assert"
 )
 

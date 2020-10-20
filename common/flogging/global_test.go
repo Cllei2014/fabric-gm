@@ -10,7 +10,7 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/hyperledger/fabric/common/flogging"
+	"github.com/tw-bc-group/fabric-gm/common/flogging"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -9,10 +9,10 @@ import (
 	"strings"
 	"time"
 
-	bccsp "github.com/hyperledger/fabric/bccsp/factory"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/viperutil"
-	coreconfig "github.com/hyperledger/fabric/core/config"
+	bccsp "github.com/tw-bc-group/fabric-gm/bccsp/factory"
+	"github.com/tw-bc-group/fabric-gm/common/flogging"
+	"github.com/tw-bc-group/fabric-gm/common/viperutil"
+	coreconfig "github.com/tw-bc-group/fabric-gm/core/config"
 	"github.com/spf13/viper"
 	"github.com/qianyan/sarama"
 )

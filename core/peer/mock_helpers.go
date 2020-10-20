@@ -7,12 +7,12 @@ SPDX-License-Identifier: Apache-2.0
 package peer
 
 import (
-	configtxtest "github.com/hyperledger/fabric/common/configtx/test"
-	mockchannelconfig "github.com/hyperledger/fabric/common/mocks/config"
-	mockconfigtx "github.com/hyperledger/fabric/common/mocks/configtx"
-	mockpolicies "github.com/hyperledger/fabric/common/mocks/policies"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/core/ledger/ledgermgmt"
+	configtxtest "github.com/tw-bc-group/fabric-gm/common/configtx/test"
+	mockchannelconfig "github.com/tw-bc-group/fabric-gm/common/mocks/config"
+	mockconfigtx "github.com/tw-bc-group/fabric-gm/common/mocks/configtx"
+	mockpolicies "github.com/tw-bc-group/fabric-gm/common/mocks/policies"
+	"github.com/tw-bc-group/fabric-gm/core/ledger"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/ledgermgmt"
 )
 
 //MockInitialize resets chains for test env

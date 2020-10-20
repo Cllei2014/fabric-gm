@@ -6,7 +6,7 @@ SPDX-License-Identifier: Apache-2.0
 
 package support
 
-import "github.com/hyperledger/fabric/discovery"
+import "github.com/tw-bc-group/fabric-gm/discovery"
 
 // DiscoverySupport aggregates all the support needed for the discovery service
 type DiscoverySupport struct {

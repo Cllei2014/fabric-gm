@@ -12,12 +12,12 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/hyperledger/fabric/core/config/configtest"
-	"github.com/hyperledger/fabric/msp/mgmt/testtools"
-	"github.com/hyperledger/fabric/peer/common/mock"
-	cb "github.com/hyperledger/fabric/protos/common"
-	ab "github.com/hyperledger/fabric/protos/orderer"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/tw-bc-group/fabric-gm/core/config/configtest"
+	"github.com/tw-bc-group/fabric-gm/msp/mgmt/testtools"
+	"github.com/tw-bc-group/fabric-gm/peer/common/mock"
+	cb "github.com/tw-bc-group/fabric-gm/protos/common"
+	ab "github.com/tw-bc-group/fabric-gm/protos/orderer"
+	"github.com/tw-bc-group/fabric-gm/protos/utils"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 )

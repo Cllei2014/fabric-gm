@@ -18,12 +18,12 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/core/chaincode/platforms"
-	"github.com/hyperledger/fabric/core/chaincode/platforms/ccmetadata"
-	"github.com/hyperledger/fabric/core/chaincode/platforms/util"
-	cutil "github.com/hyperledger/fabric/core/container/util"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/tw-bc-group/fabric-gm/common/flogging"
+	"github.com/tw-bc-group/fabric-gm/core/chaincode/platforms"
+	"github.com/tw-bc-group/fabric-gm/core/chaincode/platforms/ccmetadata"
+	"github.com/tw-bc-group/fabric-gm/core/chaincode/platforms/util"
+	cutil "github.com/tw-bc-group/fabric-gm/core/container/util"
+	pb "github.com/tw-bc-group/fabric-gm/protos/peer"
 )
 
 var logger = flogging.MustGetLogger("chaincode.platform.node")

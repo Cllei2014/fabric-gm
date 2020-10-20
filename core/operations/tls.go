@@ -11,7 +11,7 @@ import (
 	"crypto/x509"
 	"io/ioutil"
 
-	"github.com/hyperledger/fabric/core/comm"
+	"github.com/tw-bc-group/fabric-gm/core/comm"
 )
 
 type TLS struct {

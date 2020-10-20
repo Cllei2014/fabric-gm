@@ -11,7 +11,7 @@ package factory
 import (
 	"strings"
 
-	"github.com/hyperledger/fabric/bccsp"
+	"github.com/tw-bc-group/fabric-gm/bccsp"
 	"github.com/pkg/errors"
 )
 

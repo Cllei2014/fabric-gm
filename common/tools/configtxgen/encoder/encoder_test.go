@@ -13,15 +13,15 @@ import (
 	. "github.com/onsi/gomega"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/common/tools/configtxgen/encoder"
-	"github.com/hyperledger/fabric/common/tools/configtxgen/encoder/mock"
-	genesisconfig "github.com/hyperledger/fabric/common/tools/configtxgen/localconfig"
-	"github.com/hyperledger/fabric/common/util"
-	cb "github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/msp"
-	ab "github.com/hyperledger/fabric/protos/orderer"
-	"github.com/hyperledger/fabric/protos/orderer/etcdraft"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/tw-bc-group/fabric-gm/common/tools/configtxgen/encoder"
+	"github.com/tw-bc-group/fabric-gm/common/tools/configtxgen/encoder/mock"
+	genesisconfig "github.com/tw-bc-group/fabric-gm/common/tools/configtxgen/localconfig"
+	"github.com/tw-bc-group/fabric-gm/common/util"
+	cb "github.com/tw-bc-group/fabric-gm/protos/common"
+	"github.com/tw-bc-group/fabric-gm/protos/msp"
+	ab "github.com/tw-bc-group/fabric-gm/protos/orderer"
+	"github.com/tw-bc-group/fabric-gm/protos/orderer/etcdraft"
+	"github.com/tw-bc-group/fabric-gm/protos/utils"
 )
 
 var _ = Describe("Encoder", func() {

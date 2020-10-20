@@ -10,12 +10,12 @@ import (
 	"bytes"
 	"encoding/hex"
 
-	"github.com/hyperledger/fabric/gossip/api"
-	"github.com/hyperledger/fabric/gossip/common"
-	"github.com/hyperledger/fabric/gossip/gossip/pull"
-	"github.com/hyperledger/fabric/gossip/identity"
-	"github.com/hyperledger/fabric/gossip/util"
-	proto "github.com/hyperledger/fabric/protos/gossip"
+	"github.com/tw-bc-group/fabric-gm/gossip/api"
+	"github.com/tw-bc-group/fabric-gm/gossip/common"
+	"github.com/tw-bc-group/fabric-gm/gossip/gossip/pull"
+	"github.com/tw-bc-group/fabric-gm/gossip/identity"
+	"github.com/tw-bc-group/fabric-gm/gossip/util"
+	proto "github.com/tw-bc-group/fabric-gm/protos/gossip"
 	"github.com/pkg/errors"
 )
 

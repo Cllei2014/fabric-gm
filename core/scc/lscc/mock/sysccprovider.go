@@ -4,9 +4,9 @@ package mock
 import (
 	sync "sync"
 
-	channelconfig "github.com/hyperledger/fabric/common/channelconfig"
-	policies "github.com/hyperledger/fabric/common/policies"
-	ledger "github.com/hyperledger/fabric/core/ledger"
+	channelconfig "github.com/tw-bc-group/fabric-gm/common/channelconfig"
+	policies "github.com/tw-bc-group/fabric-gm/common/policies"
+	ledger "github.com/tw-bc-group/fabric-gm/core/ledger"
 )
 
 type SystemChaincodeProvider struct {

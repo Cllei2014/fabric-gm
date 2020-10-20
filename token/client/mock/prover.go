@@ -4,9 +4,9 @@ package mock
 import (
 	sync "sync"
 
-	token "github.com/hyperledger/fabric/protos/token"
-	tokena "github.com/hyperledger/fabric/token"
-	client "github.com/hyperledger/fabric/token/client"
+	token "github.com/tw-bc-group/fabric-gm/protos/token"
+	tokena "github.com/tw-bc-group/fabric-gm/token"
+	client "github.com/tw-bc-group/fabric-gm/token/client"
 )
 
 type Prover struct {

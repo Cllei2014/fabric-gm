@@ -8,11 +8,11 @@ package privdata
 
 import (
 	"github.com/gogo/protobuf/proto"
-	"github.com/hyperledger/fabric/common/cauthdsl"
-	"github.com/hyperledger/fabric/common/policies"
-	"github.com/hyperledger/fabric/msp"
-	"github.com/hyperledger/fabric/protos/common"
-	mspp "github.com/hyperledger/fabric/protos/msp"
+	"github.com/tw-bc-group/fabric-gm/common/cauthdsl"
+	"github.com/tw-bc-group/fabric-gm/common/policies"
+	"github.com/tw-bc-group/fabric-gm/msp"
+	"github.com/tw-bc-group/fabric-gm/protos/common"
+	mspp "github.com/tw-bc-group/fabric-gm/protos/msp"
 	"github.com/pkg/errors"
 )
 

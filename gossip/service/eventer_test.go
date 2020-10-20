@@ -10,10 +10,10 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/hyperledger/fabric/common/channelconfig"
-	deliverclient "github.com/hyperledger/fabric/core/deliverservice"
-	"github.com/hyperledger/fabric/gossip/util"
-	"github.com/hyperledger/fabric/protos/peer"
+	"github.com/tw-bc-group/fabric-gm/common/channelconfig"
+	deliverclient "github.com/tw-bc-group/fabric-gm/core/deliverservice"
+	"github.com/tw-bc-group/fabric-gm/gossip/util"
+	"github.com/tw-bc-group/fabric-gm/protos/peer"
 )
 
 const testChainID = "foo"

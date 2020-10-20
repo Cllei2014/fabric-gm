@@ -14,12 +14,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/core/comm"
-	"github.com/hyperledger/fabric/core/deliverservice/blocksprovider"
-	"github.com/hyperledger/fabric/gossip/api"
-	"github.com/hyperledger/fabric/gossip/util"
-	"github.com/hyperledger/fabric/protos/orderer"
+	"github.com/tw-bc-group/fabric-gm/common/flogging"
+	"github.com/tw-bc-group/fabric-gm/core/comm"
+	"github.com/tw-bc-group/fabric-gm/core/deliverservice/blocksprovider"
+	"github.com/tw-bc-group/fabric-gm/gossip/api"
+	"github.com/tw-bc-group/fabric-gm/gossip/util"
+	"github.com/tw-bc-group/fabric-gm/protos/orderer"
 	"github.com/spf13/viper"
 	"google.golang.org/grpc"
 )

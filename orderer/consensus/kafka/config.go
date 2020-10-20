@@ -7,7 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 package kafka
 
 import (
-	localconfig "github.com/hyperledger/fabric/orderer/common/localconfig"
+	localconfig "github.com/tw-bc-group/fabric-gm/orderer/common/localconfig"
 	"github.com/tjfoc/gmsm/sm2"
 	tls "github.com/tjfoc/gmtls"
 	"github.com/qianyan/sarama"

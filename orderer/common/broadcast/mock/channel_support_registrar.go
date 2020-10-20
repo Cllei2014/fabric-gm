@@ -4,8 +4,8 @@ package mock
 import (
 	sync "sync"
 
-	broadcast "github.com/hyperledger/fabric/orderer/common/broadcast"
-	common "github.com/hyperledger/fabric/protos/common"
+	broadcast "github.com/tw-bc-group/fabric-gm/orderer/common/broadcast"
+	common "github.com/tw-bc-group/fabric-gm/protos/common"
 )
 
 type ChannelSupportRegistrar struct {

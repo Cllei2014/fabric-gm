@@ -11,7 +11,7 @@ import (
 	"path"
 	"testing"
 
-	"github.com/hyperledger/fabric/core/ledger/ledgerconfig"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/ledgerconfig"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 )

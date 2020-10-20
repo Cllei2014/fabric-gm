@@ -14,7 +14,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/hyperledger/fabric/cmd/common/signer"
+	"github.com/tw-bc-group/fabric-gm/cmd/common/signer"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 )

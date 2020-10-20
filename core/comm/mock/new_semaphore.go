@@ -4,7 +4,7 @@ package mock
 import (
 	sync "sync"
 
-	comm "github.com/hyperledger/fabric/core/comm"
+	comm "github.com/tw-bc-group/fabric-gm/core/comm"
 )
 
 type NewSemaphore struct {

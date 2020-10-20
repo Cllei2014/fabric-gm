@@ -10,8 +10,8 @@ import (
 	"crypto/tls"
 	"testing"
 
-	localconfig "github.com/hyperledger/fabric/orderer/common/localconfig"
-	"github.com/hyperledger/fabric/orderer/mocks/util"
+	localconfig "github.com/tw-bc-group/fabric-gm/orderer/common/localconfig"
+	"github.com/tw-bc-group/fabric-gm/orderer/mocks/util"
 	"github.com/stretchr/testify/assert"
 	"github.com/qianyan/sarama"
 )

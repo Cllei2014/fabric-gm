@@ -19,8 +19,8 @@ package ramledger
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/common/ledger/blockledger"
-	cb "github.com/hyperledger/fabric/protos/common"
+	"github.com/tw-bc-group/fabric-gm/common/ledger/blockledger"
+	cb "github.com/tw-bc-group/fabric-gm/protos/common"
 )
 
 type ramLedgerFactory struct {

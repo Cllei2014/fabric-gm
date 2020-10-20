@@ -15,37 +15,37 @@ import (
 	"testing"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/common/capabilities"
-	"github.com/hyperledger/fabric/common/cauthdsl"
-	"github.com/hyperledger/fabric/common/channelconfig"
-	mc "github.com/hyperledger/fabric/common/mocks/config"
-	lm "github.com/hyperledger/fabric/common/mocks/ledger"
-	"github.com/hyperledger/fabric/common/mocks/scc"
-	"github.com/hyperledger/fabric/common/util"
-	aclmocks "github.com/hyperledger/fabric/core/aclmgmt/mocks"
-	"github.com/hyperledger/fabric/core/chaincode/platforms"
-	"github.com/hyperledger/fabric/core/chaincode/platforms/golang"
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	"github.com/hyperledger/fabric/core/committer/txvalidator"
-	mocks2 "github.com/hyperledger/fabric/core/committer/txvalidator/mocks"
-	"github.com/hyperledger/fabric/core/common/ccpackage"
-	"github.com/hyperledger/fabric/core/common/ccprovider"
-	"github.com/hyperledger/fabric/core/common/privdata"
-	cutils "github.com/hyperledger/fabric/core/container/util"
-	validation "github.com/hyperledger/fabric/core/handlers/validation/api/capabilities"
-	"github.com/hyperledger/fabric/core/handlers/validation/builtin/v12/mocks"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/rwsetutil"
-	corepeer "github.com/hyperledger/fabric/core/peer"
-	"github.com/hyperledger/fabric/core/policy"
-	"github.com/hyperledger/fabric/core/scc/lscc"
-	"github.com/hyperledger/fabric/msp"
-	mspmgmt "github.com/hyperledger/fabric/msp/mgmt"
-	msptesttools "github.com/hyperledger/fabric/msp/mgmt/testtools"
-	"github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/ledger/rwset/kvrwset"
-	mspproto "github.com/hyperledger/fabric/protos/msp"
-	"github.com/hyperledger/fabric/protos/peer"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/tw-bc-group/fabric-gm/common/capabilities"
+	"github.com/tw-bc-group/fabric-gm/common/cauthdsl"
+	"github.com/tw-bc-group/fabric-gm/common/channelconfig"
+	mc "github.com/tw-bc-group/fabric-gm/common/mocks/config"
+	lm "github.com/tw-bc-group/fabric-gm/common/mocks/ledger"
+	"github.com/tw-bc-group/fabric-gm/common/mocks/scc"
+	"github.com/tw-bc-group/fabric-gm/common/util"
+	aclmocks "github.com/tw-bc-group/fabric-gm/core/aclmgmt/mocks"
+	"github.com/tw-bc-group/fabric-gm/core/chaincode/platforms"
+	"github.com/tw-bc-group/fabric-gm/core/chaincode/platforms/golang"
+	"github.com/tw-bc-group/fabric-gm/core/chaincode/shim"
+	"github.com/tw-bc-group/fabric-gm/core/committer/txvalidator"
+	mocks2 "github.com/tw-bc-group/fabric-gm/core/committer/txvalidator/mocks"
+	"github.com/tw-bc-group/fabric-gm/core/common/ccpackage"
+	"github.com/tw-bc-group/fabric-gm/core/common/ccprovider"
+	"github.com/tw-bc-group/fabric-gm/core/common/privdata"
+	cutils "github.com/tw-bc-group/fabric-gm/core/container/util"
+	validation "github.com/tw-bc-group/fabric-gm/core/handlers/validation/api/capabilities"
+	"github.com/tw-bc-group/fabric-gm/core/handlers/validation/builtin/v12/mocks"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/kvledger/txmgmt/rwsetutil"
+	corepeer "github.com/tw-bc-group/fabric-gm/core/peer"
+	"github.com/tw-bc-group/fabric-gm/core/policy"
+	"github.com/tw-bc-group/fabric-gm/core/scc/lscc"
+	"github.com/tw-bc-group/fabric-gm/msp"
+	mspmgmt "github.com/tw-bc-group/fabric-gm/msp/mgmt"
+	msptesttools "github.com/tw-bc-group/fabric-gm/msp/mgmt/testtools"
+	"github.com/tw-bc-group/fabric-gm/protos/common"
+	"github.com/tw-bc-group/fabric-gm/protos/ledger/rwset/kvrwset"
+	mspproto "github.com/tw-bc-group/fabric-gm/protos/msp"
+	"github.com/tw-bc-group/fabric-gm/protos/peer"
+	"github.com/tw-bc-group/fabric-gm/protos/utils"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 )
@@ -805,7 +805,7 @@ func TestAlreadyDeployed(t *testing.T) {
 
 	ccname := "mycc"
 	ccver := "alreadydeployed"
-	path := "github.com/hyperledger/fabric/examples/chaincode/go/example02/cmd"
+	path := "github.com/tw-bc-group/fabric-gm/examples/chaincode/go/example02/cmd"
 
 	cds, err := constructDeploymentSpec(ccname, path, ccver, [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
 	if err != nil {
@@ -1302,7 +1302,7 @@ func TestValidateUpgradeOK(t *testing.T) {
 
 	ccname := "mycc"
 	ccver := "upgradeok"
-	path := "github.com/hyperledger/fabric/examples/chaincode/go/example02/cmd"
+	path := "github.com/tw-bc-group/fabric-gm/examples/chaincode/go/example02/cmd"
 
 	cds, err := constructDeploymentSpec(ccname, path, ccver, [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
 	if err != nil {
@@ -1365,7 +1365,7 @@ func TestInvalidateUpgradeBadVersion(t *testing.T) {
 
 	ccname := "mycc"
 	ccver := "upgradebadversion"
-	path := "github.com/hyperledger/fabric/examples/chaincode/go/example02/cmd"
+	path := "github.com/tw-bc-group/fabric-gm/examples/chaincode/go/example02/cmd"
 
 	cds, err := constructDeploymentSpec(ccname, path, ccver, [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
 	if err != nil {
@@ -1439,7 +1439,7 @@ func validateUpgradeWithCollection(t *testing.T, ccver string, V1_2Validation bo
 	}
 
 	ccname := "mycc"
-	path := "github.com/hyperledger/fabric/examples/chaincode/go/example02/cmd"
+	path := "github.com/tw-bc-group/fabric-gm/examples/chaincode/go/example02/cmd"
 
 	cds, err := constructDeploymentSpec(ccname, path, ccver, [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
 	if err != nil {
@@ -1621,7 +1621,7 @@ func TestValidateUpgradeWithPoliciesOK(t *testing.T) {
 
 	ccname := "mycc"
 	ccver := "upgradewithpoliciesok"
-	path := "github.com/hyperledger/fabric/examples/chaincode/go/example02/cmd"
+	path := "github.com/tw-bc-group/fabric-gm/examples/chaincode/go/example02/cmd"
 
 	cds, err := constructDeploymentSpec(ccname, path, ccver, [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, false)
 	if err != nil {
@@ -1708,7 +1708,7 @@ func validateUpgradeWithNewFailAllIP(t *testing.T, ccver string, v11capability, 
 	// deploy the chaincode with an accept all policy
 
 	ccname := "mycc"
-	path := "github.com/hyperledger/fabric/examples/chaincode/go/example02/cmd"
+	path := "github.com/tw-bc-group/fabric-gm/examples/chaincode/go/example02/cmd"
 
 	cds, err := constructDeploymentSpec(ccname, path, ccver, [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, false)
 	if err != nil {
@@ -1785,7 +1785,7 @@ func TestValidateUpgradeWithPoliciesFail(t *testing.T) {
 
 	ccname := "mycc"
 	ccver := "upgradewithpoliciesfail"
-	path := "github.com/hyperledger/fabric/examples/chaincode/go/example02/cmd"
+	path := "github.com/tw-bc-group/fabric-gm/examples/chaincode/go/example02/cmd"
 
 	cds, err := constructDeploymentSpec(ccname, path, ccver, [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, false)
 	if err != nil {

@@ -19,7 +19,7 @@ package ledgerconfig
 import (
 	"testing"
 
-	ledgertestutil "github.com/hyperledger/fabric/core/ledger/testutil"
+	ledgertestutil "github.com/tw-bc-group/fabric-gm/core/ledger/testutil"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 )

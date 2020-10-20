@@ -6,6 +6,6 @@ SPDX-License-Identifier: Apache-2.0
 
 // +build ignore
 
-//go:generate protoc --proto_path=$GOPATH/src/github.com/hyperledger/fabric/core/comm/testdata/grpc --go_out=plugins=grpc:$GOPATH/src test.proto
+//go:generate protoc --proto_path=$GOPATH/src/github.com/tw-bc-group/fabric-gm/core/comm/testdata/grpc --go_out=plugins=grpc:$GOPATH/src test.proto
 
 package grpc

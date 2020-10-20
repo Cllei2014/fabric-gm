@@ -9,7 +9,7 @@ package deliver
 import (
 	"time"
 
-	"github.com/hyperledger/fabric/protos/common"
+	"github.com/tw-bc-group/fabric-gm/protos/common"
 	"github.com/pkg/errors"
 )
 

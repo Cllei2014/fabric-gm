@@ -20,8 +20,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/version"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/kvledger/txmgmt/statedb"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/kvledger/txmgmt/version"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 )

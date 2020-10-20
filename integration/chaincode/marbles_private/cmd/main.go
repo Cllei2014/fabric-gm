@@ -10,8 +10,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	"github.com/hyperledger/fabric/integration/chaincode/marbles_private"
+	"github.com/tw-bc-group/fabric-gm/core/chaincode/shim"
+	"github.com/tw-bc-group/fabric-gm/integration/chaincode/marbles_private"
 )
 
 func main() {

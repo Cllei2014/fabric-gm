@@ -11,7 +11,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/hyperledger/fabric/core/config/configtest"
+	"github.com/tw-bc-group/fabric-gm/core/config/configtest"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 )

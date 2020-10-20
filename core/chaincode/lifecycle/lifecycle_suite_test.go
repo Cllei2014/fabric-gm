@@ -9,8 +9,8 @@ package lifecycle_test
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric/core/chaincode/lifecycle"
-	"github.com/hyperledger/fabric/core/chaincode/shim"
+	"github.com/tw-bc-group/fabric-gm/core/chaincode/lifecycle"
+	"github.com/tw-bc-group/fabric-gm/core/chaincode/shim"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )

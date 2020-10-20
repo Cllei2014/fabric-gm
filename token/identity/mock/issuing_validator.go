@@ -4,7 +4,7 @@ package mock
 import (
 	"sync"
 
-	"github.com/hyperledger/fabric/token/identity"
+	"github.com/tw-bc-group/fabric-gm/token/identity"
 )
 
 type IssuingValidator struct {

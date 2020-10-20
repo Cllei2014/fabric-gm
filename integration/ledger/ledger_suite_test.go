@@ -9,7 +9,7 @@ package e2e
 import (
 	"encoding/json"
 
-	"github.com/hyperledger/fabric/integration/nwo"
+	"github.com/tw-bc-group/fabric-gm/integration/nwo"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 

@@ -17,9 +17,9 @@ limitations under the License.
 package blockledger_test
 
 import (
-	. "github.com/hyperledger/fabric/common/ledger/blockledger"
-	ramledger "github.com/hyperledger/fabric/common/ledger/blockledger/ram"
-	genesisconfig "github.com/hyperledger/fabric/common/tools/configtxgen/localconfig"
+	. "github.com/tw-bc-group/fabric-gm/common/ledger/blockledger"
+	ramledger "github.com/tw-bc-group/fabric-gm/common/ledger/blockledger/ram"
+	genesisconfig "github.com/tw-bc-group/fabric-gm/common/tools/configtxgen/localconfig"
 )
 
 func init() {

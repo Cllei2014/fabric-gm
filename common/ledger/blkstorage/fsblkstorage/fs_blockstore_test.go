@@ -19,7 +19,7 @@ package fsblkstorage
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric/common/ledger/testutil"
+	"github.com/tw-bc-group/fabric-gm/common/ledger/testutil"
 	"github.com/stretchr/testify/assert"
 )
 

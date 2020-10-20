@@ -8,7 +8,7 @@ package main
 import (
 	"hash"
 
-	"github.com/hyperledger/fabric/bccsp"
+	"github.com/tw-bc-group/fabric-gm/bccsp"
 )
 
 type impl struct{}

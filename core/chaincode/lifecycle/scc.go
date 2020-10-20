@@ -9,9 +9,9 @@ package lifecycle
 import (
 	"fmt"
 
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	pb "github.com/hyperledger/fabric/protos/peer"
-	lb "github.com/hyperledger/fabric/protos/peer/lifecycle"
+	"github.com/tw-bc-group/fabric-gm/core/chaincode/shim"
+	pb "github.com/tw-bc-group/fabric-gm/protos/peer"
+	lb "github.com/tw-bc-group/fabric-gm/protos/peer/lifecycle"
 	"github.com/pkg/errors"
 )
 
@@ -45,9 +45,9 @@ func (scc *SCC) Name() string {
 	return "+lifecycle"
 }
 
-// Path returns "github.com/hyperledger/fabric/core/chaincode/lifecycle"
+// Path returns "github.com/tw-bc-group/fabric-gm/core/chaincode/lifecycle"
 func (scc *SCC) Path() string {
-	return "github.com/hyperledger/fabric/core/chaincode/lifecycle"
+	return "github.com/tw-bc-group/fabric-gm/core/chaincode/lifecycle"
 }
 
 // InitArgs returns nil

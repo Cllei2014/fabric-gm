@@ -4,7 +4,7 @@ package mock
 import (
 	sync "sync"
 
-	token "github.com/hyperledger/fabric/token"
+	token "github.com/tw-bc-group/fabric-gm/token"
 )
 
 type Identity struct {

@@ -13,8 +13,8 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/bccsp"
-	m "github.com/hyperledger/fabric/protos/msp"
+	"github.com/tw-bc-group/fabric-gm/bccsp"
+	m "github.com/tw-bc-group/fabric-gm/protos/msp"
 	errors "github.com/pkg/errors"
 	"github.com/tjfoc/gmsm/sm2"
 )

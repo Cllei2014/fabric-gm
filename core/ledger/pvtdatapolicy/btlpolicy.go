@@ -10,8 +10,8 @@ import (
 	"math"
 	"sync"
 
-	"github.com/hyperledger/fabric/core/common/privdata"
-	"github.com/hyperledger/fabric/protos/common"
+	"github.com/tw-bc-group/fabric-gm/core/common/privdata"
+	"github.com/tw-bc-group/fabric-gm/protos/common"
 )
 
 var defaultBTL uint64 = math.MaxUint64

@@ -15,17 +15,17 @@ import (
 	"reflect"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/tools/configtxlator/metadata"
-	"github.com/hyperledger/fabric/common/tools/configtxlator/rest"
-	"github.com/hyperledger/fabric/common/tools/configtxlator/update"
-	"github.com/hyperledger/fabric/common/tools/protolator"
-	_ "github.com/hyperledger/fabric/protos/common"
-	cb "github.com/hyperledger/fabric/protos/common" // Import these to register the proto types
-	_ "github.com/hyperledger/fabric/protos/msp"
-	_ "github.com/hyperledger/fabric/protos/orderer"
-	_ "github.com/hyperledger/fabric/protos/orderer/etcdraft"
-	_ "github.com/hyperledger/fabric/protos/peer"
+	"github.com/tw-bc-group/fabric-gm/common/flogging"
+	"github.com/tw-bc-group/fabric-gm/common/tools/configtxlator/metadata"
+	"github.com/tw-bc-group/fabric-gm/common/tools/configtxlator/rest"
+	"github.com/tw-bc-group/fabric-gm/common/tools/configtxlator/update"
+	"github.com/tw-bc-group/fabric-gm/common/tools/protolator"
+	_ "github.com/tw-bc-group/fabric-gm/protos/common"
+	cb "github.com/tw-bc-group/fabric-gm/protos/common" // Import these to register the proto types
+	_ "github.com/tw-bc-group/fabric-gm/protos/msp"
+	_ "github.com/tw-bc-group/fabric-gm/protos/orderer"
+	_ "github.com/tw-bc-group/fabric-gm/protos/orderer/etcdraft"
+	_ "github.com/tw-bc-group/fabric-gm/protos/peer"
 
 	"github.com/gorilla/handlers"
 	"github.com/pkg/errors"

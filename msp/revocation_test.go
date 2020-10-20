@@ -20,8 +20,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/hyperledger/fabric/bccsp/sw"
-	"github.com/hyperledger/fabric/protos/msp"
+	"github.com/tw-bc-group/fabric-gm/bccsp/sw"
+	"github.com/tw-bc-group/fabric-gm/protos/msp"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -12,7 +12,7 @@ import (
 	"encoding/pem"
 	"math/big"
 
-	"github.com/hyperledger/fabric/common/util"
+	"github.com/tw-bc-group/fabric-gm/common/util"
 	"github.com/tjfoc/gmsm/sm2"
 	tls "github.com/tjfoc/gmtls"
 	credentials "github.com/tjfoc/gmtls/gmcredentials"

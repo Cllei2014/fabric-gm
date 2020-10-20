@@ -8,9 +8,9 @@ package fsblkstorage
 import (
 	"os"
 
-	"github.com/hyperledger/fabric/common/ledger/blkstorage"
-	"github.com/hyperledger/fabric/common/ledger/util"
-	"github.com/hyperledger/fabric/common/ledger/util/leveldbhelper"
+	"github.com/tw-bc-group/fabric-gm/common/ledger/blkstorage"
+	"github.com/tw-bc-group/fabric-gm/common/ledger/util"
+	"github.com/tw-bc-group/fabric-gm/common/ledger/util/leveldbhelper"
 	"github.com/pkg/errors"
 )
 

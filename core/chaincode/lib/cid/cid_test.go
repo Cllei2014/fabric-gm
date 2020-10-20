@@ -19,8 +19,8 @@ import (
 	"testing"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/core/chaincode/lib/cid"
-	"github.com/hyperledger/fabric/protos/msp"
+	"github.com/tw-bc-group/fabric-gm/core/chaincode/lib/cid"
+	"github.com/tw-bc-group/fabric-gm/protos/msp"
 	"github.com/stretchr/testify/assert"
 )
 

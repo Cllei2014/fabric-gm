@@ -4,7 +4,7 @@ package mock
 import (
 	sync "sync"
 
-	channelconfig "github.com/hyperledger/fabric/common/channelconfig"
+	channelconfig "github.com/tw-bc-group/fabric-gm/common/channelconfig"
 )
 
 type OrdererConfigFetcher struct {

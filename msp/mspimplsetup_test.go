@@ -12,7 +12,7 @@ import (
 
 	x509 "github.com/tjfoc/gmsm/sm2"
 
-	"github.com/hyperledger/fabric/protos/msp"
+	"github.com/tw-bc-group/fabric-gm/protos/msp"
 
 	"github.com/onsi/gomega"
 )

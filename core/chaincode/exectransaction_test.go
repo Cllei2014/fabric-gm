@@ -26,43 +26,43 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/bccsp/factory"
-	"github.com/hyperledger/fabric/common/channelconfig"
-	"github.com/hyperledger/fabric/common/crypto/tlsgen"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/metrics/disabled"
-	mc "github.com/hyperledger/fabric/common/mocks/config"
-	mockpolicies "github.com/hyperledger/fabric/common/mocks/policies"
-	"github.com/hyperledger/fabric/common/policies"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/core/aclmgmt"
-	aclmocks "github.com/hyperledger/fabric/core/aclmgmt/mocks"
-	"github.com/hyperledger/fabric/core/chaincode/accesscontrol"
-	"github.com/hyperledger/fabric/core/chaincode/platforms"
-	"github.com/hyperledger/fabric/core/chaincode/platforms/golang"
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	"github.com/hyperledger/fabric/core/common/ccprovider"
-	"github.com/hyperledger/fabric/core/config"
-	"github.com/hyperledger/fabric/core/container"
-	"github.com/hyperledger/fabric/core/container/dockercontroller"
-	"github.com/hyperledger/fabric/core/container/inproccontroller"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/core/ledger/ledgerconfig"
-	"github.com/hyperledger/fabric/core/ledger/ledgermgmt"
-	cut "github.com/hyperledger/fabric/core/ledger/util"
-	"github.com/hyperledger/fabric/core/ledger/util/couchdb"
-	cmp "github.com/hyperledger/fabric/core/mocks/peer"
-	"github.com/hyperledger/fabric/core/peer"
-	"github.com/hyperledger/fabric/core/policy"
-	"github.com/hyperledger/fabric/core/policy/mocks"
-	"github.com/hyperledger/fabric/core/scc"
-	"github.com/hyperledger/fabric/core/scc/lscc"
-	"github.com/hyperledger/fabric/msp"
-	mspmgmt "github.com/hyperledger/fabric/msp/mgmt"
-	msptesttools "github.com/hyperledger/fabric/msp/mgmt/testtools"
-	"github.com/hyperledger/fabric/protos/common"
-	pb "github.com/hyperledger/fabric/protos/peer"
-	putils "github.com/hyperledger/fabric/protos/utils"
+	"github.com/tw-bc-group/fabric-gm/bccsp/factory"
+	"github.com/tw-bc-group/fabric-gm/common/channelconfig"
+	"github.com/tw-bc-group/fabric-gm/common/crypto/tlsgen"
+	"github.com/tw-bc-group/fabric-gm/common/flogging"
+	"github.com/tw-bc-group/fabric-gm/common/metrics/disabled"
+	mc "github.com/tw-bc-group/fabric-gm/common/mocks/config"
+	mockpolicies "github.com/tw-bc-group/fabric-gm/common/mocks/policies"
+	"github.com/tw-bc-group/fabric-gm/common/policies"
+	"github.com/tw-bc-group/fabric-gm/common/util"
+	"github.com/tw-bc-group/fabric-gm/core/aclmgmt"
+	aclmocks "github.com/tw-bc-group/fabric-gm/core/aclmgmt/mocks"
+	"github.com/tw-bc-group/fabric-gm/core/chaincode/accesscontrol"
+	"github.com/tw-bc-group/fabric-gm/core/chaincode/platforms"
+	"github.com/tw-bc-group/fabric-gm/core/chaincode/platforms/golang"
+	"github.com/tw-bc-group/fabric-gm/core/chaincode/shim"
+	"github.com/tw-bc-group/fabric-gm/core/common/ccprovider"
+	"github.com/tw-bc-group/fabric-gm/core/config"
+	"github.com/tw-bc-group/fabric-gm/core/container"
+	"github.com/tw-bc-group/fabric-gm/core/container/dockercontroller"
+	"github.com/tw-bc-group/fabric-gm/core/container/inproccontroller"
+	"github.com/tw-bc-group/fabric-gm/core/ledger"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/ledgerconfig"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/ledgermgmt"
+	cut "github.com/tw-bc-group/fabric-gm/core/ledger/util"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/util/couchdb"
+	cmp "github.com/tw-bc-group/fabric-gm/core/mocks/peer"
+	"github.com/tw-bc-group/fabric-gm/core/peer"
+	"github.com/tw-bc-group/fabric-gm/core/policy"
+	"github.com/tw-bc-group/fabric-gm/core/policy/mocks"
+	"github.com/tw-bc-group/fabric-gm/core/scc"
+	"github.com/tw-bc-group/fabric-gm/core/scc/lscc"
+	"github.com/tw-bc-group/fabric-gm/msp"
+	mspmgmt "github.com/tw-bc-group/fabric-gm/msp/mgmt"
+	msptesttools "github.com/tw-bc-group/fabric-gm/msp/mgmt/testtools"
+	"github.com/tw-bc-group/fabric-gm/protos/common"
+	pb "github.com/tw-bc-group/fabric-gm/protos/peer"
+	putils "github.com/tw-bc-group/fabric-gm/protos/utils"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
@@ -618,10 +618,10 @@ func checkFinalState(chainID string, cccid *ccprovider.CCContext, a int, b int) 
 }
 
 const (
-	chaincodeExample02GolangPath   = "github.com/hyperledger/fabric/examples/chaincode/go/example02/cmd"
-	chaincodeExample04GolangPath   = "github.com/hyperledger/fabric/examples/chaincode/go/example04/cmd"
-	chaincodeEventSenderGolangPath = "github.com/hyperledger/fabric/examples/chaincode/go/eventsender"
-	chaincodePassthruGolangPath    = "github.com/hyperledger/fabric/examples/chaincode/go/passthru"
+	chaincodeExample02GolangPath   = "github.com/tw-bc-group/fabric-gm/examples/chaincode/go/example02/cmd"
+	chaincodeExample04GolangPath   = "github.com/tw-bc-group/fabric-gm/examples/chaincode/go/example04/cmd"
+	chaincodeEventSenderGolangPath = "github.com/tw-bc-group/fabric-gm/examples/chaincode/go/eventsender"
+	chaincodePassthruGolangPath    = "github.com/tw-bc-group/fabric-gm/examples/chaincode/go/passthru"
 	chaincodeExample02JavaPath     = "../../examples/chaincode/java/chaincode_example02"
 	chaincodeExample04JavaPath     = "../../examples/chaincode/java/chaincode_example04"
 	chaincodeExample06JavaPath     = "../../examples/chaincode/java/chaincode_example06"
@@ -975,7 +975,7 @@ func TestChaincodeInit(t *testing.T) {
 
 	defer cleanup()
 
-	url := "github.com/hyperledger/fabric/core/chaincode/testdata/chaincode/init_private_data"
+	url := "github.com/tw-bc-group/fabric-gm/core/chaincode/testdata/chaincode/init_private_data"
 	cID := &pb.ChaincodeID{Name: "init_pvtdata", Path: url, Version: "0"}
 
 	f := "init"
@@ -1000,7 +1000,7 @@ func TestChaincodeInit(t *testing.T) {
 	_, err = deploy(chainID, cccid, spec, nextBlockNumber, chaincodeSupport)
 	assert.Contains(t, err.Error(), "private data APIs are not allowed in chaincode Init")
 
-	url = "github.com/hyperledger/fabric/core/chaincode/testdata/chaincode/init_public_data"
+	url = "github.com/tw-bc-group/fabric-gm/core/chaincode/testdata/chaincode/init_public_data"
 	cID = &pb.ChaincodeID{Name: "init_public_data", Path: url, Version: "0"}
 
 	f = "init"
@@ -1043,7 +1043,7 @@ func TestQueries(t *testing.T) {
 
 	defer cleanup()
 
-	url := "github.com/hyperledger/fabric/examples/chaincode/go/map"
+	url := "github.com/tw-bc-group/fabric-gm/examples/chaincode/go/map"
 	cID := &pb.ChaincodeID{Name: "tmap", Path: url, Version: "0"}
 
 	f := "init"

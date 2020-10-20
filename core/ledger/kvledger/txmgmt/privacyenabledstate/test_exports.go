@@ -12,12 +12,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hyperledger/fabric/common/metrics/disabled"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/bookkeeping"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb/statecouchdb"
-	"github.com/hyperledger/fabric/core/ledger/ledgerconfig"
-	"github.com/hyperledger/fabric/core/ledger/mock"
-	"github.com/hyperledger/fabric/integration/runner"
+	"github.com/tw-bc-group/fabric-gm/common/metrics/disabled"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/kvledger/bookkeeping"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/kvledger/txmgmt/statedb/statecouchdb"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/ledgerconfig"
+	"github.com/tw-bc-group/fabric-gm/core/ledger/mock"
+	"github.com/tw-bc-group/fabric-gm/integration/runner"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 )

@@ -11,11 +11,11 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	"github.com/hyperledger/fabric/core/container"
-	"github.com/hyperledger/fabric/core/container/ccintf"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/tw-bc-group/fabric-gm/common/flogging"
+	"github.com/tw-bc-group/fabric-gm/core/chaincode/shim"
+	"github.com/tw-bc-group/fabric-gm/core/container"
+	"github.com/tw-bc-group/fabric-gm/core/container/ccintf"
+	pb "github.com/tw-bc-group/fabric-gm/protos/peer"
 )
 
 // ContainerType is the string which the inproc container type
