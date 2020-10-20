@@ -9,8 +9,6 @@ SPDX-License-Identifier: Apache-2.0
 package factory
 
 import (
-	"strings"
-
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 	"github.com/tw-bc-group/fabric-gm/bccsp/pkcs11"
 	"github.com/pkg/errors"
@@ -44,8 +42,9 @@ func initFactories(config *FactoryOpts) error {
 		config = GetDefaultOpts()
 	}
 
-	//暂时由GM替代bccsp
-	config.ProviderName = "GM"
+	if config.ProviderName == "" {
+		config.ProviderName = "GM"
+	}
 
 	if config.SwOpts == nil {
 		config.SwOpts = GetDefaultOpts().SwOpts
@@ -54,20 +53,19 @@ func initFactories(config *FactoryOpts) error {
 	// Initialize factories map
 	bccspMap = make(map[string]bccsp.BCCSP)
 
-	// Software-Based BCCSP
-	if config.ProviderName == "SW" && config.SwOpts != nil {
+	if config.SwOpts != nil {
 		var f BCCSPFactory
-		if strings.ToUpper(config.ProviderName) == "GM" {
+		if config.ProviderName == "GM" {
 			f = &GMFactory{}
 		} else {
 			f = &SWFactory{}
 		}
+
 		err := initBCCSP(f, config)
 		if err != nil {
-			return errors.Wrap(err, "Failed initializing SW.BCCSP")
+			return errors.Wrapf(err, "Failed initializing %s.BCCSP", config.ProviderName)
 		}
-	}
-
+	} else
 	// PKCS11-Based BCCSP
 	if config.ProviderName == "PKCS11" && config.Pkcs11Opts != nil {
 		f := &PKCS11Factory{}
