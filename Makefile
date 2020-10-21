@@ -309,7 +309,7 @@ $(BUILD_DIR)/image/%/$(DUMMY): Makefile $(BUILD_DIR)/image/%/payload $(BUILD_DIR
 $(BUILD_DIR)/gotools.tar.bz2: $(BUILD_DIR)/docker/gotools
 	(cd $</bin && tar -jc *) > $@
 
-$(BUILD_DIR)/goshim.tar.bz2: $(GOSHIM_DEPS)
+$(BUILD_DIR)/goshim.tar.bz2: $(GOSHIM_DEPS) go-vendor
 	@echo "Creating $@"
 	@echo "$(patsubst $(GOPATH)/src/%,%,$(GOSHIM_DEPS))" | xargs tar -jhc -C $(GOPATH)/src > $@
 
@@ -387,6 +387,9 @@ release/%/bin/peer: $(PROJECT_FILES)
 	mkdir -p $(@D)
 	$(CGO_FLAGS) GOOS=$(GOOS) GOARCH=$(GOARCH) go build -o $(abspath $@) -tags "$(GO_TAGS)" -ldflags "$(GO_LDFLAGS)" $(pkgmap.$(@F))
 
+go-vendor:
+	go mod vendor
+
 .PHONY: dist
 dist: dist-clean dist/$(MARCH)
 
@@ -410,7 +413,7 @@ docker-list: $(patsubst %,%-docker-list, $(IMAGES))
 %-docker-clean:
 	$(eval TARGET = ${patsubst %-docker-clean,%,${@}})
 	-docker images --quiet --filter=reference='$(DOCKER_NS)/fabric-$(TARGET)-gm:$(ARCH)-$(BASE_VERSION)$(if $(EXTRA_VERSION),-snapshot-*,)' | xargs docker rmi -f
-	-@rm -rf $(BUILD_DIR)/image/$(TARGET) ||:
+	-@rm -rf $(BUILD_DIR)/image/$(TARGET) vendor ||:
 
 docker-clean: $(patsubst %,%-docker-clean, $(IMAGES))
 
