@@ -311,7 +311,7 @@ $(BUILD_DIR)/gotools.tar.bz2: $(BUILD_DIR)/docker/gotools
 
 $(BUILD_DIR)/goshim.tar.bz2: $(GOSHIM_DEPS) go-vendor
 	@echo "Creating $@"
-	@echo "$(patsubst $(GOPATH)/src/%,%,$(GOSHIM_DEPS))" | xargs tar -jhc -C $(GOPATH)/src > $@
+	@./scripts/goListFiles.sh $(PKGNAME)/core/chaincode/shim | sed "s|$(GOPATH)/src/||g" | tar -jhc -C $(GOPATH)/src --files-from=- > $@
 
 $(BUILD_DIR)/sampleconfig.tar.bz2: $(shell find sampleconfig -type f)
 	(cd sampleconfig && tar -jc *) > $@
