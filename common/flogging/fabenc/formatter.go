@@ -9,6 +9,7 @@ package fabenc
 import (
 	"fmt"
 	"io"
+	"path/filepath"
 	"regexp"
 	"runtime"
 	"strings"
@@ -24,7 +25,7 @@ import (
 //   3. an optional, non-greedy format directive
 //
 // The grouping simplifies the verb proccessing during spec parsing.
-var formatRegexp = regexp.MustCompile(`%{(color|id|level|message|module|shortfunc|time)(?::(.*?))?}`)
+var formatRegexp = regexp.MustCompile(`%{(color|id|level|message|module|shortfile|shortfunc|time)(?::(.*?))?}`)
 
 // ParseFormat parses a log format spec and returns a slice of formatters
 // that should be iterated over to build a formatted log record.
@@ -138,6 +139,8 @@ func NewFormatter(verb, format string) (Formatter, error) {
 		return newMessageFormatter(format), nil
 	case "module":
 		return newModuleFormatter(format), nil
+	case "shortfile":
+		return newShortFileFormatter(format), nil
 	case "shortfunc":
 		return newShortFuncFormatter(format), nil
 	case "time":
@@ -273,6 +276,20 @@ func (s ShortFuncFormatter) Format(w io.Writer, entry zapcore.Entry, fields []za
 	fname := f.Name()
 	funcIdx := strings.LastIndex(fname, ".")
 	fmt.Fprintf(w, s.FormatVerb, fname[funcIdx+1:])
+}
+
+type ShortFileFormatter struct{ FormatVerb string }
+
+func newShortFileFormatter(f string) ShortFileFormatter {
+	return ShortFileFormatter{FormatVerb: "%" + stringOrDefault(f, "s")}
+}
+
+func (f ShortFileFormatter) Format(w io.Writer, entry zapcore.Entry, fields []zapcore.Field) {
+	file := entry.Caller.File
+	file = filepath.Base(file)
+	shortFile := fmt.Sprintf("%s:%d", file, entry.Caller.Line)
+
+	fmt.Fprintf(w, f.FormatVerb, shortFile)
 }
 
 // TimeFormatter formats the time from the zap log entry.
