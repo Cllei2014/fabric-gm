@@ -18,11 +18,10 @@ package gm
 import (
 	"crypto/elliptic"
 	"crypto/sha256"
-	"errors"
 	"fmt"
 
-	"github.com/tw-bc-group/fabric-gm/bccsp"
 	"github.com/tjfoc/gmsm/sm2"
+	"github.com/tw-bc-group/fabric-gm/bccsp"
 )
 
 type gmsm2PrivateKey struct {
@@ -32,7 +31,11 @@ type gmsm2PrivateKey struct {
 // Bytes converts this key to its byte representation,
 // if this operation is allowed.
 func (k *gmsm2PrivateKey) Bytes() (raw []byte, err error) {
-	return nil, errors.New("Not supported.")
+	raw, err = sm2.MarshalSm2PrivateKey(k.privKey, nil)
+	if err != nil {
+		return nil, fmt.Errorf("Failed marshalling key [%s]", err)
+	}
+	return
 }
 
 // SKI returns the subject key identifier of this key.
