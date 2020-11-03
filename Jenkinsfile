@@ -70,6 +70,7 @@ pipeline {
                                 job: 'fabric-sample-gm',
                                 propagate: false,
                                 parameters: [
+                                    [$class: 'StringParameterValue', name: 'BYFN_CA', value: 'yes'], 
                                     [$class: 'StringParameterValue', name: 'IMAGE_PEER', value: sh(script: 'make peer-docker-list 2>/dev/null ', returnStdout: true).trim()],
                                     [$class: 'StringParameterValue', name: 'IMAGE_ORDERER', value: sh(script: 'make orderer-docker-list 2>/dev/null ', returnStdout: true).trim()],
                                     [$class: 'StringParameterValue', name: 'IMAGE_TOOLS', value: sh(script: 'make tools-docker-list 2>/dev/null ', returnStdout: true).trim()],
