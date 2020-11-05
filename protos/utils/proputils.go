@@ -11,6 +11,7 @@ import (
 	"encoding/hex"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/pkg/errors"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 	"github.com/tw-bc-group/fabric-gm/bccsp/factory"
 	"github.com/tw-bc-group/fabric-gm/common/crypto"
@@ -18,7 +19,6 @@ import (
 	"github.com/tw-bc-group/fabric-gm/core/chaincode/platforms"
 	"github.com/tw-bc-group/fabric-gm/protos/common"
 	"github.com/tw-bc-group/fabric-gm/protos/peer"
-	"github.com/pkg/errors"
 )
 
 // GetChaincodeInvocationSpec get the ChaincodeInvocationSpec from the proposal
@@ -580,7 +580,7 @@ func ComputeTxID(nonce, creator []byte) (string, error) {
 	// channel configuration
 	digest, err := factory.GetDefault().Hash(
 		append(nonce, creator...),
-		&bccsp.SHA256Opts{})
+		&bccsp.GMSM3Opts{})
 	if err != nil {
 		return "", err
 	}

@@ -14,11 +14,11 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/pkg/errors"
+	"github.com/tjfoc/gmsm/sm2"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 	"github.com/tw-bc-group/fabric-gm/common/flogging"
 	"github.com/tw-bc-group/fabric-gm/protos/msp"
-	"github.com/pkg/errors"
-	"github.com/tjfoc/gmsm/sm2"
 	"go.uber.org/zap/zapcore"
 )
 
@@ -160,7 +160,7 @@ func (id *identity) Verify(msg []byte, sig []byte) error {
 		mspIdentityLogger.Debugf("Verify: sig = %s", hex.Dump(sig))
 	}
 
-	valid, err := id.msp.bccsp.Verify(id.pk, sig, digest, nil)
+	valid, err := id.msp.bccsp.Verify(id.pk, sig, msg, nil)
 	if err != nil {
 		return errors.WithMessage(err, "could not determine the validity of the signature")
 	} else if !valid {
@@ -244,7 +244,7 @@ func (id *signingidentity) Sign(msg []byte) ([]byte, error) {
 	mspIdentityLogger.Debugf("Sign: digest: %X \n", digest)
 
 	// Sign
-	return id.signer.Sign(rand.Reader, digest, nil)
+	return id.signer.Sign(rand.Reader, msg, nil)
 }
 
 // GetPublicVersion returns the public version of this identity,
