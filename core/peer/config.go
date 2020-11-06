@@ -25,12 +25,12 @@ import (
 	"net"
 	"path/filepath"
 
+	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
+	"github.com/pkg/errors"
+	"github.com/spf13/viper"
 	"github.com/tw-bc-group/fabric-gm/core/comm"
 	"github.com/tw-bc-group/fabric-gm/core/config"
 	pb "github.com/tw-bc-group/fabric-gm/protos/peer"
-	"github.com/pkg/errors"
-	"github.com/spf13/viper"
-	tls "github.com/tjfoc/gmtls"
 )
 
 // Is the configuration cached?

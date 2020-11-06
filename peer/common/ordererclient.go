@@ -9,10 +9,10 @@ import (
 	"context"
 	"fmt"
 
+	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
+	"github.com/pkg/errors"
 	"github.com/tw-bc-group/fabric-gm/core/comm"
 	ab "github.com/tw-bc-group/fabric-gm/protos/orderer"
-	"github.com/pkg/errors"
-	tls "github.com/tjfoc/gmtls"
 )
 
 // OrdererClient represents a client for communicating with an ordering

@@ -9,10 +9,10 @@ package comm
 import (
 	"time"
 
+	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"github.com/tw-bc-group/fabric-gm/common/flogging"
 	"github.com/tw-bc-group/fabric-gm/common/metrics"
-	"github.com/tjfoc/gmsm/sm2"
-	tls "github.com/tjfoc/gmtls"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
 )
@@ -97,7 +97,7 @@ type SecureOptions struct {
 	// VerifyCertificate, if not nil, is called after normal
 	// certificate verification by either a TLS client or server.
 	// If it returns a non-nil error, the handshake is aborted and that error results.
-	VerifyCertificate func(rawCerts [][]byte, verifiedChains [][]*sm2.Certificate) error
+	VerifyCertificate func(rawCerts [][]byte, verifiedChains [][]*x509.Certificate) error
 	// PEM-encoded X509 public key to be used for TLS communication
 	Certificate []byte
 	// PEM-encoded private key to be used for TLS communication

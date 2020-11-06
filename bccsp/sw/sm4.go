@@ -16,8 +16,8 @@ limitations under the License.
 package sw
 
 import (
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm4"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
-	"github.com/tjfoc/gmsm/sm4"
 )
 
 // GetRandomBytes returns len random looking bytes

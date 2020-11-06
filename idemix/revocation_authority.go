@@ -12,12 +12,12 @@ import (
 	"crypto/rand"
 	"crypto/sha256"
 
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
 	"github.com/golang/protobuf/proto"
 	"github.com/hyperledger/fabric-amcl/amcl"
 	"github.com/hyperledger/fabric-amcl/amcl/FP256BN"
-	"github.com/tw-bc-group/fabric-gm/bccsp/utils"
 	"github.com/pkg/errors"
-	"github.com/tjfoc/gmsm/sm2"
+	"github.com/tw-bc-group/fabric-gm/bccsp/utils"
 )
 
 type RevocationAlgorithm int32
@@ -32,7 +32,7 @@ var ProofBytes = map[RevocationAlgorithm]int{
 
 // GenerateLongTermRevocationKey generates a long term signing key that will be used for revocation
 func GenerateLongTermRevocationKey() (*sm2.PrivateKey, error) {
-	return sm2.GenerateKey()
+	return sm2.GenerateKey(nil)
 }
 
 // CreateCRI creates the Credential Revocation Information for a certain time period (epoch).

@@ -12,12 +12,12 @@ import (
 	"os"
 	"path/filepath"
 
+	gmX509 "github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 	"github.com/tw-bc-group/fabric-gm/bccsp/factory"
 	"github.com/tw-bc-group/fabric-gm/common/tools/cryptogen/ca"
 	"github.com/tw-bc-group/fabric-gm/common/tools/cryptogen/csp"
 	fabricmsp "github.com/tw-bc-group/fabric-gm/msp"
-	"github.com/tjfoc/gmsm/sm2"
 	"gopkg.in/yaml.v2"
 )
 
@@ -243,7 +243,7 @@ func x509Filename(name string) string {
 	return name + "-cert.pem"
 }
 
-func x509Export(path string, cert *sm2.Certificate) error {
+func x509Export(path string, cert *gmX509.Certificate) error {
 	return pemExport(path, "CERTIFICATE", cert.Raw)
 }
 

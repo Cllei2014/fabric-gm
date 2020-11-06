@@ -9,12 +9,12 @@ package tlsgen
 import (
 	"encoding/pem"
 
-	x509 "github.com/tjfoc/gmsm/sm2"
+	x509 "github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	//"crypto/tls"
 	//"crypto/x509"
 	"testing"
 
-	tls "github.com/tjfoc/gmtls"
+	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
 
 	"github.com/stretchr/testify/assert"
 )

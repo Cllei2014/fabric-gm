@@ -12,13 +12,13 @@ import (
 	"io/ioutil"
 	"time"
 
+	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
+	"github.com/pkg/errors"
+	"github.com/spf13/viper"
 	"github.com/tw-bc-group/fabric-gm/core/comm"
 	"github.com/tw-bc-group/fabric-gm/core/config"
 	"github.com/tw-bc-group/fabric-gm/peer/common/api"
 	pb "github.com/tw-bc-group/fabric-gm/protos/peer"
-	"github.com/pkg/errors"
-	"github.com/spf13/viper"
-	tls "github.com/tjfoc/gmtls"
 )
 
 // PeerClient represents a client for communicating with a peer

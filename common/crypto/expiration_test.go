@@ -14,14 +14,14 @@ import (
 	"testing"
 	"time"
 
-	x509 "github.com/tjfoc/gmsm/sm2"
+	x509 "github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/stretchr/testify/assert"
 	"github.com/tw-bc-group/fabric-gm/common/crypto"
 	"github.com/tw-bc-group/fabric-gm/common/crypto/tlsgen"
 	"github.com/tw-bc-group/fabric-gm/protos/msp"
 	"github.com/tw-bc-group/fabric-gm/protos/utils"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestX509CertExpiresAt(t *testing.T) {

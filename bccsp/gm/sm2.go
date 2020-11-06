@@ -24,8 +24,8 @@ import (
 	"fmt"
 	"math/big"
 
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
-	"github.com/tjfoc/gmsm/sm2"
 )
 
 type SM2Signature struct {

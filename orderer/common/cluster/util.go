@@ -9,10 +9,10 @@ package cluster
 import (
 	"bytes"
 
-	"github.com/tjfoc/gmsm/sm2"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 
 	//"crypto/tls"
-	tls "github.com/tjfoc/gmtls"
+	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
 	//"crypto/x509"
 	"encoding/hex"
 	"encoding/pem"
@@ -20,6 +20,7 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/pkg/errors"
 	"github.com/tw-bc-group/fabric-gm/common/channelconfig"
 	"github.com/tw-bc-group/fabric-gm/common/configtx"
 	"github.com/tw-bc-group/fabric-gm/common/flogging"
@@ -29,7 +30,6 @@ import (
 	"github.com/tw-bc-group/fabric-gm/core/comm"
 	"github.com/tw-bc-group/fabric-gm/protos/common"
 	"github.com/tw-bc-group/fabric-gm/protos/utils"
-	"github.com/pkg/errors"
 	"google.golang.org/grpc"
 )
 
@@ -141,7 +141,7 @@ func (dialer *PredicateDialer) Dial(address string, verifyFunc RemoteVerifier) (
 		serverRootCAs := dialer.ClientConfig.Clone().SecOpts.ServerRootCAs
 		dialer.lock.RUnlock()
 
-		tlsConfig.RootCAs = sm2.NewCertPool()
+		tlsConfig.RootCAs = x509.NewCertPool()
 		for _, pem := range serverRootCAs {
 			tlsConfig.RootCAs.AppendCertsFromPEM(pem)
 		}

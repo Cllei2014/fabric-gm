@@ -4,13 +4,12 @@ go 1.14
 
 require (
 	code.cloudfoundry.org/clock v1.0.0
-	github.com/AlekSi/gocov-xml v0.0.0-20190121064608-3a14fb1c4737 // indirect
+	github.com/Hyperledger-TWGC/tjfoc-gm v0.0.0-20201027032413-de75d571dd85
 	github.com/Knetic/govaluate v3.0.0+incompatible
 	github.com/Shopify/sarama v1.26.1
 	github.com/VividCortex/gohistogram v1.0.0 // indirect
 	github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc // indirect
 	github.com/alecthomas/units v0.0.0-20151022065526-2efee857e7cf // indirect
-	github.com/axw/gocov v1.0.0 // indirect
 	github.com/containerd/continuity v0.0.0-20181003075958-be9bd761db19 // indirect
 	github.com/coreos/pkg v0.0.0-20180108230652-97fdf19511ea // indirect
 	github.com/davecgh/go-spew v1.1.1
@@ -22,7 +21,7 @@ require (
 	github.com/go-logfmt/logfmt v0.3.0 // indirect
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/gogo/protobuf v1.1.1
-	github.com/golang/protobuf v1.4.0
+	github.com/golang/protobuf v1.4.2
 	github.com/gorilla/handlers v1.4.0
 	github.com/gorilla/mux v1.6.2
 	github.com/grpc-ecosystem/go-grpc-middleware v1.0.0
@@ -35,7 +34,6 @@ require (
 	github.com/mattn/go-colorable v0.1.6 // indirect
 	github.com/mattn/go-runewidth v0.0.3 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
-	github.com/maxbrunsfeld/counterfeiter/v6 v6.2.3 // indirect
 	github.com/miekg/pkcs11 v0.0.0-20181002074154-c6d6ee821fb1
 	github.com/mitchellh/mapstructure v1.1.1
 	github.com/onsi/ginkgo v1.8.0
@@ -53,23 +51,27 @@ require (
 	github.com/spf13/jwalterweatherman v1.0.0 // indirect
 	github.com/spf13/pflag v1.0.3
 	github.com/spf13/viper v0.0.0-20150908122457-1967d93db724
+	github.com/stretchr/objx v0.1.1 // indirect
 	github.com/stretchr/testify v1.5.1
 	github.com/sykesm/zap-logfmt v0.0.3
 	github.com/syndtr/goleveldb v0.0.0-20180815032940-ae2bd5eed72d
 	github.com/tedsuo/ifrit v0.0.0-20180802180643-bea94bb476cc
-	github.com/tjfoc/gmsm v1.3.2
-	github.com/tjfoc/gmtls v1.2.1
-	github.com/vektra/mockery v1.1.2 // indirect
+	github.com/tjfoc/gmsm v1.3.2 // indirect
+	github.com/tjfoc/gmtls v1.2.1 // indirect
 	github.com/willf/bitset v1.1.9
-	github.com/zcqzcg/sarama v1.0.1 // indirect
 	go.etcd.io/etcd v0.5.0-alpha.5.0.20181228115726-23731bf9ba55
 	go.uber.org/zap v1.12.0
-	golang.org/x/crypto v0.0.0-20200406173513-056763e48d71
-	golang.org/x/net v0.0.0-20200324143707-d3edc9973b7e
+	golang.org/x/crypto v0.0.0-20200728195943-123391ffb6de
+	golang.org/x/net v0.0.0-20200707034311-ab3426394381
 	golang.org/x/sync v0.0.0-20190911185100-cd5d95a43a6e
 	golang.org/x/tools v0.0.0-20200323144430-8dcfad9e016e
-	google.golang.org/grpc v1.28.1
+	google.golang.org/grpc v1.31.0
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6
 	gopkg.in/cheggaaa/pb.v1 v1.0.25
 	gopkg.in/yaml.v2 v2.2.8
+)
+
+replace (
+	github.com/Hyperledger-TWGC/tjfoc-gm => ../tjfoc-gm
+	github.com/qianyan/sarama => ../sarama
 )

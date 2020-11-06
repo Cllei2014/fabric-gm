@@ -8,8 +8,8 @@ package handlers
 import (
 	//"crypto/ecdsa"
 
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
-	"github.com/tjfoc/gmsm/sm2"
 )
 
 // IssuerPublicKey is the issuer public key

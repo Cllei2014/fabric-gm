@@ -16,14 +16,14 @@ import (
 	"sync/atomic"
 	"time"
 
+	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
+	"github.com/pkg/errors"
 	"github.com/tw-bc-group/fabric-gm/gossip/api"
 	"github.com/tw-bc-group/fabric-gm/gossip/common"
 	"github.com/tw-bc-group/fabric-gm/gossip/identity"
 	"github.com/tw-bc-group/fabric-gm/gossip/metrics"
 	"github.com/tw-bc-group/fabric-gm/gossip/util"
 	proto "github.com/tw-bc-group/fabric-gm/protos/gossip"
-	"github.com/pkg/errors"
-	tls "github.com/tjfoc/gmtls"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/peer"
 )

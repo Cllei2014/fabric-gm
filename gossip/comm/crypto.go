@@ -12,10 +12,11 @@ import (
 	"encoding/pem"
 	"math/big"
 
+	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
+	credentials "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls/gmcredentials"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"github.com/tw-bc-group/fabric-gm/common/util"
-	"github.com/tjfoc/gmsm/sm2"
-	tls "github.com/tjfoc/gmtls"
-	credentials "github.com/tjfoc/gmtls/gmcredentials"
 	"google.golang.org/grpc/peer"
 )
 
@@ -23,7 +24,7 @@ import (
 // and return TLS certificate
 func GenerateCertificatesOrPanic() tls.Certificate {
 	//privateKey, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
-	privateKey, err := sm2.GenerateKey()
+	privateKey, err := sm2.GenerateKey(nil)
 	if err != nil {
 		panic(err)
 	}
@@ -31,17 +32,17 @@ func GenerateCertificatesOrPanic() tls.Certificate {
 	if err != nil {
 		panic(err)
 	}
-	template := sm2.Certificate{
-		KeyUsage:     sm2.KeyUsageKeyEncipherment | sm2.KeyUsageDigitalSignature,
+	template := x509.Certificate{
+		KeyUsage:     x509.KeyUsageKeyEncipherment | x509.KeyUsageDigitalSignature,
 		SerialNumber: sn,
-		ExtKeyUsage:  []sm2.ExtKeyUsage{sm2.ExtKeyUsageServerAuth},
+		ExtKeyUsage:  []x509.ExtKeyUsage{x509.ExtKeyUsageServerAuth},
 	}
-	rawBytes, err := sm2.CreateCertificate(rand.Reader, &template, &template, &privateKey.PublicKey, privateKey)
+	rawBytes, err := x509.CreateCertificate(&template, &template, &privateKey.PublicKey, privateKey)
 	if err != nil {
 		panic(err)
 	}
 	//privBytes, err := x509.MarshalECPrivateKey(privateKey)
-	privBytes, err := sm2.MarshalSm2UnecryptedPrivateKey(privateKey)
+	privBytes, err := x509.MarshalSm2UnecryptedPrivateKey(privateKey)
 	if err != nil {
 		panic(err)
 	}

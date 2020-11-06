@@ -10,11 +10,11 @@ import (
 	"context"
 	"time"
 
-	tls "github.com/tjfoc/gmtls"
+	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
 
+	"github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"github.com/pkg/errors"
-	"github.com/tjfoc/gmsm/sm2"
-	//credentials "github.com/tjfoc/gmtls/gmcredentials"
+	//credentials "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls/gmcredentials"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
 )
@@ -80,7 +80,7 @@ func (client *GRPCClient) parseSecureOptions(opts *SecureOptions) error {
 		VerifyPeerCertificate: opts.VerifyCertificate,
 		MinVersion:            tls.VersionTLS12} // TLS 1.2 only
 	if len(opts.ServerRootCAs) > 0 {
-		client.tlsConfig.RootCAs = sm2.NewCertPool()
+		client.tlsConfig.RootCAs = x509.NewCertPool()
 		for _, certBytes := range opts.ServerRootCAs {
 			err := AddPemToCertPool(certBytes, client.tlsConfig.RootCAs)
 			if err != nil {
@@ -156,7 +156,7 @@ func (client *GRPCClient) SetServerRootCAs(serverRoots [][]byte) error {
 
 	// NOTE: if no serverRoots are specified, the current cert pool will be
 	// replaced with an empty one
-	certPool := sm2.NewCertPool()
+	certPool := x509.NewCertPool()
 	for _, root := range serverRoots {
 		err := AddPemToCertPool(root, certPool)
 		if err != nil {

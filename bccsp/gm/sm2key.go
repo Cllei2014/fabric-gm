@@ -20,7 +20,8 @@ import (
 	"crypto/sha256"
 	"fmt"
 
-	"github.com/tjfoc/gmsm/sm2"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 )
 
@@ -31,7 +32,7 @@ type gmsm2PrivateKey struct {
 // Bytes converts this key to its byte representation,
 // if this operation is allowed.
 func (k *gmsm2PrivateKey) Bytes() (raw []byte, err error) {
-	raw, err = sm2.MarshalSm2PrivateKey(k.privKey, nil)
+	raw, err = x509.MarshalSm2PrivateKey(k.privKey, nil)
 	if err != nil {
 		return nil, fmt.Errorf("Failed marshalling key [%s]", err)
 	}
@@ -78,7 +79,7 @@ type gmsm2PublicKey struct {
 // Bytes converts this key to its byte representation,
 // if this operation is allowed.
 func (k *gmsm2PublicKey) Bytes() (raw []byte, err error) {
-	raw, err = sm2.MarshalSm2PublicKey(k.pubKey)
+	raw, err = x509.MarshalSm2PublicKey(k.pubKey)
 	if err != nil {
 		return nil, fmt.Errorf("Failed marshalling key [%s]", err)
 	}

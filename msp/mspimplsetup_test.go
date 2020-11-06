@@ -10,7 +10,7 @@ import (
 	//"crypto/x509"
 	"testing"
 
-	x509 "github.com/tjfoc/gmsm/sm2"
+	x509 "github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 
 	"github.com/tw-bc-group/fabric-gm/protos/msp"
 

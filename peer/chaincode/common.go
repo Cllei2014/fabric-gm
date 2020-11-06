@@ -15,7 +15,11 @@ import (
 	"strings"
 	"sync"
 
+	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
 	"github.com/golang/protobuf/proto"
+	"github.com/pkg/errors"
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 	"github.com/tw-bc-group/fabric-gm/common/cauthdsl"
 	"github.com/tw-bc-group/fabric-gm/common/localmsp"
 	"github.com/tw-bc-group/fabric-gm/common/util"
@@ -30,10 +34,6 @@ import (
 	ab "github.com/tw-bc-group/fabric-gm/protos/orderer"
 	pb "github.com/tw-bc-group/fabric-gm/protos/peer"
 	putils "github.com/tw-bc-group/fabric-gm/protos/utils"
-	"github.com/pkg/errors"
-	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
-	tls "github.com/tjfoc/gmtls"
 )
 
 // checkSpec to see if chaincode resides within current package capture for language.

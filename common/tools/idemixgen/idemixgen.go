@@ -18,13 +18,14 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"github.com/golang/protobuf/proto"
+	"github.com/pkg/errors"
 	"github.com/tw-bc-group/fabric-gm/common/tools/idemixgen/idemixca"
 	"github.com/tw-bc-group/fabric-gm/common/tools/idemixgen/metadata"
 	"github.com/tw-bc-group/fabric-gm/idemix"
 	"github.com/tw-bc-group/fabric-gm/msp"
-	"github.com/pkg/errors"
-	"github.com/tjfoc/gmsm/sm2"
 	kingpin "gopkg.in/alecthomas/kingpin.v2"
 )
 
@@ -61,12 +62,11 @@ func main() {
 
 		revocationKey, err := idemix.GenerateLongTermRevocationKey()
 		handleError(err)
-		encodedRevocationSK, err := sm2.MarshalSm2UnecryptedPrivateKey(revocationKey)
+		encodedRevocationSK, err := x509.MarshalSm2UnecryptedPrivateKey(revocationKey)
 		handleError(err)
 		pemEncodedRevocationSK := pem.EncodeToMemory(&pem.Block{Type: "PRIVATE KEY", Bytes: encodedRevocationSK})
 		handleError(err)
-		//encodedRevocationPK, err := x509.MarshalPKIXPublicKey(revocationKey.Public())
-		encodedRevocationPK, err := sm2.MarshalPKIXPublicKey(revocationKey.Public())
+		encodedRevocationPK, err := x509.MarshalPKIXPublicKey(revocationKey.Public())
 		handleError(err)
 		pemEncodedRevocationPK := pem.EncodeToMemory(&pem.Block{Type: "PUBLIC KEY", Bytes: encodedRevocationPK})
 
@@ -147,7 +147,7 @@ func readRevocationKey() *sm2.PrivateKey {
 	if block == nil {
 		handleError(errors.Errorf("failed to decode ECDSA private key"))
 	}
-	key, err := sm2.ParseSm2PrivateKey(block.Bytes)
+	key, err := x509.ParseSm2PrivateKey(block.Bytes)
 	handleError(err)
 
 	return key

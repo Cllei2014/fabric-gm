@@ -7,10 +7,10 @@ SPDX-License-Identifier: Apache-2.0
 package kafka
 
 import (
-	localconfig "github.com/tw-bc-group/fabric-gm/orderer/common/localconfig"
-	"github.com/tjfoc/gmsm/sm2"
-	tls "github.com/tjfoc/gmtls"
+	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"github.com/qianyan/sarama"
+	localconfig "github.com/tw-bc-group/fabric-gm/orderer/common/localconfig"
 )
 
 func newBrokerConfig(
@@ -45,7 +45,7 @@ func newBrokerConfig(
 			logger.Panic("Unable to decode public/private key pair:", err)
 		}
 		// create root CA pool
-		rootCAs := sm2.NewCertPool()
+		rootCAs := x509.NewCertPool()
 		for _, certificate := range tlsConfig.RootCAs {
 			if !rootCAs.AppendCertsFromPEM([]byte(certificate)) {
 				logger.Panic("Unable to parse the root certificate authority certificates (Kafka.Tls.RootCAs)")

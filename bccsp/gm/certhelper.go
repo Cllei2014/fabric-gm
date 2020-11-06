@@ -22,9 +22,10 @@ import (
 	"io"
 	"math/big"
 
-	"github.com/tw-bc-group/fabric-gm/bccsp"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
+	gmX509 "github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"github.com/pkg/errors"
-	"github.com/tjfoc/gmsm/sm2"
+	"github.com/tw-bc-group/fabric-gm/bccsp"
 )
 
 // //调用SM2接口生成SM2证书
@@ -58,7 +59,7 @@ import (
 // }
 
 //调用SM2接口生成SM2证书
-func CreateCertificateToMem(template, parent *sm2.Certificate, key bccsp.Key) (cert []byte, err error) {
+func CreateCertificateToMem(template, parent *gmX509.Certificate, key bccsp.Key) (cert []byte, err error) {
 	sm2pk, ok := key.(*gmsm2PrivateKey)
 	if !ok {
 		return nil, errors.Wrap(err, "CreateCertificateToMem interface wrong: it's not gmsm2PrivateKey.")
@@ -73,7 +74,7 @@ func CreateCertificateToMem(template, parent *sm2.Certificate, key bccsp.Key) (c
 			X:     pub.X,
 			Y:     pub.Y,
 		}
-		cert, err = sm2.CreateCertificateToMem(template, parent, &puk, pk)
+		cert, err = gmX509.CreateCertificateToPem(template, parent, &puk, pk)
 	case *ecdsa.PublicKey:
 		pub := template.PublicKey.(*ecdsa.PublicKey)
 		var puk = sm2.PublicKey{
@@ -81,22 +82,22 @@ func CreateCertificateToMem(template, parent *sm2.Certificate, key bccsp.Key) (c
 			X:     pub.X,
 			Y:     pub.Y,
 		}
-		cert, err = sm2.CreateCertificateToMem(template, parent, &puk, pk)
+		cert, err = gmX509.CreateCertificateToPem(template, parent, &puk, pk)
 	}
 
 	return
 }
 
 //调用SM2接口生成SM2证书请求
-func CreateSm2CertificateRequestToMem(certificateRequest *sm2.CertificateRequest, key bccsp.Key) (csr []byte, err error) {
+func CreateSm2CertificateRequestToMem(certificateRequest *gmX509.CertificateRequest, key bccsp.Key) (csr []byte, err error) {
 	pk := key.(*gmsm2PrivateKey).privKey
-	csr, err = sm2.CreateCertificateRequestToMem(certificateRequest, pk)
+	csr, err = gmX509.CreateCertificateRequestToPem(certificateRequest, pk)
 	return
 }
 
 // X509 证书请求转换 SM2证书请求
-func ParseX509CertificateRequest2Sm2(x509req *x509.CertificateRequest) *sm2.CertificateRequest {
-	sm2req := &sm2.CertificateRequest{
+func ParseX509CertificateRequest2Sm2(x509req *x509.CertificateRequest) *gmX509.CertificateRequest {
+	sm2req := &gmX509.CertificateRequest{
 		Raw:                      x509req.Raw,                      // Complete ASN.1 DER content (CSR, signature algorithm and signature).
 		RawTBSCertificateRequest: x509req.RawTBSCertificateRequest, // Certificate request info part of raw ASN.1 DER content.
 		RawSubjectPublicKeyInfo:  x509req.RawSubjectPublicKeyInfo,  // DER encoded SubjectPublicKeyInfo.
@@ -104,9 +105,9 @@ func ParseX509CertificateRequest2Sm2(x509req *x509.CertificateRequest) *sm2.Cert
 
 		Version:            x509req.Version,
 		Signature:          x509req.Signature,
-		SignatureAlgorithm: sm2.SignatureAlgorithm(x509req.SignatureAlgorithm),
+		SignatureAlgorithm: gmX509.SignatureAlgorithm(x509req.SignatureAlgorithm),
 
-		PublicKeyAlgorithm: sm2.PublicKeyAlgorithm(x509req.PublicKeyAlgorithm),
+		PublicKeyAlgorithm: gmX509.PublicKeyAlgorithm(x509req.PublicKeyAlgorithm),
 		PublicKey:          x509req.PublicKey,
 
 		Subject: x509req.Subject,
@@ -137,8 +138,8 @@ func ParseX509CertificateRequest2Sm2(x509req *x509.CertificateRequest) *sm2.Cert
 }
 
 // X509证书格式转换为 SM2证书格式
-func ParseX509Certificate2Sm2(x509Cert *x509.Certificate) *sm2.Certificate {
-	sm2cert := &sm2.Certificate{
+func ParseX509Certificate2Sm2(x509Cert *x509.Certificate) *gmX509.Certificate {
+	sm2cert := &gmX509.Certificate{
 		Raw:                     x509Cert.Raw,
 		RawTBSCertificate:       x509Cert.RawTBSCertificate,
 		RawSubjectPublicKeyInfo: x509Cert.RawSubjectPublicKeyInfo,
@@ -146,9 +147,9 @@ func ParseX509Certificate2Sm2(x509Cert *x509.Certificate) *sm2.Certificate {
 		RawIssuer:               x509Cert.RawIssuer,
 
 		Signature:          x509Cert.Signature,
-		SignatureAlgorithm: sm2.SM2WithSM3,
+		SignatureAlgorithm: gmX509.SM2WithSM3,
 
-		PublicKeyAlgorithm: sm2.PublicKeyAlgorithm(x509Cert.PublicKeyAlgorithm),
+		PublicKeyAlgorithm: gmX509.PublicKeyAlgorithm(x509Cert.PublicKeyAlgorithm),
 		PublicKey:          x509Cert.PublicKey,
 
 		Version:      x509Cert.Version,
@@ -157,7 +158,7 @@ func ParseX509Certificate2Sm2(x509Cert *x509.Certificate) *sm2.Certificate {
 		Subject:      x509Cert.Subject,
 		NotBefore:    x509Cert.NotBefore,
 		NotAfter:     x509Cert.NotAfter,
-		KeyUsage:     sm2.KeyUsage(x509Cert.KeyUsage),
+		KeyUsage:     gmX509.KeyUsage(x509Cert.KeyUsage),
 
 		Extensions: x509Cert.Extensions,
 
@@ -199,14 +200,14 @@ func ParseX509Certificate2Sm2(x509Cert *x509.Certificate) *sm2.Certificate {
 		PolicyIdentifiers: x509Cert.PolicyIdentifiers,
 	}
 	for _, val := range x509Cert.ExtKeyUsage {
-		sm2cert.ExtKeyUsage = append(sm2cert.ExtKeyUsage, sm2.ExtKeyUsage(val))
+		sm2cert.ExtKeyUsage = append(sm2cert.ExtKeyUsage, gmX509.ExtKeyUsage(val))
 	}
 
 	return sm2cert
 }
 
 //sm2 证书转换 x509 证书
-func ParseSm2Certificate2X509(sm2Cert *sm2.Certificate) *x509.Certificate {
+func ParseSm2Certificate2X509(sm2Cert *gmX509.Certificate) *x509.Certificate {
 	if sm2Cert == nil {
 		return nil
 	}

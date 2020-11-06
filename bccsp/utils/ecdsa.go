@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/tjfoc/gmsm/sm2"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
 )
 
 type ECDSASignature struct {

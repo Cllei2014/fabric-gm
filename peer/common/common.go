@@ -15,6 +15,10 @@ import (
 	"strings"
 	"time"
 
+	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
+	"github.com/pkg/errors"
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 	"github.com/tw-bc-group/fabric-gm/bccsp/factory"
 	"github.com/tw-bc-group/fabric-gm/common/channelconfig"
 	"github.com/tw-bc-group/fabric-gm/common/flogging"
@@ -28,10 +32,6 @@ import (
 	pcommon "github.com/tw-bc-group/fabric-gm/protos/common"
 	pb "github.com/tw-bc-group/fabric-gm/protos/peer"
 	putils "github.com/tw-bc-group/fabric-gm/protos/utils"
-	"github.com/pkg/errors"
-	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
-	tls "github.com/tjfoc/gmtls"
 )
 
 // UndefinedParamValue defines what undefined parameters in the command line will initialise to

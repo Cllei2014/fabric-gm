@@ -9,7 +9,7 @@ package comm
 import (
 	"context"
 
-	"github.com/tjfoc/gmsm/sm2"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 
 	//"crypto/tls"
 	//"crypto/x509"
@@ -17,10 +17,10 @@ import (
 	"net"
 	"sync"
 
+	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
 	"github.com/tw-bc-group/fabric-gm/common/flogging"
-	tls "github.com/tjfoc/gmtls"
-	//credentials "github.com/tjfoc/gmtls/gmcredentials"
-	"github.com/tjfoc/gmtls/gmcredentials"
+	//credentials "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls/gmcredentials"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/gmtls/gmcredentials"
 	"google.golang.org/grpc/credentials"
 )
 
@@ -83,14 +83,14 @@ func (t *TLSConfig) Config() tls.Config {
 	return tls.Config{}
 }
 
-func (t *TLSConfig) AddClientRootCA(cert *sm2.Certificate) {
+func (t *TLSConfig) AddClientRootCA(cert *x509.Certificate) {
 	t.lock.Lock()
 	defer t.lock.Unlock()
 
 	t.config.ClientCAs.AddCert(cert)
 }
 
-func (t *TLSConfig) SetClientCAs(certPool *sm2.CertPool) {
+func (t *TLSConfig) SetClientCAs(certPool *x509.CertPool) {
 	t.lock.Lock()
 	defer t.lock.Unlock()
 

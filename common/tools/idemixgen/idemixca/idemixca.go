@@ -9,13 +9,13 @@ package idemixca
 import (
 	//"crypto/ecdsa"
 
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
 	"github.com/golang/protobuf/proto"
 	"github.com/hyperledger/fabric-amcl/amcl/FP256BN"
+	"github.com/pkg/errors"
 	"github.com/tw-bc-group/fabric-gm/idemix"
 	"github.com/tw-bc-group/fabric-gm/msp"
 	m "github.com/tw-bc-group/fabric-gm/protos/msp"
-	"github.com/pkg/errors"
-	"github.com/tjfoc/gmsm/sm2"
 )
 
 // GenerateIssuerKey invokes Idemix library to generate an issuer (CA) signing key pair.
