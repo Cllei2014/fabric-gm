@@ -22,7 +22,7 @@ import (
 	"time"
 
 	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
-	gmX509 "github.com/Hyperledger-TWGC/tjfoc-gm/x509"
+	x509GM "github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 	"github.com/tw-bc-group/fabric-gm/bccsp/gm"
 	"github.com/tw-bc-group/fabric-gm/bccsp/utils"
@@ -40,7 +40,7 @@ type CA struct {
 	//SignKey  *ecdsa.PrivateKey
 	Signer      crypto.Signer
 	SignCert    *x509.Certificate
-	SignSm2Cert *gmX509.Certificate
+	SignSm2Cert *x509GM.Certificate
 	Sm2Key      bccsp.Key
 }
 
@@ -113,7 +113,7 @@ func NewCA(baseDir, org, name, country, province, locality, orgUnit, streetAddre
 // SignCertificate creates a signed certificate based on a built-in template
 // and saves it in baseDir/name
 func (ca *CA) SignCertificate(baseDir, name string, ous, sans []string, pub *sm2.PublicKey,
-	ku x509.KeyUsage, eku []x509.ExtKeyUsage) (*gmX509.Certificate, error) {
+	ku x509.KeyUsage, eku []x509.ExtKeyUsage) (*x509GM.Certificate, error) {
 
 	template := x509Template()
 	template.KeyUsage = ku
@@ -263,8 +263,8 @@ func LoadCertificateECDSA(certPath string) (*x509.Certificate, error) {
 }
 
 //generate a signed X509 certficate using GMSM2
-func genCertificateGMSM2(baseDir, name string, template, parent *gmX509.Certificate, pub *sm2.PublicKey,
-	key bccsp.Key) (*gmX509.Certificate, error) {
+func genCertificateGMSM2(baseDir, name string, template, parent *x509GM.Certificate, pub *sm2.PublicKey,
+	key bccsp.Key) (*x509GM.Certificate, error) {
 	fmt.Printf("SM2 CERT'S PUBLIC KEY [%+v]\n", template.PublicKey.(*sm2.PublicKey))
 	//create the x509 public cert
 	certBytes, err := gm.CreateCertificateToMem(template, parent, key)
@@ -290,7 +290,7 @@ func genCertificateGMSM2(baseDir, name string, template, parent *gmX509.Certific
 	// }
 	//x509Cert, err := sm2.ReadCertificateFromPem(fileName)
 
-	x509Cert, err := gmX509.ReadCertificateFromPem(certBytes)
+	x509Cert, err := x509GM.ReadCertificateFromPem(certBytes)
 	if err != nil {
 		return nil, err
 	}
@@ -299,8 +299,8 @@ func genCertificateGMSM2(baseDir, name string, template, parent *gmX509.Certific
 }
 
 // LoadCertificateGMSM2 load a ecdsa cert from a file in cert path
-func LoadCertificateGMSM2(certPath string) (*gmX509.Certificate, error) {
-	var cert *gmX509.Certificate
+func LoadCertificateGMSM2(certPath string) (*x509GM.Certificate, error) {
+	var cert *x509GM.Certificate
 	var err error
 
 	walkFunc := func(path string, info os.FileInfo, err error) error {

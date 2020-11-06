@@ -28,7 +28,7 @@ import (
 	"fmt"
 
 	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
-	gmX509 "github.com/Hyperledger-TWGC/tjfoc-gm/x509"
+	x509GM "github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 )
 
 // struct to hold info required for PKCS#8
@@ -149,7 +149,7 @@ func PrivateKeyToPEM(privateKey interface{}, pwd []byte) ([]byte, error) {
 		if k == nil {
 			return nil, errors.New("Invalid sm2 private key. It must be different from nil.")
 		}
-		return gmX509.WritePrivateKeyToMem(k, nil)
+		return x509GM.WritePrivateKeyToMem(k, nil)
 	default:
 		return nil, errors.New("Invalid key type. It must be *ecdsa.PrivateKey or *rsa.PrivateKey")
 	}
@@ -189,7 +189,7 @@ func PrivateKeyToEncryptedPEM(privateKey interface{}, pwd []byte) ([]byte, error
 			return nil, errors.New("Invalid sm2 private key. It must be different from nil.")
 		}
 
-		return gmX509.WritePrivateKeyToMem(k, pwd)
+		return x509GM.WritePrivateKeyToMem(k, pwd)
 	default:
 		return nil, errors.New("Invalid key type. It must be *ecdsa.PrivateKey")
 	}
@@ -215,7 +215,7 @@ func DERToPrivateKey(der []byte) (key interface{}, err error) {
 		return
 	}
 
-	if key, err := gmX509.ParsePKCS8UnecryptedPrivateKey(der); err == nil {
+	if key, err := x509GM.ParsePKCS8UnecryptedPrivateKey(der); err == nil {
 		return key, nil
 	} else {
 		fmt.Printf("error!!!!! %s", err.Error())
@@ -359,7 +359,7 @@ func PublicKeyToPEM(publicKey interface{}, pwd []byte) ([]byte, error) {
 			return nil, errors.New("Invalid sm2 public key. It must be different from nil.")
 		}
 
-		return gmX509.WritePublicKeyToMem(k)
+		return x509GM.WritePublicKeyToMem(k)
 	default:
 		return nil, errors.New("Invalid key type. It must be *ecdsa.PublicKey or *rsa.PublicKey")
 	}
@@ -435,7 +435,7 @@ func PublicKeyToEncryptedPEM(publicKey interface{}, pwd []byte) ([]byte, error) 
 			return nil, errors.New("Invalid ecdsa public key. It must be different from nil.")
 		}
 
-		return gmX509.WritePublicKeyToMem(k)
+		return x509GM.WritePublicKeyToMem(k)
 	default:
 		return nil, errors.New("Invalid key type. It must be *ecdsa.PublicKey")
 	}
@@ -484,7 +484,7 @@ func DERToPublicKey(raw []byte) (pub interface{}, err error) {
 
 	key, err1 := x509.ParsePKIXPublicKey(raw)
 	if err1 != nil {
-		key, err = gmX509.ParseSm2PublicKey(raw)
+		key, err = x509GM.ParseSm2PublicKey(raw)
 	}
 
 	return key, err

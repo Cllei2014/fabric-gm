@@ -12,7 +12,7 @@ import (
 	"os"
 	"path/filepath"
 
-	gmX509 "github.com/Hyperledger-TWGC/tjfoc-gm/x509"
+	x509GM "github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 	"github.com/tw-bc-group/fabric-gm/bccsp/factory"
 	"github.com/tw-bc-group/fabric-gm/common/tools/cryptogen/ca"
@@ -243,7 +243,7 @@ func x509Filename(name string) string {
 	return name + "-cert.pem"
 }
 
-func x509Export(path string, cert *gmX509.Certificate) error {
+func x509Export(path string, cert *x509GM.Certificate) error {
 	return pemExport(path, "CERTIFICATE", cert.Raw)
 }
 
