@@ -50,7 +50,6 @@ require (
 	github.com/spf13/jwalterweatherman v1.0.0 // indirect
 	github.com/spf13/pflag v1.0.3
 	github.com/spf13/viper v0.0.0-20150908122457-1967d93db724
-	github.com/stretchr/objx v0.1.1 // indirect
 	github.com/stretchr/testify v1.5.1
 	github.com/sykesm/zap-logfmt v0.0.3
 	github.com/syndtr/goleveldb v0.0.0-20180815032940-ae2bd5eed72d
@@ -72,6 +71,6 @@ require (
 )
 
 replace (
-	github.com/Hyperledger-TWGC/tjfoc-gm => github.com/tw-bc-group/tjfoc-gm latest
-	github.com/qianyan/sarama => github.com/tw-bc-group/sarama latest
+	github.com/Hyperledger-TWGC/tjfoc-gm => github.com/tw-bc-group/tjfoc-gm v1.3.4-0.20201110015443-9c1fb79cdec7
+	github.com/qianyan/sarama => github.com/tw-bc-group/sarama v1.1.1-0.20201106023226-47d4e7a9f7c6
 )
