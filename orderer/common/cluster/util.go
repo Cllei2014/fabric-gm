@@ -141,6 +141,7 @@ func (dialer *PredicateDialer) Dial(address string, verifyFunc RemoteVerifier) (
 		serverRootCAs := dialer.ClientConfig.Clone().SecOpts.ServerRootCAs
 		dialer.lock.RUnlock()
 
+		tlsConfig.GMSupport = &tls.GMSupport{}
 		tlsConfig.RootCAs = x509.NewCertPool()
 		for _, pem := range serverRootCAs {
 			tlsConfig.RootCAs.AppendCertsFromPEM(pem)

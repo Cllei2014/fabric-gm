@@ -52,6 +52,7 @@ func newBrokerConfig(
 			}
 		}
 		brokerConfig.Net.TLS.Config = &tls.Config{
+			GMSupport:    &tls.GMSupport{},
 			Certificates: []tls.Certificate{keyPair},
 			RootCAs:      rootCAs,
 			MinVersion:   tls.VersionTLS12,

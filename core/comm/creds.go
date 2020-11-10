@@ -67,6 +67,7 @@ type TLSConfig struct {
 }
 
 func NewTLSConfig(config *tls.Config) *TLSConfig {
+	config.GMSupport = &tls.GMSupport{}
 	return &TLSConfig{
 		config: config,
 	}
@@ -150,6 +151,7 @@ func (dtc *DynamicClientCredentials) latestConfig() *tls.Config {
 	for _, tlsOption := range dtc.TLSOptions {
 		tlsOption(tlsConfigCopy)
 	}
+	tlsConfigCopy.GMSupport = &tls.GMSupport{}
 	return tlsConfigCopy
 }
 

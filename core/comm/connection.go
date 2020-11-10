@@ -159,6 +159,7 @@ func (cs *CredentialSupport) GetDeliverServiceCredentials(
 	// Finally, create a TLS client config with the computed TLS root CAs.
 	var creds credentials.TransportCredentials
 	tlsConfig := &tls.Config{
+		GMSupport: &tls.GMSupport{},
 		Certificates: []tls.Certificate{cs.clientCert},
 		RootCAs:      certPool,
 	}
@@ -173,6 +174,7 @@ func (cs *CredentialSupport) GetPeerCredentials() credentials.TransportCredentia
 	defer cs.RUnlock()
 
 	tlsConfig := &tls.Config{
+		GMSupport: &tls.GMSupport{},
 		Certificates: []tls.Certificate{cs.clientCert},
 	}
 	var certPool = x509.NewCertPool()
@@ -259,6 +261,7 @@ func InitTLSForShim(key, certStr string) credentials.TransportCredentials {
 		commLogger.Panicf("failed to append certificates")
 	}
 	return gmcredentials.NewTLS(&tls.Config{
+		GMSupport: &tls.GMSupport{},
 		Certificates: []tls.Certificate{cert},
 		RootCAs:      cp,
 		ServerName:   sn,
