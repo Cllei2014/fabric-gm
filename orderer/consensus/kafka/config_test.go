@@ -13,7 +13,7 @@ import (
 	localconfig "github.com/tw-bc-group/fabric-gm/orderer/common/localconfig"
 	"github.com/tw-bc-group/fabric-gm/orderer/mocks/util"
 	"github.com/stretchr/testify/assert"
-	"github.com/qianyan/sarama"
+	"github.com/tw-bc-group/sarama"
 )
 
 func TestBrokerConfig(t *testing.T) {

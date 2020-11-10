@@ -4,7 +4,7 @@ package mock
 import (
 	sync "sync"
 
-	sarama "github.com/qianyan/sarama"
+	sarama "github.com/tw-bc-group/sarama"
 )
 
 type SyncProducer struct {

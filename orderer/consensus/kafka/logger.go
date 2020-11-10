@@ -12,7 +12,7 @@ import (
 	"sync"
 
 	"github.com/tw-bc-group/fabric-gm/common/flogging"
-	"github.com/qianyan/sarama"
+	"github.com/tw-bc-group/sarama"
 	"go.uber.org/zap"
 )
 

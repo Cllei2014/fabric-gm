@@ -10,7 +10,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/qianyan/sarama"
+	"github.com/tw-bc-group/sarama"
 )
 
 func TestStaticPartitioner(t *testing.T) {

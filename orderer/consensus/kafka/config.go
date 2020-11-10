@@ -9,8 +9,8 @@ package kafka
 import (
 	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
 	"github.com/Hyperledger-TWGC/tjfoc-gm/x509"
-	"github.com/qianyan/sarama"
-	localconfig "github.com/tw-bc-group/fabric-gm/orderer/common/localconfig"
+	"github.com/tw-bc-group/fabric-gm/orderer/common/localconfig"
+	"github.com/tw-bc-group/sarama"
 )
 
 func newBrokerConfig(

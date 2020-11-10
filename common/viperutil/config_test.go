@@ -17,7 +17,7 @@ import (
 
 	"github.com/tw-bc-group/fabric-gm/orderer/mocks/util"
 	"github.com/spf13/viper"
-	"github.com/qianyan/sarama"
+	"github.com/tw-bc-group/sarama"
 )
 
 const Prefix = "VIPERUTIL"

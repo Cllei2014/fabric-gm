@@ -6,7 +6,7 @@ SPDX-License-Identifier: Apache-2.0
 
 package kafka
 
-import "github.com/qianyan/sarama"
+import "github.com/tw-bc-group/sarama"
 
 type staticPartitioner struct {
 	partitionID int32

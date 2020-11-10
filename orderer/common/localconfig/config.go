@@ -14,7 +14,7 @@ import (
 	"github.com/tw-bc-group/fabric-gm/common/viperutil"
 	coreconfig "github.com/tw-bc-group/fabric-gm/core/config"
 	"github.com/spf13/viper"
-	"github.com/qianyan/sarama"
+	"github.com/tw-bc-group/sarama"
 )
 
 // Prefix for environment variables.

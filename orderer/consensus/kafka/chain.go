@@ -21,7 +21,7 @@ import (
 	ab "github.com/tw-bc-group/fabric-gm/protos/orderer"
 	"github.com/tw-bc-group/fabric-gm/protos/utils"
 	"github.com/pkg/errors"
-	"github.com/qianyan/sarama"
+	"github.com/tw-bc-group/sarama"
 )
 
 // Used for capturing metrics -- see processMessagesToBlocks

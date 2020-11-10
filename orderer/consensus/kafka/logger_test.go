@@ -15,7 +15,7 @@ import (
 	"github.com/tw-bc-group/fabric-gm/common/flogging"
 	"github.com/onsi/gomega/gbytes"
 	"github.com/stretchr/testify/assert"
-	"github.com/qianyan/sarama"
+	"github.com/tw-bc-group/sarama"
 )
 
 func TestLoggerInit(t *testing.T) {
