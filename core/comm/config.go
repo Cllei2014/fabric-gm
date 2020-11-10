@@ -7,9 +7,9 @@ SPDX-License-Identifier: Apache-2.0
 package comm
 
 import (
+	"github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
 	"time"
 
-	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
 	"github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"github.com/tw-bc-group/fabric-gm/common/flogging"
 	"github.com/tw-bc-group/fabric-gm/common/metrics"
@@ -32,12 +32,8 @@ var (
 	}
 	// strong TLS cipher suites
 	DefaultTLSCipherSuites = []uint16{
-		tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
-		tls.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
-		tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-		tls.TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,
-		tls.TLS_RSA_WITH_AES_128_GCM_SHA256,
-		tls.TLS_RSA_WITH_AES_256_GCM_SHA384,
+		gmtls.GMTLS_SM2_WITH_SM4_SM3,
+		gmtls.GMTLS_ECDHE_SM2_WITH_SM4_SM3,
 	}
 	// default connection timeout
 	DefaultConnectionTimeout = 5 * time.Second

@@ -44,11 +44,12 @@ func NewServerTransportCredentials(
 	serverConfig *TLSConfig,
 	logger *flogging.FabricLogger) credentials.TransportCredentials {
 
+	serverConfig.config.GMSupport = &tls.GMSupport{}
 	// NOTE: unlike the default grpc/credentials implementation, we do not
 	// clone the tls.Config which allows us to update it dynamically
 	serverConfig.config.NextProtos = alpnProtoStr
 	// override TLS version and ensure it is 1.2
-	serverConfig.config.MinVersion = tls.VersionTLS12
+	serverConfig.config.MinVersion = tls.VersionGMSSL
 	serverConfig.config.MaxVersion = tls.VersionTLS12
 	return &serverCreds{
 		serverConfig: serverConfig,

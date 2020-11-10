@@ -89,14 +89,11 @@ func NewGRPCServerFromListener(listener net.Listener, serverConfig ServerConfig)
 			if len(secureConfig.CipherSuites) == 0 {
 				secureConfig.CipherSuites = DefaultTLSCipherSuites
 			}
-			getCert := func(_ *tls.ClientHelloInfo) (*tls.Certificate, error) {
-				cert := grpcServer.serverCertificate.Load().(tls.Certificate)
-				return &cert, nil
-			}
+
 			//base server certificate
 			grpcServer.tls = NewTLSConfig(&tls.Config{
 				VerifyPeerCertificate:  secureConfig.VerifyCertificate,
-				GetCertificate:         getCert,
+				Certificates: []tls.Certificate{cert, cert},
 				SessionTicketsDisabled: true,
 				CipherSuites:           secureConfig.CipherSuites,
 			})
