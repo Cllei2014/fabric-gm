@@ -45,7 +45,6 @@ require (
 	github.com/prometheus/procfs v0.0.0-20181005140218-185b4288413d // indirect
 	github.com/qianyan/sarama v1.1.0
 	github.com/rcrowley/go-metrics v0.0.0-20200313005456-10cdbea86bc0
-	github.com/sirupsen/logrus v1.1.0 // indirect
 	github.com/spf13/cast v1.2.0 // indirect
 	github.com/spf13/cobra v0.0.3
 	github.com/spf13/jwalterweatherman v1.0.0 // indirect
@@ -61,17 +60,18 @@ require (
 	github.com/willf/bitset v1.1.9
 	go.etcd.io/etcd v0.5.0-alpha.5.0.20181228115726-23731bf9ba55
 	go.uber.org/zap v1.12.0
-	golang.org/x/crypto v0.0.0-20200728195943-123391ffb6de
-	golang.org/x/net v0.0.0-20200707034311-ab3426394381
+	golang.org/x/crypto v0.0.0-20201012173705-84dcc777aaee
+	golang.org/x/net v0.0.0-20201010224723-4f7140c49acb
 	golang.org/x/sync v0.0.0-20190911185100-cd5d95a43a6e
 	golang.org/x/tools v0.0.0-20200323144430-8dcfad9e016e
 	google.golang.org/grpc v1.31.0
+	google.golang.org/protobuf v1.23.0
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6
 	gopkg.in/cheggaaa/pb.v1 v1.0.25
 	gopkg.in/yaml.v2 v2.2.8
 )
 
 replace (
-	github.com/Hyperledger-TWGC/tjfoc-gm => ../tjfoc-gm
-	github.com/qianyan/sarama => ../sarama
+	github.com/Hyperledger-TWGC/tjfoc-gm => github.com/tw-bc-group/tjfoc-gm latest
+	github.com/qianyan/sarama => github.com/tw-bc-group/sarama latest
 )
