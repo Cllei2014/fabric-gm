@@ -15,11 +15,12 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
+	x509GM "github.com/Hyperledger-TWGC/tjfoc-gm/x509"
+	"github.com/pkg/errors"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 	"github.com/tw-bc-group/fabric-gm/bccsp/factory"
 	"github.com/tw-bc-group/fabric-gm/bccsp/signer"
-	"github.com/pkg/errors"
-	"github.com/tjfoc/gmsm/sm2"
 )
 
 // LoadPrivateKey loads a private key from file in keystorePath
@@ -146,7 +147,7 @@ func GetSM2PublicKey(priv bccsp.Key) (*sm2.PublicKey, error) {
 		return nil, err
 	}
 	// unmarshal using pkix
-	sm2PubKey, err := sm2.ParseSm2PublicKey(pubKeyBytes)
+	sm2PubKey, err := x509GM.ParseSm2PublicKey(pubKeyBytes)
 	//ecPubKey, err := x509.ParsePKIXPublicKey(pubKeyBytes)
 	if err != nil {
 		return nil, err

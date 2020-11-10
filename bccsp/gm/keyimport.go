@@ -21,9 +21,10 @@ import (
 	"fmt"
 	"reflect"
 
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 	"github.com/tw-bc-group/fabric-gm/bccsp/utils"
-	"github.com/tjfoc/gmsm/sm2"
 )
 
 //实现内部的 KeyImporter 接口
@@ -66,7 +67,7 @@ func (*gmsm2PrivateKeyImportOptsKeyImporter) KeyImport(raw interface{}, opts bcc
 	// }
 
 	//gmsm2SK, err :=  sm2.ParseSM2PrivateKey(der)
-	gmsm2SK, err := sm2.ParsePKCS8UnecryptedPrivateKey(der)
+	gmsm2SK, err := x509.ParsePKCS8UnecryptedPrivateKey(der)
 
 	if err != nil {
 		return nil, fmt.Errorf("Failed converting to GMSM2 private key [%s]", err)
@@ -97,7 +98,7 @@ func (*gmsm2PublicKeyImportOptsKeyImporter) KeyImport(raw interface{}, opts bccs
 	// 	return nil, errors.New("Failed casting to GMSM2 private key. Invalid raw material.")
 	// }
 
-	gmsm2SK, err := sm2.ParseSm2PublicKey(der)
+	gmsm2SK, err := x509.ParseSm2PublicKey(der)
 	if err != nil {
 		return nil, fmt.Errorf("Failed converting to GMSM2 public key [%s]", err)
 	}
@@ -172,7 +173,7 @@ func (*ecdsaPKIXPublicKeyImportOptsKeyImporter) KeyImport(raw interface{}, opts 
 
 func (ki *x509PublicKeyImportOptsKeyImporter) KeyImport(raw interface{}, opts bccsp.KeyImportOpts) (k bccsp.Key, err error) {
 
-	sm2Cert, ok := raw.(*sm2.Certificate)
+	sm2Cert, ok := raw.(*x509.Certificate)
 	if !ok {
 		return nil, errors.New("Invalid raw material. Expected *x509.Certificate.")
 	}
@@ -185,7 +186,7 @@ func (ki *x509PublicKeyImportOptsKeyImporter) KeyImport(raw interface{}, opts bc
 		if !ok {
 			return nil, errors.New("Parse interface []  to sm2 pk error")
 		}
-		der, err := sm2.MarshalSm2PublicKey(&sm2PublickKey)
+		der, err := x509.MarshalSm2PublicKey(&sm2PublickKey)
 		if err != nil {
 			return nil, errors.New("MarshalSm2PublicKey error")
 		}
@@ -199,7 +200,7 @@ func (ki *x509PublicKeyImportOptsKeyImporter) KeyImport(raw interface{}, opts bc
 		if !ok {
 			return nil, errors.New("Parse interface []  to sm2 pk error")
 		}
-		der, err := sm2.MarshalSm2PublicKey(sm2PublickKey)
+		der, err := x509.MarshalSm2PublicKey(sm2PublickKey)
 		if err != nil {
 			return nil, errors.New("MarshalSm2PublicKey error")
 		}

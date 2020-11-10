@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"hash"
 
-	"github.com/tjfoc/gmsm/sm3"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm3"
 )
 
 type config struct {

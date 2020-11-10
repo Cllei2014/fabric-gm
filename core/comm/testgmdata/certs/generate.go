@@ -28,7 +28,8 @@ import (
 	"encoding/pem"
 	"flag"
 	"fmt"
-	"github.com/tjfoc/gmsm/sm2"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
+	x509GM "github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"math/big"
 	"net"
 	"os"
@@ -77,12 +78,12 @@ func x509Template() (x509.Certificate, error) {
 
 //generate an EC private key (P256 curve)
 func genKeyGM(name string) (*sm2.PrivateKey, error) {
-	priv, err := sm2.GenerateKey()
+	priv, err := sm2.GenerateKey(nil)
 	if err != nil {
 		return nil, err
 	}
 	//write key out to file
-	keyBytes, err := sm2.MarshalSm2UnecryptedPrivateKey(priv)
+	keyBytes, err := x509GM.MarshalSm2UnecryptedPrivateKey(priv)
 	keyFile, err := os.OpenFile(name+"-key.pem", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0600)
 	if err != nil {
 		return nil, err
@@ -93,11 +94,11 @@ func genKeyGM(name string) (*sm2.PrivateKey, error) {
 }
 
 //generate a signed X509 certficate using ECDSA
-func genCertificateGM(name string, template, parent *sm2.Certificate, pub *sm2.PublicKey,
-	priv *sm2.PrivateKey) (*sm2.Certificate, error) {
+func genCertificateGM(name string, template, parent *x509GM.Certificate, pub *sm2.PublicKey,
+	priv *sm2.PrivateKey) (*x509GM.Certificate, error) {
 
 	//create the sm2 public cert
-	certBytes, err := sm2.CreateCertificate(rand.Reader, template, parent, pub, priv)
+	certBytes, err := x509GM.CreateCertificate(template, parent, pub, priv)
 	if err != nil {
 		return nil, err
 	}
@@ -111,7 +112,7 @@ func genCertificateGM(name string, template, parent *sm2.Certificate, pub *sm2.P
 	pem.Encode(certFile, &pem.Block{Type: "CERTIFICATE", Bytes: certBytes})
 	certFile.Close()
 
-	x509Cert, err := sm2.ParseCertificate(certBytes)
+	x509Cert, err := x509GM.ParseCertificate(certBytes)
 	if err != nil {
 		return nil, err
 	}
@@ -119,7 +120,7 @@ func genCertificateGM(name string, template, parent *sm2.Certificate, pub *sm2.P
 }
 
 //generate an EC certificate appropriate for use by a TLS server
-func genServerCertificateGM(name string, signKey *sm2.PrivateKey, signCert *sm2.Certificate) error {
+func genServerCertificateGM(name string, signKey *sm2.PrivateKey, signCert *x509GM.Certificate) error {
 	fmt.Println(name)
 	key, err := genKeyGM(name)
 	template, err := x509Template()
@@ -152,7 +153,7 @@ func genServerCertificateGM(name string, signKey *sm2.PrivateKey, signCert *sm2.
 }
 
 //generate an EC certificate appropriate for use by a TLS server
-func genClientCertificateGM(name string, signKey *sm2.PrivateKey, signCert *sm2.Certificate) error {
+func genClientCertificateGM(name string, signKey *sm2.PrivateKey, signCert *x509GM.Certificate) error {
 	fmt.Println(name)
 	key, err := genKeyGM(name)
 	template, err := x509Template()
@@ -179,8 +180,8 @@ func genClientCertificateGM(name string, signKey *sm2.PrivateKey, signCert *sm2.
 	return nil
 }
 
-func parseX509Certificate2Sm2(x509Cert *x509.Certificate) *sm2.Certificate {
-	sm2cert := &sm2.Certificate{
+func parseX509Certificate2Sm2(x509Cert *x509.Certificate) *x509GM.Certificate {
+	sm2cert := &x509GM.Certificate{
 		Raw:                     x509Cert.Raw,
 		RawTBSCertificate:       x509Cert.RawTBSCertificate,
 		RawSubjectPublicKeyInfo: x509Cert.RawSubjectPublicKeyInfo,
@@ -188,9 +189,9 @@ func parseX509Certificate2Sm2(x509Cert *x509.Certificate) *sm2.Certificate {
 		RawIssuer:               x509Cert.RawIssuer,
 
 		Signature:          x509Cert.Signature,
-		SignatureAlgorithm: sm2.SM2WithSM3,
+		SignatureAlgorithm: x509GM.SM2WithSM3,
 
-		PublicKeyAlgorithm: sm2.PublicKeyAlgorithm(x509Cert.PublicKeyAlgorithm),
+		PublicKeyAlgorithm: x509GM.PublicKeyAlgorithm(x509Cert.PublicKeyAlgorithm),
 		PublicKey:          x509Cert.PublicKey,
 
 		Version:      x509Cert.Version,
@@ -199,7 +200,7 @@ func parseX509Certificate2Sm2(x509Cert *x509.Certificate) *sm2.Certificate {
 		Subject:      x509Cert.Subject,
 		NotBefore:    x509Cert.NotBefore,
 		NotAfter:     x509Cert.NotAfter,
-		KeyUsage:     sm2.KeyUsage(x509Cert.KeyUsage),
+		KeyUsage:     x509GM.KeyUsage(x509Cert.KeyUsage),
 
 		Extensions: x509Cert.Extensions,
 
@@ -241,7 +242,7 @@ func parseX509Certificate2Sm2(x509Cert *x509.Certificate) *sm2.Certificate {
 		PolicyIdentifiers: x509Cert.PolicyIdentifiers,
 	}
 	for _, val := range x509Cert.ExtKeyUsage {
-		sm2cert.ExtKeyUsage = append(sm2cert.ExtKeyUsage, sm2.ExtKeyUsage(val))
+		sm2cert.ExtKeyUsage = append(sm2cert.ExtKeyUsage, x509GM.ExtKeyUsage(val))
 	}
 
 	return sm2cert
@@ -249,7 +250,7 @@ func parseX509Certificate2Sm2(x509Cert *x509.Certificate) *sm2.Certificate {
 
 //generate an EC certificate signing(CA) key pair and output as
 //PEM-encoded files
-func genCertificateAuthorityGM(name string) (*sm2.PrivateKey, *sm2.Certificate, error) {
+func genCertificateAuthorityGM(name string) (*sm2.PrivateKey, *x509GM.Certificate, error) {
 
 	key, err := genKeyGM(name)
 	template, err := x509Template()
@@ -282,7 +283,7 @@ func genCertificateAuthorityGM(name string) (*sm2.PrivateKey, *sm2.Certificate, 
 
 //generate an EC certificate appropriate for use by a TLS server
 func genIntermediateCertificateAuthorityGM(name string, signKey *sm2.PrivateKey,
-	signCert *sm2.Certificate) (*sm2.PrivateKey, *sm2.Certificate, error) {
+	signCert *x509GM.Certificate) (*sm2.PrivateKey, *x509GM.Certificate, error) {
 
 	fmt.Println(name)
 	key, err := genKeyGM(name)

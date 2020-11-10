@@ -21,10 +21,10 @@ import (
 	"hash"
 	"reflect"
 
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm3"
+	"github.com/pkg/errors"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 	"github.com/tw-bc-group/fabric-gm/common/flogging"
-	"github.com/pkg/errors"
-	"github.com/tjfoc/gmsm/sm3"
 	"golang.org/x/crypto/sha3"
 )
 

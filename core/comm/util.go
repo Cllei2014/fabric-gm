@@ -12,18 +12,18 @@ import (
 	"crypto/sha256"
 	"encoding/pem"
 
+	credentials "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls/gmcredentials"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"github.com/golang/protobuf/proto"
 	"github.com/pkg/errors"
-	"github.com/tjfoc/gmsm/sm2"
-	credentials "github.com/tjfoc/gmtls/gmcredentials"
 	"google.golang.org/grpc/peer"
 )
 
 // AddPemToCertPool adds PEM-encoded certs to a cert pool
-func AddPemToCertPool(pemCerts []byte, pool *sm2.CertPool) error {
+func AddPemToCertPool(pemCerts []byte, pool *x509.CertPool) error {
 	block, _ := pem.Decode(pemCerts)
 	if block != nil {
-		cert, err := sm2.ParseCertificate(block.Bytes)
+		cert, err := x509.ParseCertificate(block.Bytes)
 		if err != nil {
 			return err
 		}
@@ -36,10 +36,10 @@ func AddPemToCertPool(pemCerts []byte, pool *sm2.CertPool) error {
 
 //utility function to parse PEM-encoded certs
 //func pemToX509Certs(pemCerts []byte) ([]*x509.Certificate, []string, error) {
-func pemToX509Certs(pemCerts []byte) ([]*sm2.Certificate, []string, error) {
+func pemToX509Certs(pemCerts []byte) ([]*x509.Certificate, []string, error) {
 	//it's possible that multiple certs are encoded
 	//certs := []*x509.Certificate{}
-	certs := []*sm2.Certificate{}
+	certs := []*x509.Certificate{}
 	subjects := []string{}
 	for len(pemCerts) > 0 {
 		var block *pem.Block
@@ -54,7 +54,7 @@ func pemToX509Certs(pemCerts []byte) ([]*sm2.Certificate, []string, error) {
 		*/
 
 		//cert, err := x509.ParseCertificate(block.Bytes)
-		cert, err := sm2.ParseCertificate(block.Bytes)
+		cert, err := x509.ParseCertificate(block.Bytes)
 		if err != nil {
 			return nil, subjects, err
 		} else {
@@ -131,7 +131,7 @@ func ExtractCertificateHashFromContext(ctx context.Context) []byte {
 
 // ExtractCertificateFromContext returns the TLS certificate (if applicable)
 // from the given context of a gRPC stream
-func ExtractCertificateFromContext(ctx context.Context) *sm2.Certificate {
+func ExtractCertificateFromContext(ctx context.Context) *x509.Certificate {
 	pr, extracted := peer.FromContext(ctx)
 	if !extracted {
 		return nil

@@ -26,10 +26,11 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm4"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 	"github.com/tw-bc-group/fabric-gm/bccsp/utils"
-	"github.com/tjfoc/gmsm/sm2"
-	"github.com/tjfoc/gmsm/sm4"
 )
 
 // NewFileBasedKeyStore instantiated a file-based key store at a given position.
@@ -289,7 +290,7 @@ func (ks *fileBasedKeyStore) storeKey(alias string, key []byte) error {
 		ks.pwd = nil
 	}
 
-	pem, err := sm4.WriteKeytoMem(key, ks.pwd)
+	pem, err := sm4.WriteKeyToMem(key, ks.pwd)
 	if err != nil {
 		logger.Errorf("Failed converting key to PEM [%s]: [%s]", alias, err)
 		return err
@@ -317,7 +318,7 @@ func (ks *fileBasedKeyStore) loadPrivateKey(alias string) (interface{}, error) {
 	}
 
 	// privateKey, err := utils.PEMtoPrivateKey(raw, ks.pwd)
-	privateKey, err := sm2.ReadPrivateKeyFromMem(raw, nil)
+	privateKey, err := x509.ReadPrivateKeyFromMem(raw, nil)
 	if err != nil {
 		logger.Errorf("Failed parsing private key [%s]: [%s].", alias, err.Error())
 
@@ -339,7 +340,7 @@ func (ks *fileBasedKeyStore) loadPublicKey(alias string) (interface{}, error) {
 	}
 
 	// privateKey, err := utils.PEMtoPublicKey(raw, ks.pwd)
-	privateKey, err := sm2.ReadPublicKeyFromMem(raw, nil)
+	privateKey, err := x509.ReadPublicKeyFromMem(raw)
 	if err != nil {
 		logger.Errorf("Failed parsing private key [%s]: [%s].", alias, err.Error())
 

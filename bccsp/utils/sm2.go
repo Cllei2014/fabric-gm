@@ -16,9 +16,11 @@ limitations under the License.
 
 package utils
 
-import "github.com/tjfoc/gmsm/sm2"
+import (
+	"github.com/Hyperledger-TWGC/tjfoc-gm/x509"
+)
 
 // DERToSM2Certificate converts der to sm2
-func DERToSM2Certificate(asn1Data []byte) (*sm2.Certificate, error) {
-	return sm2.ParseCertificate(asn1Data)
+func DERToSM2Certificate(asn1Data []byte) (*x509.Certificate, error) {
+	return x509.ParseCertificate(asn1Data)
 }

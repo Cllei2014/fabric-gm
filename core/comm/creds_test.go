@@ -7,17 +7,17 @@ SPDX-License-Identifier: Apache-2.0
 package comm_test
 
 import (
-	x509 "github.com/tjfoc/gmsm/sm2"
-	tls "github.com/tjfoc/gmtls"
+	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
+	x509 "github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"io/ioutil"
 	"net"
 	"path/filepath"
 	"sync"
 	"testing"
 
+	"github.com/stretchr/testify/assert"
 	"github.com/tw-bc-group/fabric-gm/common/flogging/floggingtest"
 	"github.com/tw-bc-group/fabric-gm/core/comm"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestCreds(t *testing.T) {

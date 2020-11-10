@@ -10,8 +10,8 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	x509 "github.com/tjfoc/gmsm/sm2"
-	tls "github.com/tjfoc/gmtls"
+	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
+	x509 "github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"io/ioutil"
 	"net"
 	"path/filepath"
@@ -21,16 +21,16 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/pkg/errors"
+	"github.com/stretchr/testify/assert"
 	"github.com/tw-bc-group/fabric-gm/common/crypto/tlsgen"
 	"github.com/tw-bc-group/fabric-gm/common/flogging"
 	"github.com/tw-bc-group/fabric-gm/core/comm"
 	testpb "github.com/tw-bc-group/fabric-gm/core/comm/testdata/grpc"
-	"github.com/pkg/errors"
-	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/connectivity"
 	//"google.golang.org/grpc/credentials"
-	credentials "github.com/tjfoc/gmtls/gmcredentials"
+	credentials "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls/gmcredentials"
 )
 
 const testTimeout = 1 * time.Second // conservative

@@ -9,8 +9,8 @@ package comm
 import (
 	"context"
 	"fmt"
-	x509 "github.com/tjfoc/gmsm/sm2"
-	tls "github.com/tjfoc/gmtls"
+	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"io/ioutil"
 	"net"
 	"path/filepath"
@@ -18,9 +18,9 @@ import (
 	"testing"
 	"time"
 
-	testpb "github.com/tw-bc-group/fabric-gm/core/comm/testdata/grpc"
+	credentials "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls/gmcredentials"
 	"github.com/stretchr/testify/assert"
-	credentials "github.com/tjfoc/gmtls/gmcredentials"
+	testpb "github.com/tw-bc-group/fabric-gm/core/comm/testdata/grpc"
 	"google.golang.org/grpc"
 	cred "google.golang.org/grpc/credentials"
 )

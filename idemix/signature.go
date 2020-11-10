@@ -10,11 +10,11 @@ import (
 	//"crypto/ecdsa"
 	"sort"
 
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
 	"github.com/hyperledger/fabric-amcl/amcl"
 	"github.com/hyperledger/fabric-amcl/amcl/FP256BN"
-	"github.com/tw-bc-group/fabric-gm/common/flogging"
 	"github.com/pkg/errors"
-	"github.com/tjfoc/gmsm/sm2"
+	"github.com/tw-bc-group/fabric-gm/common/flogging"
 )
 
 var idemixLogger = flogging.MustGetLogger("idemix")

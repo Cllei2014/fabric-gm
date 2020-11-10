@@ -7,15 +7,16 @@ package ca_test
 
 import (
 	"crypto/x509"
-	"github.com/tjfoc/gmsm/sm2"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
+	x509GM "github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 	"net"
 	"os"
 	"path/filepath"
 	"testing"
 
+	"github.com/stretchr/testify/assert"
 	"github.com/tw-bc-group/fabric-gm/common/tools/cryptogen/ca"
 	"github.com/tw-bc-group/fabric-gm/common/tools/cryptogen/csp"
-	"github.com/stretchr/testify/assert"
 )
 
 const (
@@ -57,9 +58,9 @@ func TestLoadCertificateGM(t *testing.T) {
 		[]x509.ExtKeyUsage{x509.ExtKeyUsageAny})
 	assert.NoError(t, err, "Failed to generate signed certificate")
 	// KeyUsage should be x509.KeyUsageDigitalSignature | x509.KeyUsageKeyEncipherment
-	assert.Equal(t, sm2.KeyUsageDigitalSignature|sm2.KeyUsageKeyEncipherment,
+	assert.Equal(t, x509GM.KeyUsageDigitalSignature|x509GM.KeyUsageKeyEncipherment,
 		cert.KeyUsage)
-	assert.Contains(t, cert.ExtKeyUsage, sm2.ExtKeyUsageAny)
+	assert.Contains(t, cert.ExtKeyUsage, x509GM.ExtKeyUsageAny)
 
 	loadedCert, err := ca.LoadCertificateGMSM2(certDir)
 	assert.NotNil(t, loadedCert, "Should load cert")
@@ -76,8 +77,8 @@ func TestNewCA(t *testing.T) {
 	assert.NotNil(t, rootCA, "Failed to return CA")
 	assert.NotNil(t, rootCA.Sm2Key,
 		"rootCA.Sm2Key should not be empty")
-	assert.IsType(t, &sm2.Certificate{}, rootCA.SignSm2Cert,
-		"rootCA.SignCert should be type sm2.Certificate")
+	assert.IsType(t, &x509GM.Certificate{}, rootCA.SignSm2Cert,
+		"rootCA.SignCert should be type x509GM.Certificate")
 
 	// check to make sure the root public key was stored
 	pemFile := filepath.Join(caDir, testCAName+"-cert.pem")
@@ -129,9 +130,9 @@ func TestGenerateSignCertificate(t *testing.T) {
 
 	//assert.NoError(t, err, "Failed to generate signed certificate")
 	// KeyUsage should be x509.KeyUsageDigitalSignature | x509.KeyUsageKeyEncipherment
-	assert.Equal(t, sm2.KeyUsage(x509.KeyUsageDigitalSignature|x509.KeyUsageKeyEncipherment),
+	assert.Equal(t, x509GM.KeyUsage(x509.KeyUsageDigitalSignature|x509.KeyUsageKeyEncipherment),
 		cert.KeyUsage)
-	assert.Contains(t, cert.ExtKeyUsage, sm2.ExtKeyUsageAny)
+	assert.Contains(t, cert.ExtKeyUsage, x509GM.ExtKeyUsageAny)
 
 	cert, err = rootCA.SignCertificate(certDir, testName, nil, nil, ecPubKey,
 		x509.KeyUsageDigitalSignature, []x509.ExtKeyUsage{})

@@ -28,10 +28,10 @@ import (
 	"testing"
 	"time"
 
-	x509 "github.com/tjfoc/gmsm/sm2"
+	x509 "github.com/Hyperledger-TWGC/tjfoc-gm/x509"
 
-	"github.com/tw-bc-group/fabric-gm/bccsp/utils"
 	"github.com/stretchr/testify/assert"
+	"github.com/tw-bc-group/fabric-gm/bccsp/utils"
 )
 
 func TestSanitizeCertWithRSA(t *testing.T) {
@@ -175,7 +175,7 @@ func generateSelfSignedCert(t *testing.T, now time.Time) (*ecdsa.PrivateKey, *x5
 			},
 		},
 	}
-	certRaw, err := x509.CreateCertificate(rand.Reader, &template, &template, &k.PublicKey, k)
+	certRaw, err := x509.CreateCertificate(&template, &template, &k.PublicKey, k)
 	assert.NoError(t, err)
 
 	cert, err := x509.ParseCertificate(certRaw)

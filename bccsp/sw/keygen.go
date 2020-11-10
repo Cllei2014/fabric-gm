@@ -23,8 +23,8 @@ import (
 	"crypto/rsa"
 	"fmt"
 
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
-	"github.com/tjfoc/gmsm/sm2"
 )
 
 type ecdsaKeyGenerator struct {
@@ -73,7 +73,7 @@ type gmsm2KeyGenerator struct {
 
 func (gm *gmsm2KeyGenerator) KeyGen(opts bccsp.KeyGenOpts) (k bccsp.Key, err error) {
 	//调用 SM2的注册证书方法
-	privKey, err := sm2.GenerateKey()
+	privKey, err := sm2.GenerateKey(nil)
 	if err != nil {
 		return nil, fmt.Errorf("Failed generating GMSM2 key  [%s]", err)
 	}

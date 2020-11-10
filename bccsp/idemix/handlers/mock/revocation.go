@@ -5,9 +5,9 @@ import (
 	//"crypto/ecdsa"
 	"sync"
 
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 	"github.com/tw-bc-group/fabric-gm/bccsp/idemix/handlers"
-	"github.com/tjfoc/gmsm/sm2"
 )
 
 type Revocation struct {
