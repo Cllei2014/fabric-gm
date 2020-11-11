@@ -77,8 +77,9 @@ func (client *GRPCClient) parseSecureOptions(opts *SecureOptions) error {
 		return nil
 	}
 	client.tlsConfig = &tls.Config{
+		GMSupport: &tls.GMSupport{},
 		VerifyPeerCertificate: opts.VerifyCertificate,
-		MinVersion:            tls.VersionTLS12} // TLS 1.2 only
+		MinVersion:            tls.VersionGMSSL} // TLS 1.2 only
 	if len(opts.ServerRootCAs) > 0 {
 		client.tlsConfig.RootCAs = x509.NewCertPool()
 		for _, certBytes := range opts.ServerRootCAs {
