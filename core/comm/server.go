@@ -104,8 +104,7 @@ func NewGRPCServerFromListener(listener net.Listener, serverConfig ServerConfig)
 					return time.Now().Add((-1) * timeShift)
 				}
 			}
-			// grpcServer.tls.config.ClientAuth = tls.RequestClientCert
-			grpcServer.tls.config.ClientAuth = tls.NoClientCert
+			grpcServer.tls.config.ClientAuth = tls.RequestClientCert
 			//check if client authentication is required
 			if secureConfig.RequireClientCert {
 				//require TLS client auth
