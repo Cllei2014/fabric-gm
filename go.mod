@@ -70,4 +70,4 @@ require (
 	gopkg.in/yaml.v2 v2.3.0
 )
 
-replace github.com/Hyperledger-TWGC/tjfoc-gm v0.0.0-20201027032413-de75d571dd85 => github.com/tw-bc-group/tjfoc-gm v1.3.4-0.20201110015443-9c1fb79cdec7
+replace github.com/Hyperledger-TWGC/tjfoc-gm v0.0.0-20201027032413-de75d571dd85 => github.com/tw-bc-group/tjfoc-gm v0.0.0-20201111063042-a1f3da7acc50

@@ -271,8 +271,8 @@ github.com/tedsuo/ifrit v0.0.0-20180802180643-bea94bb476cc/go.mod h1:eyZnKCc955u
 github.com/tmc/grpc-websocket-proxy v0.0.0-20170815181823-89b8d40f7ca8/go.mod h1:ncp9v5uamzpCO7NfCPTXjqaC+bZgJeR0sMTm6dMHP7U=
 github.com/tw-bc-group/sarama v0.0.0-20201110085058-851d51e29742 h1:wJf1ul0tOlaXuizQye/7DhVK2aq2tRtroAjUnZoHLDI=
 github.com/tw-bc-group/sarama v0.0.0-20201110085058-851d51e29742/go.mod h1:L/DCuMbRNYoj2JksrP2UJRTTsLdktr58Q9pIgNmH8cA=
-github.com/tw-bc-group/tjfoc-gm v1.3.4-0.20201110015443-9c1fb79cdec7 h1:MSPDl0vI5IC7RshZ/Oc67XnOGAbDDYaz5ebS4RpdUx8=
-github.com/tw-bc-group/tjfoc-gm v1.3.4-0.20201110015443-9c1fb79cdec7/go.mod h1:+p59OjSOGiLpKaFudMxFtHYv91BludmDfgnX6xB4ZSI=
+github.com/tw-bc-group/tjfoc-gm v0.0.0-20201111063042-a1f3da7acc50 h1:hDJ51fv+w/4aN+3YdqHoM9RG0OdcaQZAOyK67lTeHIc=
+github.com/tw-bc-group/tjfoc-gm v0.0.0-20201111063042-a1f3da7acc50/go.mod h1:+p59OjSOGiLpKaFudMxFtHYv91BludmDfgnX6xB4ZSI=
 github.com/ugorji/go v1.1.1/go.mod h1:hnLbHMwcvSihnDhEfx2/BzKp2xb0Y+ErdfYcrs9tkJQ=
 github.com/urfave/cli v1.18.0/go.mod h1:70zkFmudgCuE/ngEzBv17Jvp/497gISqfk5gWijbERA=
 github.com/valyala/bytebufferpool v1.0.0/go.mod h1:6bBcMArwyJ5K/AmCkWv1jt77kVWyCJ6HpOuEn7z0Csc=
