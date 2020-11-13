@@ -49,4 +49,5 @@ examples/e2e_cli/crypto-config/*
 .vscode
 maven_data.xml
 /vendor
+docker.env
 
