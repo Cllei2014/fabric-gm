@@ -205,15 +205,15 @@ native: peer orderer configtxgen cryptogen idemixgen configtxlator discover
 
 linter: buildenv
 	@echo "LINT: Running code checks.."
-	@$(DRUN) $(DOCKER_NS)/fabric-buildenv:$(DOCKER_TAG) ./scripts/golinter.sh
+	@$(DRUN) $(DOCKER_NS)/fabric-buildenv-gm:$(DOCKER_TAG) ./scripts/golinter.sh
 
 check-metrics-doc: buildenv
 	@echo "METRICS: Checking for outdated reference documentation.."
-	@$(DRUN) $(DOCKER_NS)/fabric-buildenv:$(DOCKER_TAG) ./scripts/metrics_doc.sh check
+	@$(DRUN) $(DOCKER_NS)/fabric-buildenv-gm:$(DOCKER_TAG) ./scripts/metrics_doc.sh check
 
 generate-metrics-doc: buildenv
 	@echo "Generating metrics reference documentation..."
-	@$(DRUN) $(DOCKER_NS)/fabric-buildenv:$(DOCKER_TAG) ./scripts/metrics_doc.sh generate
+	@$(DRUN) $(DOCKER_NS)/fabric-buildenv-gm:$(DOCKER_TAG) ./scripts/metrics_doc.sh generate
 
 $(BUILD_DIR)/%/chaintool: Makefile
 	@echo "Installing chaintool"
@@ -402,7 +402,7 @@ dist/%: release/%
 
 .PHONY: protos
 protos: buildenv
-	@$(DRUN) $(DOCKER_NS)/fabric-buildenv:$(DOCKER_TAG) ./scripts/compile_protos.sh
+	@$(DRUN) $(DOCKER_NS)/fabric-buildenv-gm:$(DOCKER_TAG) ./scripts/compile_protos.sh
 
 %-docker-list:
 	$(eval TARGET = ${patsubst %-docker-list,%,${@}})
