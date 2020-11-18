@@ -2,7 +2,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-FROM _BASE_NS_/fabric-baseimage:_BASE_TAG_ as builder
+# TODO: quick fix go version is too low, upgrade from 1.13 to 1.14. but need replace all of baseimage
+FROM twblockchain/fabric-baseimage:0.4.22 as builder
 WORKDIR /opt/gopath
 RUN mkdir src && mkdir pkg && mkdir bin
 ADD . src/github.com/hyperledger/fabric
@@ -10,7 +11,7 @@ WORKDIR /opt/gopath/src/github.com/hyperledger/fabric
 ENV EXECUTABLES go git curl
 RUN make configtxgen configtxlator cryptogen peer discover idemixgen
 
-FROM _BASE_NS_/fabric-baseimage:_BASE_TAG_
+FROM twblockchain/fabric-baseimage:0.4.22
 ENV FABRIC_CFG_PATH /etc/hyperledger/fabric
 #use aliyun source
 RUN sed -i '/security/d' /etc/apt/sources.list
