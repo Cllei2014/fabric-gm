@@ -16,6 +16,7 @@ limitations under the License.
 package gm
 
 import (
+	"crypto"
 	"crypto/ecdsa"
 	"crypto/rand"
 	"crypto/x509"
@@ -27,36 +28,6 @@ import (
 	"github.com/pkg/errors"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 )
-
-// //调用SM2接口生成SM2证书
-// func CreateCertificateToMem(template, parent *x509.Certificate,key bccsp.Key) (cert []byte,err error) {
-// 	pk := key.(*gmsm2PrivateKey).privKey
-// 	bigint := getRandBigInt()
-// 	if(template.SerialNumber == nil){
-// 		template.SerialNumber = bigint
-// 	}
-// 	if parent.SerialNumber == nil{
-// 		parent.SerialNumber = bigint
-// 	}
-
-// 	sm2Temcert := ParseX509Certificate2Sm2(template)
-// 	sm2Parcert := ParseX509Certificate2Sm2(parent)
-// 	switch template.PublicKey.(type){
-// 	case sm2.PublicKey:
-// 		cert, err = sm2.CreateCertificateToMem(sm2Temcert,sm2Parcert, template.PublicKey.(*sm2.PublicKey),pk)
-// 		return
-// 	default:
-// 		return nil ,fmt.Errorf("gm certhelper not sm2.PublicKey")
-// 	}
-// }
-
-// //调用SM2接口生成SM2证书请求
-// func CreateCertificateRequestToMem(certificateRequest *x509.CertificateRequest,key bccsp.Key) (csr []byte,err error) {
-// 	pk := key.(*gmsm2PrivateKey).privKey
-// 	sm2Req := ParseX509CertificateRequest2Sm2(certificateRequest)
-// 	csr,err = sm2.CreateCertificateRequestToMem(sm2Req,pk)
-// 	return
-// }
 
 //调用SM2接口生成SM2证书
 func CreateCertificateToMem(template, parent *x509GM.Certificate, key bccsp.Key) (cert []byte, err error) {
@@ -89,9 +60,8 @@ func CreateCertificateToMem(template, parent *x509GM.Certificate, key bccsp.Key)
 }
 
 //调用SM2接口生成SM2证书请求
-func CreateSm2CertificateRequestToMem(certificateRequest *x509GM.CertificateRequest, key bccsp.Key) (csr []byte, err error) {
-	pk := key.(*gmsm2PrivateKey).privKey
-	csr, err = x509GM.CreateCertificateRequestToPem(certificateRequest, pk)
+func CreateSm2CertificateRequestToMem(certificateRequest *x509GM.CertificateRequest, signer crypto.Signer) (csr []byte, err error) {
+	csr, err = x509GM.CreateCertificateRequestToPem(certificateRequest, signer)
 	return
 }
 

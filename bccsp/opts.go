@@ -107,6 +107,18 @@ func (opts *ECDSAKeyGenOpts) Ephemeral() bool {
 	return opts.Temporary
 }
 
+type KMSGMSM2KeyGenOpts struct {
+	Temporary bool
+}
+
+func (opts *KMSGMSM2KeyGenOpts) Algorithm() string {
+	return GMSM2
+}
+
+func (opts *KMSGMSM2KeyGenOpts) Ephemeral() bool {
+	return opts.Temporary
+}
+
 // GMSM2KeyGenOpts contains options for GMSM2 key generation.
 type GMSM2KeyGenOpts struct {
 	Temporary bool

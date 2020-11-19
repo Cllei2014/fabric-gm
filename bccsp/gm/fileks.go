@@ -167,6 +167,7 @@ func (ks *fileBasedKeyStore) StoreKey(k bccsp.Key) (err error) {
 	if k == nil {
 		return errors.New("Invalid key. It must be different from nil")
 	}
+
 	switch k.(type) {
 	case *gmsm2PrivateKey:
 		kk := k.(*gmsm2PrivateKey)
@@ -185,13 +186,15 @@ func (ks *fileBasedKeyStore) StoreKey(k bccsp.Key) (err error) {
 		}
 	case *gmsm4PrivateKey:
 		kk := k.(*gmsm4PrivateKey)
-
-		// keypath := ks.getPathForAlias(hex.EncodeToString(k.SKI()), "key")
-
 		err = ks.storeKey(hex.EncodeToString(k.SKI()), kk.privKey)
 		if err != nil {
 			return fmt.Errorf("Failed storing GMSM4 key [%s]", err)
 		}
+	case *kmsSm2PrivateKey:
+		if err = ks.storeKMSKeyID(hex.EncodeToString(k.SKI())); err != nil {
+			return fmt.Errorf("Failed storing GMSM2 private key [%s]", err)
+		}
+
 	default:
 		return fmt.Errorf("Key type not reconigned [%s]", k)
 	}
@@ -249,6 +252,15 @@ func (ks *fileBasedKeyStore) getSuffix(alias string) string {
 		}
 	}
 	return ""
+}
+
+func (ks *fileBasedKeyStore) storeKMSKeyID(keyID string) error {
+	err := ioutil.WriteFile(ks.getPathForAlias(keyID, "kms"), []byte(keyID), 0700)
+	if err != nil {
+		logger.Errorf("Failed storing kms key id [%s]: [%s]", keyID, err)
+		return err
+	}
+	return nil
 }
 
 func (ks *fileBasedKeyStore) storePrivateKey(alias string, privateKey interface{}) error {

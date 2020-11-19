@@ -49,3 +49,9 @@ func (gm *gmsm4KeyGenerator) KeyGen(opts bccsp.KeyGenOpts) (k bccsp.Key, err err
 
 	return &gmsm4PrivateKey{lowLevelKey, false}, nil
 }
+
+type kmssm2KeyGenerator struct{}
+
+func (gm *kmssm2KeyGenerator) KeyGen(_ bccsp.KeyGenOpts) (k bccsp.Key, err error) {
+	return createKmsSm2PrivateKey()
+}

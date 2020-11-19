@@ -105,6 +105,7 @@ func New(securityLevel int, hashFamily string, keyStore bccsp.KeyStore) (bccsp.B
 	// Set the key generators
 	keyGenerators := make(map[reflect.Type]KeyGenerator)
 	keyGenerators[reflect.TypeOf(&bccsp.GMSM2KeyGenOpts{})] = &gmsm2KeyGenerator{}
+	keyGenerators[reflect.TypeOf(&bccsp.KMSGMSM2KeyGenOpts{})] = &kmssm2KeyGenerator{}
 	keyGenerators[reflect.TypeOf(&bccsp.GMSM4KeyGenOpts{})] = &gmsm4KeyGenerator{length: 32}
 	impl.keyGenerators = keyGenerators
 
