@@ -55,3 +55,9 @@ type kmssm2KeyGenerator struct{}
 func (gm *kmssm2KeyGenerator) KeyGen(_ bccsp.KeyGenOpts) (k bccsp.Key, err error) {
 	return createKmsSm2PrivateKey()
 }
+
+type zhsm2KeyGenerator struct{}
+
+func (gm *zhsm2KeyGenerator) KeyGen(_ bccsp.KeyGenOpts) (k bccsp.Key, err error) {
+	return createZhSm2PrivateKey()
+}
