@@ -2,11 +2,43 @@
 # Hyperledger Fabric GM 
 
 ## contribution
+make artifacts
 ```
 go mod vendor
 make native
 make docker
 ```
+docker images
+```
+REPOSITORY                                                                                               TAG                              IMAGE ID            CREATED             SIZE
+hyperledger/fabric-tools-gm                                                                              amd64-1.4.7-snapshot-1cd5720cd   d4994a21c4f3        26 hours ago        1.56GB
+hyperledger/fabric-tools-gm                                                                              amd64-latest                     d4994a21c4f3        26 hours ago        1.56GB
+hyperledger/fabric-tools-gm                                                                              latest                           d4994a21c4f3        26 hours ago        1.56GB
+<none>                                                                                                   <none>                           e24c9b5ddfd4        26 hours ago        2GB
+hyperledger/fabric-ca-gm                                                                                 amd64-1.4.2-019b5de              2a76df430113        2 days ago          290MB
+hyperledger/fabric-ca-gm                                                                                 latest                           2a76df430113        2 days ago          290MB
+<none>                                                                                                   <none>                           5071372c83fa        2 days ago          1.98GB
+hyperledger/fabric-buildenv-gm                                                                           amd64-1.4.7-snapshot-1cd5720cd   f4269289a64c        2 days ago          1.4GB
+hyperledger/fabric-buildenv-gm                                                                           amd64-latest                     f4269289a64c        2 days ago          1.4GB
+hyperledger/fabric-buildenv-gm                                                                           latest                           f4269289a64c        2 days ago          1.4GB
+hyperledger/fabric-ccenv-gm                                                                              amd64-1.4.7-snapshot-1cd5720cd   773bf046faf2        2 days ago          1.38GB
+hyperledger/fabric-ccenv-gm                                                                              amd64-latest                     773bf046faf2        2 days ago          1.38GB
+hyperledger/fabric-ccenv-gm                                                                              latest                           773bf046faf2        2 days ago          1.38GB
+hyperledger/fabric-orderer-gm                                                                            amd64-1.4.7-snapshot-1cd5720cd   d9334d8f8bc5        2 days ago          126MB
+hyperledger/fabric-orderer-gm                                                                            amd64-latest                     d9334d8f8bc5        2 days ago          126MB
+hyperledger/fabric-orderer-gm                                                                            latest                           d9334d8f8bc5        2 days ago          126MB
+hyperledger/fabric-peer-gm                                                                               amd64-1.4.7-snapshot-1cd5720cd   49d4ee38ef34        2 days ago          134MB
+hyperledger/fabric-peer-gm                                                                               amd64-latest                     49d4ee38ef34        2 days ago          134MB
+hyperledger/fabric-peer-gm                                                                               latest                           49d4ee38ef34        2 days ago          134MB
+twblockchain/fabric-baseimage                                                                            0.4.22                           1aabc6e97931        2 weeks ago         1.36GB
+busybox                                                                                                  latest                           f0b02e9d092d        5 weeks ago         1.23MB
+weiliy/gmssl                                                                                             latest                           21db8fdd16a2        8 weeks ago         88.9MB
+hyperledger/fabric-couchdb                                                                               latest                           b967e8b98b6b        4 months ago        261MB
+hyperledger/fabric-baseimage                                                                             amd64-0.4.20                     1bbfea6ce681        8 months ago        1.3GB
+hyperledger/fabric-baseos                                                                                amd64-0.4.20                     121a92cc3fc0        8 months ago        85MB
+hyperledger/fabric-baseos                                                                                amd64-0.4.15                     9d6ec11c60ff        20 months ago       145MB
+```
+
 ## self-made version
 > use go mod to download the dependency;
 > shut down the go mod to make;
