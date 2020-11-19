@@ -5,7 +5,7 @@ go 1.14
 require (
 	code.cloudfoundry.org/clock v1.0.0
 	github.com/AlekSi/gocov-xml v0.0.0-20190121064608-3a14fb1c4737 // indirect
-	github.com/Hyperledger-TWGC/tjfoc-gm v0.0.0-20201027032413-de75d571dd85
+	github.com/Hyperledger-TWGC/tjfoc-gm v0.0.0-20201117155542-9542a21fafd1
 	github.com/Knetic/govaluate v3.0.0+incompatible
 	github.com/Shopify/sarama v1.26.1
 	github.com/VividCortex/gohistogram v1.0.0 // indirect
@@ -57,7 +57,7 @@ require (
 	github.com/sykesm/zap-logfmt v0.0.3
 	github.com/syndtr/goleveldb v0.0.0-20180815032940-ae2bd5eed72d
 	github.com/tedsuo/ifrit v0.0.0-20180802180643-bea94bb476cc
-	github.com/tw-bc-group/aliyun-kms v0.0.0-20201119021124-211a1aa46acc
+	github.com/tw-bc-group/aliyun-kms v0.0.0-20201119031543-5af8278ae5c6
 	github.com/tw-bc-group/sarama v0.0.0-20201110085058-851d51e29742
 	github.com/vektra/mockery v1.1.2 // indirect
 	github.com/willf/bitset v1.1.9
@@ -74,7 +74,4 @@ require (
 	gopkg.in/yaml.v2 v2.3.0
 )
 
-replace (
-	github.com/Hyperledger-TWGC/tjfoc-gm v0.0.0-0201117155542-9542a21fafd1 => github.com/tw-bc-group/tjfoc-gm v0.0.0-20201119020514-29c15c7223f6
-	github.com/Hyperledger-TWGC/tjfoc-gm v0.0.0-20201027032413-de75d571dd85 => github.com/tw-bc-group/tjfoc-gm v0.0.0-20201119020514-29c15c7223f6
-)
+replace github.com/Hyperledger-TWGC/tjfoc-gm v0.0.0-20201117155542-9542a21fafd1 => github.com/tw-bc-group/tjfoc-gm v0.0.0-20201119020514-29c15c7223f6
