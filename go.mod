@@ -11,7 +11,6 @@ require (
 	github.com/VividCortex/gohistogram v1.0.0 // indirect
 	github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc // indirect
 	github.com/alecthomas/units v0.0.0-20151022065526-2efee857e7cf // indirect
-	github.com/aliyun/alibaba-cloud-sdk-go v1.61.657
 	github.com/axw/gocov v1.0.0 // indirect
 	github.com/containerd/continuity v0.0.0-20181003075958-be9bd761db19 // indirect
 	github.com/coreos/pkg v0.0.0-20180108230652-97fdf19511ea // indirect
@@ -57,7 +56,7 @@ require (
 	github.com/sykesm/zap-logfmt v0.0.3
 	github.com/syndtr/goleveldb v0.0.0-20180815032940-ae2bd5eed72d
 	github.com/tedsuo/ifrit v0.0.0-20180802180643-bea94bb476cc
-	github.com/tw-bc-group/aliyun-kms v0.0.0-20201119031543-5af8278ae5c6
+	github.com/tw-bc-group/aliyun-kms v0.0.0-20201120072815-35c8dac5b426
 	github.com/tw-bc-group/sarama v0.0.0-20201110085058-851d51e29742
 	github.com/vektra/mockery v1.1.2 // indirect
 	github.com/willf/bitset v1.1.9
