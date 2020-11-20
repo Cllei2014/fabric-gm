@@ -35,7 +35,6 @@ pipeline {
                     checkout scm
 
                     sh '''
-                    go mod vendor
                     make docker
                     '''
                 }
