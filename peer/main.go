@@ -11,14 +11,14 @@ import (
 	"os"
 	"strings"
 
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 	"github.com/tw-bc-group/fabric-gm/peer/chaincode"
 	"github.com/tw-bc-group/fabric-gm/peer/channel"
 	"github.com/tw-bc-group/fabric-gm/peer/clilogging"
 	"github.com/tw-bc-group/fabric-gm/peer/common"
 	"github.com/tw-bc-group/fabric-gm/peer/node"
 	"github.com/tw-bc-group/fabric-gm/peer/version"
-	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
 // The main command describes the service and
@@ -33,6 +33,11 @@ func main() {
 	viper.AutomaticEnv()
 	replacer := strings.NewReplacer(".", "_")
 	viper.SetEnvKeyReplacer(replacer)
+
+	// Set GM Provider by:
+	// CORE_GM_PROVIDER=ALIYUN_KMS
+	// CORE_GM_PROVIDER=ZHONGHUAN
+	viper.SetDefault("gm.provider", "SW")
 
 	// Define command-line flags that are valid for all peer commands and
 	// subcommands.
