@@ -2,13 +2,12 @@ package gm
 
 import (
 	"github.com/pkg/errors"
-	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
+	"github.com/tw-bc-group/mock-collaborative-encryption-lib/sm2"
 )
 
 type zhSm2PrivateKey struct {
-	sm2PrivateKey *sm2.PrivateKey
-	sm2PublicKey *sm2.PublicKey
+	adapter *sm2.KeyAdapter
 }
 
 func (sm2 *zhSm2PrivateKey) Bytes() ([]byte, error) {
@@ -16,7 +15,7 @@ func (sm2 *zhSm2PrivateKey) Bytes() ([]byte, error) {
 }
 
 func (sm2 *zhSm2PrivateKey) SKI() []byte {
-	return []byte("")
+	return []byte(sm2.adapter.KeyID())
 }
 
 func (sm2 *zhSm2PrivateKey) Private() bool {
@@ -28,9 +27,20 @@ func (sm2 *zhSm2PrivateKey) Symmetric() bool {
 }
 
 func (sm2 *zhSm2PrivateKey) PublicKey() (bccsp.Key, error) {
-	return &gmsm2PublicKey{pubKey: sm2.sm2PublicKey}, nil
+	pubKey, err := sm2.adapter.GetPublicKey()
+	if err != nil {
+		return nil, err
+	}
+	return &gmsm2PublicKey{pubKey: pubKey}, nil
 }
 
 func createZhSm2PrivateKey() (*zhSm2PrivateKey, error) {
-	return &zhSm2PrivateKey{}, nil
+	adapter, err := sm2.CreateSm2KeyAdapter(sm2.SignAndVerify, "")
+	if err != nil {
+		return nil, err
+	}
+
+	return &zhSm2PrivateKey{
+		adapter: adapter,
+	}, nil
 }
