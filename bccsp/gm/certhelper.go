@@ -25,18 +25,10 @@ import (
 
 	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
 	x509GM "github.com/Hyperledger-TWGC/tjfoc-gm/x509"
-	"github.com/pkg/errors"
-	"github.com/tw-bc-group/fabric-gm/bccsp"
 )
 
 //调用SM2接口生成SM2证书
-func CreateCertificateToMem(template, parent *x509GM.Certificate, key bccsp.Key) (cert []byte, err error) {
-	sm2pk, ok := key.(*gmsm2PrivateKey)
-	if !ok {
-		return nil, errors.Wrap(err, "CreateCertificateToMem interface wrong: it's not gmsm2PrivateKey.")
-	}
-	pk := sm2pk.privKey
-
+func CreateCertificateToMem(template, parent *x509GM.Certificate, signer crypto.Signer) (cert []byte, err error) {
 	switch template.PublicKey.(type) {
 	case *sm2.PublicKey:
 		pub := template.PublicKey.(*sm2.PublicKey)
@@ -45,7 +37,7 @@ func CreateCertificateToMem(template, parent *x509GM.Certificate, key bccsp.Key)
 			X:     pub.X,
 			Y:     pub.Y,
 		}
-		cert, err = x509GM.CreateCertificateToPem(template, parent, &puk, pk)
+		cert, err = x509GM.CreateCertificateToPem(template, parent, &puk, signer)
 	case *ecdsa.PublicKey:
 		pub := template.PublicKey.(*ecdsa.PublicKey)
 		var puk = sm2.PublicKey{
@@ -53,7 +45,7 @@ func CreateCertificateToMem(template, parent *x509GM.Certificate, key bccsp.Key)
 			X:     pub.X,
 			Y:     pub.Y,
 		}
-		cert, err = x509GM.CreateCertificateToPem(template, parent, &puk, pk)
+		cert, err = x509GM.CreateCertificateToPem(template, parent, &puk, signer)
 	}
 
 	return

@@ -29,6 +29,7 @@ import (
 	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
 	"github.com/Hyperledger-TWGC/tjfoc-gm/sm4"
 	"github.com/Hyperledger-TWGC/tjfoc-gm/x509"
+	kmssm2 "github.com/tw-bc-group/aliyun-kms/sm2"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 	"github.com/tw-bc-group/fabric-gm/bccsp/utils"
 )
@@ -152,6 +153,12 @@ func (ks *fileBasedKeyStore) GetKey(ski []byte) (k bccsp.Key, err error) {
 		default:
 			return nil, errors.New("Public key type not recognized")
 		}
+	case "kms":
+		res, err := ks.loadKMSPrivateKey(hex.EncodeToString(ski))
+		if err != nil {
+			return nil, fmt.Errorf("Failed loading kms sm2 key adapter [%x] [%s]", ski, err)
+		}
+		return &kmsSm2PrivateKey{adapter: res.(*kmssm2.KeyAdapter)}, nil
 	default:
 		return ks.searchKeystoreForSKI(ski)
 	}
@@ -191,7 +198,8 @@ func (ks *fileBasedKeyStore) StoreKey(k bccsp.Key) (err error) {
 			return fmt.Errorf("Failed storing GMSM4 key [%s]", err)
 		}
 	case *kmsSm2PrivateKey:
-		if err = ks.storeKMSKeyID(hex.EncodeToString(k.SKI())); err != nil {
+		kk := k.(*kmsSm2PrivateKey)
+		if err = ks.storeKMSPrivateKey(hex.EncodeToString(k.SKI()), kk.adapter.KeyID()); err != nil {
 			return fmt.Errorf("Failed storing GMSM2 private key [%s]", err)
 		}
 
@@ -248,16 +256,36 @@ func (ks *fileBasedKeyStore) getSuffix(alias string) string {
 			if strings.HasSuffix(f.Name(), "key") {
 				return "key"
 			}
+			if strings.HasSuffix(f.Name(), "kms") {
+				return "kms"
+			}
 			break
 		}
 	}
 	return ""
 }
 
-func (ks *fileBasedKeyStore) storeKMSKeyID(keyID string) error {
-	err := ioutil.WriteFile(ks.getPathForAlias(keyID, "kms"), []byte(keyID), 0700)
+func (ks *fileBasedKeyStore) loadKMSPrivateKey(alias string) (interface{}, error) {
+	path := ks.getPathForAlias(alias, "kms")
+
+	keyID, err := ioutil.ReadFile(path)
 	if err != nil {
-		logger.Errorf("Failed storing kms key id [%s]: [%s]", keyID, err)
+		logger.Errorf("Failed loading private key [%s]: [%s].", alias, err.Error())
+		return nil, err
+	}
+
+	adapter, err := kmssm2.CreateSm2KeyAdapter(string(keyID), kmssm2.SignAndVerify)
+	if err != nil {
+		return nil, err
+	}
+
+	return adapter, nil
+}
+
+func (ks *fileBasedKeyStore) storeKMSPrivateKey(alias, keyID string) error {
+	err := ioutil.WriteFile(ks.getPathForAlias(alias, "kms"), []byte(keyID), 0700)
+	if err != nil {
+		logger.Errorf("Failed storing kms key id [%s]: [%s]", alias, err)
 		return err
 	}
 	return nil

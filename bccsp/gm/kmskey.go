@@ -1,6 +1,9 @@
 package gm
 
 import (
+	"crypto/sha256"
+	"crypto/elliptic"
+
 	"github.com/pkg/errors"
 	"github.com/tw-bc-group/aliyun-kms/sm2"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
@@ -15,7 +18,14 @@ func (sm2 *kmsSm2PrivateKey) Bytes() ([]byte, error) {
 }
 
 func (sm2 *kmsSm2PrivateKey) SKI() []byte {
-	return []byte(sm2.adapter.KeyID())
+	publicKey, err := sm2.adapter.GetPublicKey()
+	if err != nil {
+		panic(err)
+	}
+	raw := elliptic.Marshal(publicKey.Curve, publicKey.X, publicKey.Y)
+	hash := sha256.New()
+	hash.Write(raw)
+	return hash.Sum(nil)
 }
 
 func (sm2 *kmsSm2PrivateKey) Symmetric() bool {
@@ -43,4 +53,22 @@ func createKmsSm2PrivateKey() (*kmsSm2PrivateKey, error) {
 	return &kmsSm2PrivateKey{
 		adapter: adapter,
 	}, nil
+}
+
+type kmssm2ImportKeyOptsKeyImporter struct{}
+
+func (*kmssm2ImportKeyOptsKeyImporter) KeyImport(raw interface{}, opts bccsp.KeyImportOpts) (k bccsp.Key, err error) {
+	adapter, err := sm2.CreateSm2KeyAdapter(raw.(string), sm2.SignAndVerify)
+	if err != nil {
+		return nil, err
+	}
+	return &kmsSm2PrivateKey{
+		adapter: adapter,
+	}, nil
+}
+
+type kmssm2PrivateKeySigner struct{}
+
+func (s *kmssm2PrivateKeySigner) Sign(k bccsp.Key, digest []byte, opts bccsp.SignerOpts) (signature []byte, err error) {
+	return k.(*kmsSm2PrivateKey).adapter.AsymmetricSign(digest)
 }

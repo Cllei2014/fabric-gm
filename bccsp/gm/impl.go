@@ -76,6 +76,7 @@ func New(securityLevel int, hashFamily string, keyStore bccsp.KeyStore) (bccsp.B
 	signers := make(map[reflect.Type]Signer)
 	signers[reflect.TypeOf(&gmsm2PrivateKey{})] = &gmsm2Signer{} //sm2 国密签名
 	signers[reflect.TypeOf(&ecdsaPrivateKey{})] = &ecdsaPrivateKeySigner{}
+	signers[reflect.TypeOf(&kmsSm2PrivateKey{})] = &kmssm2PrivateKeySigner{}
 
 	// Set the verifiers
 	verifiers := make(map[reflect.Type]Verifier)
@@ -116,6 +117,7 @@ func New(securityLevel int, hashFamily string, keyStore bccsp.KeyStore) (bccsp.B
 
 	// Set the key importers
 	keyImporters := make(map[reflect.Type]KeyImporter)
+	keyImporters[reflect.TypeOf(&bccsp.KMSGMSM2KeyImportOpts{})] = &kmssm2ImportKeyOptsKeyImporter{}
 	keyImporters[reflect.TypeOf(&bccsp.GMSM4ImportKeyOpts{})] = &gmsm4ImportKeyOptsKeyImporter{}
 	keyImporters[reflect.TypeOf(&bccsp.GMSM2PrivateKeyImportOpts{})] = &gmsm2PrivateKeyImportOptsKeyImporter{}
 	keyImporters[reflect.TypeOf(&bccsp.GMSM2PublicKeyImportOpts{})] = &gmsm2PublicKeyImportOptsKeyImporter{}

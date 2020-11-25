@@ -54,11 +54,10 @@ func NewCA(baseDir, org, name, country, province, locality, orgUnit, streetAddre
 	err := os.MkdirAll(baseDir, 0755)
 	if err == nil {
 		//priv, signer, err := csp.GeneratePrivateKey(baseDir)
-		priv, _, err := csp.GeneratePrivateKey(baseDir)
+		priv, signer, err := csp.GeneratePrivateKey(baseDir)
 		response = err
 		if err == nil {
 			// get public signing certificate
-			//ecPubKey, err := csp.GetECPublicKey(priv)
 			sm2PubKey, err := csp.GetSM2PublicKey(priv)
 			response = err
 			if err == nil {
@@ -87,13 +86,11 @@ func NewCA(baseDir, org, name, country, province, locality, orgUnit, streetAddre
 
 				sm2cert.PublicKey = sm2PubKey
 
-				x509Cert, err := genCertificateGMSM2(baseDir, name, sm2cert, sm2cert, sm2PubKey, priv)
+				x509Cert, err := genCertificateGMSM2(baseDir, name, sm2cert, sm2cert, signer)
 				response = err
 				if err == nil {
 					ca = &CA{
-						Name: name,
-						//Signer:             signer,
-						//SignCert:           x509Cert,
+						Name:               name,
 						Country:            country,
 						Province:           province,
 						Locality:           locality,
@@ -102,6 +99,7 @@ func NewCA(baseDir, org, name, country, province, locality, orgUnit, streetAddre
 						PostalCode:         postalCode,
 						SignSm2Cert:        x509Cert,
 						Sm2Key:             priv,
+						Signer:             signer,
 					}
 				}
 			}
@@ -141,7 +139,7 @@ func (ca *CA) SignCertificate(baseDir, name string, ous, sans []string, pub *sm2
 	// 	pub, ca.Signer)
 
 	sm2Tpl := gm.ParseX509Certificate2Sm2(&template)
-	cert, err := genCertificateGMSM2(baseDir, name, sm2Tpl, ca.SignSm2Cert, pub, ca.Sm2Key)
+	cert, err := genCertificateGMSM2(baseDir, name, sm2Tpl, ca.SignSm2Cert, ca.Signer)
 
 	if err != nil {
 		return nil, err
@@ -263,11 +261,10 @@ func LoadCertificateECDSA(certPath string) (*x509.Certificate, error) {
 }
 
 //generate a signed X509 certficate using GMSM2
-func genCertificateGMSM2(baseDir, name string, template, parent *x509GM.Certificate, pub *sm2.PublicKey,
-	key bccsp.Key) (*x509GM.Certificate, error) {
+func genCertificateGMSM2(baseDir, name string, template, parent *x509GM.Certificate, signer crypto.Signer) (*x509GM.Certificate, error) {
 	fmt.Printf("SM2 CERT'S PUBLIC KEY [%+v]\n", template.PublicKey.(*sm2.PublicKey))
 	//create the x509 public cert
-	certBytes, err := gm.CreateCertificateToMem(template, parent, key)
+	certBytes, err := gm.CreateCertificateToMem(template, parent, signer)
 
 	if err != nil {
 		return nil, err

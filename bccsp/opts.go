@@ -119,6 +119,18 @@ func (opts *KMSGMSM2KeyGenOpts) Ephemeral() bool {
 	return opts.Temporary
 }
 
+type KMSGMSM2KeyImportOpts struct {
+	Temporary bool
+}
+
+func (opts *KMSGMSM2KeyImportOpts) Algorithm() string {
+	return GMSM2
+}
+
+func (opts *KMSGMSM2KeyImportOpts) Ephemeral() bool {
+	return opts.Temporary
+}
+
 // Zhong Huan KeyGen Options
 type ZHGMSM2KeyGenOpts struct {
 	Temporary bool
