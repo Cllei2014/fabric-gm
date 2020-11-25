@@ -201,7 +201,7 @@ test-cmd:
 
 docker: $(patsubst %,$(BUILD_DIR)/image/%/$(DUMMY), $(IMAGES))
 
-native: peer orderer configtxgen cryptogen idemixgen configtxlator discover
+native: peer orderer configtxgen cryptogen idemixgen configtxlator discover clean-vendor
 
 linter: buildenv
 	@echo "LINT: Running code checks.."
@@ -387,8 +387,12 @@ release/%/bin/peer: $(PROJECT_FILES)
 	mkdir -p $(@D)
 	$(CGO_FLAGS) GOOS=$(GOOS) GOARCH=$(GOARCH) go build -o $(abspath $@) -tags "$(GO_TAGS)" -ldflags "$(GO_LDFLAGS)" $(pkgmap.$(@F))
 
-go-vendor:
+go-vendor: clean-vendor
 	go mod vendor
+
+.PHONY: clean-vendor
+clean-vendor:
+	@rm -rf vendor
 
 .PHONY: dist
 dist: dist-clean dist/$(MARCH)
