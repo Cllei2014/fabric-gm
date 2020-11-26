@@ -1,8 +1,7 @@
 
 # Hyperledger Fabric GM 
 
-## contribution
-make artifacts
+## Build artifacts
 ```
 go mod vendor
 make native
