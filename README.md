@@ -3,12 +3,14 @@
 
 ## Build artifacts
 ```
-go mod vendor
-make native
-make docker
+$ go mod vendor
+$ make native
+$ make docker
 ```
-docker images
+list docker images
 ```
+$ docker images
+
 REPOSITORY                                                                                               TAG                              IMAGE ID            CREATED             SIZE
 hyperledger/fabric-tools-gm                                                                              amd64-1.4.7-snapshot-1cd5720cd   d4994a21c4f3        26 hours ago        1.56GB
 hyperledger/fabric-tools-gm                                                                              amd64-latest                     d4994a21c4f3        26 hours ago        1.56GB
