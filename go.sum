@@ -263,6 +263,8 @@ github.com/tedsuo/ifrit v0.0.0-20180802180643-bea94bb476cc/go.mod h1:eyZnKCc955u
 github.com/tmc/grpc-websocket-proxy v0.0.0-20170815181823-89b8d40f7ca8/go.mod h1:ncp9v5uamzpCO7NfCPTXjqaC+bZgJeR0sMTm6dMHP7U=
 github.com/tw-bc-group/aliyun-kms v0.0.0-20201120072815-35c8dac5b426 h1:gHh2d/si21M3isnYoffRKPvmRDa8wFQZG/kZqd/CO3U=
 github.com/tw-bc-group/aliyun-kms v0.0.0-20201120072815-35c8dac5b426/go.mod h1:worXlTSqMAo6QOb+QL3UaDN6qbLT5niN28kjXtTmYZw=
+github.com/tw-bc-group/aliyun-kms v0.0.0-20201126101913-f038b10ea8be h1:PhcqvJdHplG2gRxlHngq5pwCTJLQYRyGiC+yRm0Uiv8=
+github.com/tw-bc-group/aliyun-kms v0.0.0-20201126101913-f038b10ea8be/go.mod h1:GONQ2w384Dql01scA2vMwBv+9Vw/RIQRy2sCuAoLQ6k=
 github.com/tw-bc-group/mock-collaborative-encryption-lib v0.0.0-20201126034806-c067c4a3fca8 h1:D7szAPRT3CYP944ztLpZRZodntBlx6njqrJV8l5SHIU=
 github.com/tw-bc-group/mock-collaborative-encryption-lib v0.0.0-20201126034806-c067c4a3fca8/go.mod h1:lGHcrM+KFHJgAojqlTSag3VVWov0kZlfS/mnVea9l3o=
 github.com/tw-bc-group/sarama v0.0.0-20201110085058-851d51e29742 h1:wJf1ul0tOlaXuizQye/7DhVK2aq2tRtroAjUnZoHLDI=

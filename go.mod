@@ -55,7 +55,7 @@ require (
 	github.com/sykesm/zap-logfmt v0.0.3
 	github.com/syndtr/goleveldb v0.0.0-20180815032940-ae2bd5eed72d
 	github.com/tedsuo/ifrit v0.0.0-20180802180643-bea94bb476cc
-	github.com/tw-bc-group/aliyun-kms v0.0.0-20201126094606-81f602f99a5a
+	github.com/tw-bc-group/aliyun-kms v0.0.0-20201126101913-f038b10ea8be
 	github.com/tw-bc-group/mock-collaborative-encryption-lib v0.0.0-20201126034806-c067c4a3fca8
 	github.com/tw-bc-group/sarama v0.0.0-20201110085058-851d51e29742
 	github.com/willf/bitset v1.1.9
