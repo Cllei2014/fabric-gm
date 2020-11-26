@@ -100,6 +100,24 @@ func (msp *bccspmsp) setupCrypto(conf *m.FabricMSPConfig) error {
 	return nil
 }
 
+func (msp *bccspmsp) reStructMSPConfigIntermediateCerts(conf *m.FabricMSPConfig) error {
+	var blocks [][]byte
+	for _, v := range conf.IntermediateCerts {
+		res, err := msp.getPemsFromOnePem(v)
+		if err != nil {
+			return err
+		}
+		if len(res) > 0 {
+			blocks = append(blocks, res...)
+		}
+	}
+
+	if len(blocks) != len(conf.IntermediateCerts) {
+		conf.IntermediateCerts = blocks
+	}
+	return nil
+}
+
 func (msp *bccspmsp) setupCAs(conf *m.FabricMSPConfig) error {
 	// make and fill the set of CA certs - we expect them to be there
 	if len(conf.RootCerts) == 0 {
@@ -120,23 +138,10 @@ func (msp *bccspmsp) setupCAs(conf *m.FabricMSPConfig) error {
 		msp.opts.Roots.AddCert(cert)
 	}
 
-	// begin
 	// 中间CA证书文件可能包含多个证书，因为将每个证书文件都读出来放进数组中
-	var blocks [][]byte
-	for _, v := range conf.IntermediateCerts {
-		res, err := msp.getPemsFromOnePem(v)
-		if err != nil {
-			return err
-		}
-		if len(res) > 0 {
-			blocks = append(blocks, res...)
-		}
+	if err := msp.reStructMSPConfigIntermediateCerts(conf); err != nil {
+		return err
 	}
-
-	if len(blocks) != len(conf.IntermediateCerts) {
-		conf.IntermediateCerts = blocks
-	}
-	// end
 
 	for _, v := range conf.IntermediateCerts {
 		cert, err := msp.getCertFromPem(v)
