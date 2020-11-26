@@ -44,3 +44,9 @@ func createZhSm2PrivateKey() (*zhSm2PrivateKey, error) {
 		adapter: adapter,
 	}, nil
 }
+
+type zhSm2PrivateKeySigner struct{}
+
+func (s *zhSm2PrivateKeySigner) Sign(k bccsp.Key, digest []byte, opts bccsp.SignerOpts) (signature []byte, err error) {
+	return k.(*zhSm2PrivateKey).adapter.AsymmetricSign(digest)
+}

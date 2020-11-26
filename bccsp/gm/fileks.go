@@ -308,8 +308,8 @@ func (ks *fileBasedKeyStore) storeKMSPrivateKey(alias, keyID string) error {
 }
 
 func (ks *fileBasedKeyStore) loadZHPrivateKey(alias string) (interface{}, error) {
-	logger.Debugf("Loading ZH private key id [%s].", alias)
 	path := ks.getPathForAlias(alias, "zh")
+	logger.Debugf("Loading ZH private file [%s].", path)
 
 	keyID, err := ioutil.ReadFile(path)
 	if err != nil {

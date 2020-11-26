@@ -77,6 +77,7 @@ func New(securityLevel int, hashFamily string, keyStore bccsp.KeyStore) (bccsp.B
 	signers[reflect.TypeOf(&gmsm2PrivateKey{})] = &gmsm2Signer{} //sm2 国密签名
 	signers[reflect.TypeOf(&ecdsaPrivateKey{})] = &ecdsaPrivateKeySigner{}
 	signers[reflect.TypeOf(&kmsSm2PrivateKey{})] = &kmssm2PrivateKeySigner{}
+	signers[reflect.TypeOf(&zhSm2PrivateKey{})] = &zhSm2PrivateKeySigner{}
 
 	// Set the verifiers
 	verifiers := make(map[reflect.Type]Verifier)
