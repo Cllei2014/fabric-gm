@@ -32,6 +32,7 @@ import (
 	kmssm2 "github.com/tw-bc-group/aliyun-kms/sm2"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 	"github.com/tw-bc-group/fabric-gm/bccsp/utils"
+	zhsm2 "github.com/tw-bc-group/mock-collaborative-encryption-lib/sm2"
 )
 
 // NewFileBasedKeyStore instantiated a file-based key store at a given position.
@@ -159,6 +160,12 @@ func (ks *fileBasedKeyStore) GetKey(ski []byte) (k bccsp.Key, err error) {
 			return nil, fmt.Errorf("Failed loading kms sm2 key adapter [%x] [%s]", ski, err)
 		}
 		return &kmsSm2PrivateKey{adapter: res.(*kmssm2.KeyAdapter)}, nil
+	case "zh":
+		res, err := ks.loadZHPrivateKey(hex.EncodeToString(ski))
+		if err != nil {
+			return nil, fmt.Errorf("Failed loading zh sm2 key adapter [%x] [%s]", ski, err)
+		}
+		return &zhSm2PrivateKey{adapter: res.(*zhsm2.KeyAdapter)}, nil
 	default:
 		return ks.searchKeystoreForSKI(ski)
 	}
@@ -201,6 +208,12 @@ func (ks *fileBasedKeyStore) StoreKey(k bccsp.Key) (err error) {
 		kk := k.(*kmsSm2PrivateKey)
 		if err = ks.storeKMSPrivateKey(hex.EncodeToString(k.SKI()), kk.adapter.KeyID()); err != nil {
 			return fmt.Errorf("Failed storing GMSM2 private key [%s]", err)
+		}
+
+	case *zhSm2PrivateKey:
+		kk := k.(*zhSm2PrivateKey)
+		if err = ks.storeZHPrivateKey(hex.EncodeToString(k.SKI()), kk.adapter.KeyID()); err != nil {
+			return fmt.Errorf("Failed storing ZH GMSM2 private key [%s]", err)
 		}
 
 	default:
@@ -259,6 +272,9 @@ func (ks *fileBasedKeyStore) getSuffix(alias string) string {
 			if strings.HasSuffix(f.Name(), "kms") {
 				return "kms"
 			}
+			if strings.HasSuffix(f.Name(), "zh") {
+				return "zh"
+			}
 			break
 		}
 	}
@@ -284,6 +300,34 @@ func (ks *fileBasedKeyStore) loadKMSPrivateKey(alias string) (interface{}, error
 
 func (ks *fileBasedKeyStore) storeKMSPrivateKey(alias, keyID string) error {
 	err := ioutil.WriteFile(ks.getPathForAlias(alias, "kms"), []byte(keyID), 0700)
+	if err != nil {
+		logger.Errorf("Failed storing kms key id [%s]: [%s]", alias, err)
+		return err
+	}
+	return nil
+}
+
+func (ks *fileBasedKeyStore) loadZHPrivateKey(alias string) (interface{}, error) {
+	logger.Debugf("Loading ZH private key id [%s].", alias)
+	path := ks.getPathForAlias(alias, "zh")
+
+	keyID, err := ioutil.ReadFile(path)
+	if err != nil {
+		logger.Errorf("Failed loading private key [%s]: [%s].", alias, err.Error())
+		return nil, err
+	}
+
+	adapter, err := zhsm2.CreateSm2KeyAdapter(zhsm2.SignAndVerify, strings.TrimSpace(string(keyID)))
+	if err != nil {
+		return nil, err
+	}
+
+	return adapter, nil
+}
+
+func (ks *fileBasedKeyStore) storeZHPrivateKey(alias, keyID string) error {
+	logger.Debugf("Storing ZH private key id [%s].", alias)
+	err := ioutil.WriteFile(ks.getPathForAlias(alias, "zh"), []byte(keyID), 0700)
 	if err != nil {
 		logger.Errorf("Failed storing kms key id [%s]: [%s]", alias, err)
 		return err
