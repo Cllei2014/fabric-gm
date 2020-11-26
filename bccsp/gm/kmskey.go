@@ -3,49 +3,44 @@ package gm
 import (
 	"crypto/sha256"
 	"crypto/elliptic"
+	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
 
 	"github.com/pkg/errors"
-	"github.com/tw-bc-group/aliyun-kms/sm2"
+	kmssm2 "github.com/tw-bc-group/aliyun-kms/sm2"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 )
 
 type kmsSm2PrivateKey struct {
-	adapter *sm2.KeyAdapter
+	adapter *kmssm2.KeyAdapter
 }
 
-func (sm2 *kmsSm2PrivateKey) Bytes() ([]byte, error) {
+func (pri *kmsSm2PrivateKey) Bytes() ([]byte, error) {
 	return nil, errors.Errorf("Unsupported")
 }
 
-func (sm2 *kmsSm2PrivateKey) SKI() []byte {
-	publicKey, err := sm2.adapter.GetPublicKey()
-	if err != nil {
-		panic(err)
-	}
+func (pri *kmsSm2PrivateKey) SKI() []byte {
+	publicKey := pri.adapter.Public().(*sm2.PublicKey)
 	raw := elliptic.Marshal(publicKey.Curve, publicKey.X, publicKey.Y)
 	hash := sha256.New()
 	hash.Write(raw)
 	return hash.Sum(nil)
 }
 
-func (sm2 *kmsSm2PrivateKey) Symmetric() bool {
+func (pri *kmsSm2PrivateKey) Symmetric() bool {
 	return false
 }
 
-func (sm2 *kmsSm2PrivateKey) Private() bool {
+func (pri *kmsSm2PrivateKey) Private() bool {
 	return true
 }
 
-func (sm2 *kmsSm2PrivateKey) PublicKey() (bccsp.Key, error) {
-	pubKey, err := sm2.adapter.GetPublicKey()
-	if err != nil {
-		return nil, err
-	}
+func (pri *kmsSm2PrivateKey) PublicKey() (bccsp.Key, error) {
+	pubKey := pri.adapter.Public().(*sm2.PublicKey)
 	return &gmsm2PublicKey{pubKey: pubKey}, nil
 }
 
 func createKmsSm2PrivateKey() (*kmsSm2PrivateKey, error) {
-	adapter, err := sm2.CreateSm2KeyAdapter("", sm2.SignAndVerify)
+	adapter, err := kmssm2.CreateSm2KeyAdapter("", kmssm2.SignAndVerify)
 	if err != nil {
 		return nil, err
 	}
@@ -58,7 +53,7 @@ func createKmsSm2PrivateKey() (*kmsSm2PrivateKey, error) {
 type kmssm2ImportKeyOptsKeyImporter struct{}
 
 func (*kmssm2ImportKeyOptsKeyImporter) KeyImport(raw interface{}, opts bccsp.KeyImportOpts) (k bccsp.Key, err error) {
-	adapter, err := sm2.CreateSm2KeyAdapter(raw.(string), sm2.SignAndVerify)
+	adapter, err := kmssm2.CreateSm2KeyAdapter(raw.(string), kmssm2.SignAndVerify)
 	if err != nil {
 		return nil, err
 	}
