@@ -7,7 +7,7 @@ $ go mod vendor
 $ make native
 $ make docker
 ```
-list docker images
+Check the results: list docker images
 ```
 $ docker images
 
