@@ -272,10 +272,14 @@ github.com/tw-bc-group/aliyun-kms v0.0.0-20201120072815-35c8dac5b426 h1:gHh2d/si
 github.com/tw-bc-group/aliyun-kms v0.0.0-20201120072815-35c8dac5b426/go.mod h1:worXlTSqMAo6QOb+QL3UaDN6qbLT5niN28kjXtTmYZw=
 github.com/tw-bc-group/mock-collaborative-encryption-lib v0.0.0-20201123032157-5c20ec7f3bc3 h1:4uVZFSCvi3c2lFQHJlN/UX/kab/h3SxR76mhmF5KAfY=
 github.com/tw-bc-group/mock-collaborative-encryption-lib v0.0.0-20201123032157-5c20ec7f3bc3/go.mod h1:QjkvRTkEeA1M6aov0ffiB++nduvJDmKhZAzIwLhGKs8=
+github.com/tw-bc-group/mock-collaborative-encryption-lib v0.0.0-20201126034806-c067c4a3fca8 h1:D7szAPRT3CYP944ztLpZRZodntBlx6njqrJV8l5SHIU=
+github.com/tw-bc-group/mock-collaborative-encryption-lib v0.0.0-20201126034806-c067c4a3fca8/go.mod h1:lGHcrM+KFHJgAojqlTSag3VVWov0kZlfS/mnVea9l3o=
 github.com/tw-bc-group/sarama v0.0.0-20201110085058-851d51e29742 h1:wJf1ul0tOlaXuizQye/7DhVK2aq2tRtroAjUnZoHLDI=
 github.com/tw-bc-group/sarama v0.0.0-20201110085058-851d51e29742/go.mod h1:L/DCuMbRNYoj2JksrP2UJRTTsLdktr58Q9pIgNmH8cA=
 github.com/tw-bc-group/tjfoc-gm v0.0.0-20201124022249-edd640b7bf9f h1:tWsmwCuddwGeKOoxSp1ir/w58UJe8iRiQrhM71uv0S4=
 github.com/tw-bc-group/tjfoc-gm v0.0.0-20201124022249-edd640b7bf9f/go.mod h1:pjo29FaEP0cii6emm2Lw/+3UZxO2SGQrUXntmKUD37U=
+github.com/tw-bc-group/tjfoc-gm v0.0.0-20201126034628-7141b2053e0e h1:Y+Ch19lrgdZnADGqCF1ltJtdzDY7Mq9drZFKFLi+dUQ=
+github.com/tw-bc-group/tjfoc-gm v0.0.0-20201126034628-7141b2053e0e/go.mod h1:pjo29FaEP0cii6emm2Lw/+3UZxO2SGQrUXntmKUD37U=
 github.com/ugorji/go v1.1.1/go.mod h1:hnLbHMwcvSihnDhEfx2/BzKp2xb0Y+ErdfYcrs9tkJQ=
 github.com/urfave/cli v1.18.0/go.mod h1:70zkFmudgCuE/ngEzBv17Jvp/497gISqfk5gWijbERA=
 github.com/vektra/mockery v1.1.2 h1:uc0Yn67rJpjt8U/mAZimdCKn9AeA97BOkjpmtBSlfP4=

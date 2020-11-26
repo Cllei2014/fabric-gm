@@ -57,7 +57,7 @@ require (
 	github.com/syndtr/goleveldb v0.0.0-20180815032940-ae2bd5eed72d
 	github.com/tedsuo/ifrit v0.0.0-20180802180643-bea94bb476cc
 	github.com/tw-bc-group/aliyun-kms v0.0.0-20201120072815-35c8dac5b426
-	github.com/tw-bc-group/mock-collaborative-encryption-lib v0.0.0-20201123032157-5c20ec7f3bc3
+	github.com/tw-bc-group/mock-collaborative-encryption-lib v0.0.0-20201126034806-c067c4a3fca8
 	github.com/tw-bc-group/sarama v0.0.0-20201110085058-851d51e29742
 	github.com/vektra/mockery v1.1.2 // indirect
 	github.com/willf/bitset v1.1.9
@@ -74,4 +74,4 @@ require (
 	gopkg.in/yaml.v2 v2.3.0
 )
 
-replace github.com/Hyperledger-TWGC/tjfoc-gm v0.0.0-20201117155542-9542a21fafd1 => github.com/tw-bc-group/tjfoc-gm v0.0.0-20201124022249-edd640b7bf9f
+replace github.com/Hyperledger-TWGC/tjfoc-gm v0.0.0-20201117155542-9542a21fafd1 => github.com/tw-bc-group/tjfoc-gm v0.0.0-20201126034628-7141b2053e0e
