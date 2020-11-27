@@ -231,6 +231,7 @@ $(BUILD_DIR)/docker/bin/%: $(PROJECT_FILES)
 		-v $(abspath $(BUILD_DIR)/docker/bin):/opt/gopath/bin \
 		-v $(abspath $(BUILD_DIR)/docker/$(TARGET)/pkg):/opt/gopath/pkg \
 		-v $(abspath $(BUILD_DIR)/docker/gocache):/opt/gopath/cache \
+		-v /usr/lib/libxsign.so:/usr/lib/libxsign.so \
 		-e GOCACHE=/opt/gopath/cache \
 		$(BASE_DOCKER_NS)/fabric-baseimage:$(BASE_DOCKER_TAG) \
 		go install -tags "$(GO_TAGS)" -ldflags "$(DOCKER_GO_LDFLAGS)" $(pkgmap.$(@F))
@@ -276,6 +277,7 @@ $(BUILD_DIR)/image/buildenv/payload:   $(BUILD_DIR)/gotools.tar.bz2 \
 $(BUILD_DIR)/image/%/payload:
 	mkdir -p $@
 	cp $^ $@
+	cp /usr/lib/libxsign.so $@
 
 .PRECIOUS: $(BUILD_DIR)/image/%/Dockerfile
 
