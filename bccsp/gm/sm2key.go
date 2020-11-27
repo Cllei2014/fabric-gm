@@ -118,3 +118,9 @@ func (k *gmsm2PublicKey) Private() bool {
 func (k *gmsm2PublicKey) PublicKey() (bccsp.Key, error) {
 	return k, nil
 }
+
+type gmsm2Decryptor struct{}
+
+func (*gmsm2Decryptor) Decrypt(k bccsp.Key, ciphertext []byte, opts bccsp.DecrypterOpts) (plaintext []byte, err error) {
+	return sm2.Decrypt(k.(*gmsm2PrivateKey).privKey, ciphertext)
+}
