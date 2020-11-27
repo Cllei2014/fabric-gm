@@ -32,7 +32,7 @@ import (
 	kmssm2 "github.com/tw-bc-group/aliyun-kms/sm2"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 	"github.com/tw-bc-group/fabric-gm/bccsp/utils"
-	zhsm2 "github.com/tw-bc-group/mock-collaborative-encryption-lib/sm2"
+	zhsm2 "github.com/tw-bc-group/zhonghuan-ce/sm2"
 )
 
 // NewFileBasedKeyStore instantiated a file-based key store at a given position.
@@ -317,7 +317,7 @@ func (ks *fileBasedKeyStore) loadZHPrivateKey(alias string) (interface{}, error)
 		return nil, err
 	}
 
-	adapter, err := zhsm2.CreateSm2KeyAdapter(zhsm2.SignAndVerify, strings.TrimSpace(string(keyID)))
+	adapter, err := zhsm2.CreateSm2KeyAdapter(strings.TrimSpace(string(keyID)))
 	if err != nil {
 		return nil, err
 	}

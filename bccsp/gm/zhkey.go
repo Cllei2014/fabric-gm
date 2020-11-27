@@ -3,7 +3,7 @@ package gm
 import (
 	"github.com/pkg/errors"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
-	"github.com/tw-bc-group/mock-collaborative-encryption-lib/sm2"
+	"github.com/tw-bc-group/zhonghuan-ce/sm2"
 )
 
 type zhSm2PrivateKey struct {
@@ -35,7 +35,7 @@ func (sm2 *zhSm2PrivateKey) PublicKey() (bccsp.Key, error) {
 }
 
 func createZhSm2PrivateKey() (*zhSm2PrivateKey, error) {
-	adapter, err := sm2.CreateSm2KeyAdapter(sm2.SignAndVerify, "")
+	adapter, err := sm2.CreateSm2KeyAdapter("")
 	if err != nil {
 		return nil, err
 	}

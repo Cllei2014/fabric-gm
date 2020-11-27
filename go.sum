@@ -263,14 +263,12 @@ github.com/tedsuo/ifrit v0.0.0-20180802180643-bea94bb476cc/go.mod h1:eyZnKCc955u
 github.com/tmc/grpc-websocket-proxy v0.0.0-20170815181823-89b8d40f7ca8/go.mod h1:ncp9v5uamzpCO7NfCPTXjqaC+bZgJeR0sMTm6dMHP7U=
 github.com/tw-bc-group/aliyun-kms v0.0.0-20201126132256-b9c99bba772d h1:r6OsvTtWJ2b9TJ+YSzskl7EtrKbSiN/q/p78zaSv4Jc=
 github.com/tw-bc-group/aliyun-kms v0.0.0-20201126132256-b9c99bba772d/go.mod h1:GONQ2w384Dql01scA2vMwBv+9Vw/RIQRy2sCuAoLQ6k=
-github.com/tw-bc-group/mock-collaborative-encryption-lib v0.0.0-mock h1:HTguRzbDc1ZnQ7uytZ1Vzwf6B6NZN3UNJcIuNZM8buA=
-github.com/tw-bc-group/mock-collaborative-encryption-lib v0.0.0-mock/go.mod h1:QjkvRTkEeA1M6aov0ffiB++nduvJDmKhZAzIwLhGKs8=
-github.com/tw-bc-group/mock-collaborative-encryption-lib v0.0.0-mock-1 h1:FTHjjM6ofD2lEqvMhGx0FH6mlhWUkllKvkOHKeWntA0=
-github.com/tw-bc-group/mock-collaborative-encryption-lib v0.0.0-mock-1/go.mod h1:lGHcrM+KFHJgAojqlTSag3VVWov0kZlfS/mnVea9l3o=
 github.com/tw-bc-group/sarama v0.0.0-20201110085058-851d51e29742 h1:wJf1ul0tOlaXuizQye/7DhVK2aq2tRtroAjUnZoHLDI=
 github.com/tw-bc-group/sarama v0.0.0-20201110085058-851d51e29742/go.mod h1:L/DCuMbRNYoj2JksrP2UJRTTsLdktr58Q9pIgNmH8cA=
 github.com/tw-bc-group/tjfoc-gm v0.0.0-20201126034628-7141b2053e0e h1:Y+Ch19lrgdZnADGqCF1ltJtdzDY7Mq9drZFKFLi+dUQ=
 github.com/tw-bc-group/tjfoc-gm v0.0.0-20201126034628-7141b2053e0e/go.mod h1:pjo29FaEP0cii6emm2Lw/+3UZxO2SGQrUXntmKUD37U=
+github.com/tw-bc-group/zhonghuan-ce v0.1.0-hotfix-01 h1:QWkMvcZJReyqGTR4Hhas+ieMKEh1YoFBEenYqwOfBmQ=
+github.com/tw-bc-group/zhonghuan-ce v0.1.0-hotfix-01/go.mod h1:24e7E3Zec5CBPFyHRtRlvWdNxCZIEvox/g3VZuOLsZk=
 github.com/ugorji/go v1.1.1/go.mod h1:hnLbHMwcvSihnDhEfx2/BzKp2xb0Y+ErdfYcrs9tkJQ=
 github.com/urfave/cli v1.18.0/go.mod h1:70zkFmudgCuE/ngEzBv17Jvp/497gISqfk5gWijbERA=
 github.com/vishvananda/netlink v1.0.0 h1:bqNY2lgheFIu1meHUFSH3d7vG93AFyqg3oGbJCOJgSM=
