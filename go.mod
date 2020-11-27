@@ -56,7 +56,7 @@ require (
 	github.com/syndtr/goleveldb v0.0.0-20180815032940-ae2bd5eed72d
 	github.com/tedsuo/ifrit v0.0.0-20180802180643-bea94bb476cc
 	github.com/tw-bc-group/aliyun-kms v0.0.0-20201126132256-b9c99bba772d
-	github.com/tw-bc-group/mock-collaborative-encryption-lib v0.0.0-20201126034806-c067c4a3fca8
+	github.com/tw-bc-group/mock-collaborative-encryption-lib v0.0.0-mock-1
 	github.com/tw-bc-group/sarama v0.0.0-20201110085058-851d51e29742
 	github.com/willf/bitset v1.1.9
 	go.etcd.io/etcd v0.5.0-alpha.5.0.20181228115726-23731bf9ba55
