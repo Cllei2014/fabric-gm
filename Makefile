@@ -459,3 +459,10 @@ release-clean: $(patsubst %,%-release-clean, $(RELEASE_PLATFORMS))
 .PHONY: unit-test-clean
 unit-test-clean:
 	cd unit-test && docker-compose down
+
+show-go-tag:
+	@TZ=UTC git --no-pager show \
+			   --quiet \
+			   --abbrev=12 \
+			   --date='format-local:%Y%m%d%H%M%S' \
+			   --format="%cd-%h"

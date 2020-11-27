@@ -35,6 +35,7 @@ pipeline {
                     checkout scm
 
                     sh '''
+                    make show-go-tag
                     make docker
                     '''
                 }
