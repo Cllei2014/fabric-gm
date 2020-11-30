@@ -3,13 +3,11 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 FROM _BASE_NS_/fabric-baseimage:_BASE_TAG_ as builder
-ADD payload/libxsign.so /usr/lib/libxsign.so
 WORKDIR /opt/gopath
 RUN mkdir src && mkdir pkg && mkdir bin
 ADD . src/github.com/hyperledger/fabric
 WORKDIR /opt/gopath/src/github.com/hyperledger/fabric
 ENV EXECUTABLES go git curl
-ENV GOPRIVATE="github.com/tw-bc-group"
 RUN make configtxgen configtxlator cryptogen peer discover idemixgen
 
 FROM _BASE_NS_/fabric-baseimage:_BASE_TAG_
@@ -19,6 +17,5 @@ RUN sed -i '/security/d' /etc/apt/sources.list
 RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
 RUN apt-get update && apt-get install -y jq
 VOLUME /etc/hyperledger/fabric
-COPY --from=builder /usr/lib/libxsign.so /usr/lib/libxsign.so
 COPY --from=builder /opt/gopath/src/github.com/hyperledger/fabric/.build/bin /usr/local/bin
 COPY --from=builder /opt/gopath/src/github.com/hyperledger/fabric/sampleconfig $FABRIC_CFG_PATH
