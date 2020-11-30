@@ -1,10 +1,8 @@
 package gm
 
 import (
-	"crypto/sha256"
 	"crypto/elliptic"
-	"github.com/Hyperledger-TWGC/tjfoc-gm/sm2"
-
+	"crypto/sha256"
 	"github.com/pkg/errors"
 	kmssm2 "github.com/tw-bc-group/aliyun-kms/sm2"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
@@ -19,7 +17,7 @@ func (pri *kmsSm2PrivateKey) Bytes() ([]byte, error) {
 }
 
 func (pri *kmsSm2PrivateKey) SKI() []byte {
-	publicKey := pri.adapter.Public().(*sm2.PublicKey)
+	publicKey := pri.adapter.PublicKey()
 	raw := elliptic.Marshal(publicKey.Curve, publicKey.X, publicKey.Y)
 	hash := sha256.New()
 	hash.Write(raw)
@@ -35,8 +33,7 @@ func (pri *kmsSm2PrivateKey) Private() bool {
 }
 
 func (pri *kmsSm2PrivateKey) PublicKey() (bccsp.Key, error) {
-	pubKey := pri.adapter.Public().(*sm2.PublicKey)
-	return &gmsm2PublicKey{pubKey: pubKey}, nil
+	return &gmsm2PublicKey{pubKey: pri.adapter.PublicKey()}, nil
 }
 
 func createKmsSm2PrivateKey() (*kmsSm2PrivateKey, error) {
