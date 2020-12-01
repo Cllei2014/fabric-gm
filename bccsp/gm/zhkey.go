@@ -1,6 +1,10 @@
 package gm
 
 import (
+	"crypto/elliptic"
+	"crypto/rand"
+	"crypto/sha256"
+
 	"github.com/pkg/errors"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 	"github.com/tw-bc-group/zhonghuan-ce/sm2"
@@ -15,7 +19,11 @@ func (sm2 *zhSm2PrivateKey) Bytes() ([]byte, error) {
 }
 
 func (sm2 *zhSm2PrivateKey) SKI() []byte {
-	return []byte(sm2.adapter.KeyID())
+	publicKey := sm2.adapter.PublicKey()
+	raw := elliptic.Marshal(publicKey.Curve, publicKey.X, publicKey.Y)
+	hash := sha256.New()
+	hash.Write(raw)
+	return hash.Sum(nil)
 }
 
 func (sm2 *zhSm2PrivateKey) Private() bool {
@@ -27,11 +35,7 @@ func (sm2 *zhSm2PrivateKey) Symmetric() bool {
 }
 
 func (sm2 *zhSm2PrivateKey) PublicKey() (bccsp.Key, error) {
-	pubKey, err := sm2.adapter.GetPublicKey()
-	if err != nil {
-		return nil, err
-	}
-	return &gmsm2PublicKey{pubKey: pubKey}, nil
+	return &gmsm2PublicKey{pubKey: sm2.adapter.PublicKey()}, nil
 }
 
 func createZhSm2PrivateKey() (*zhSm2PrivateKey, error) {
@@ -49,4 +53,10 @@ type zhSm2PrivateKeySigner struct{}
 
 func (s *zhSm2PrivateKeySigner) Sign(k bccsp.Key, digest []byte, opts bccsp.SignerOpts) (signature []byte, err error) {
 	return k.(*zhSm2PrivateKey).adapter.AsymmetricSign(digest)
+}
+
+type zhsm2Decryptor struct{}
+
+func (s *zhsm2Decryptor) Decrypt(k bccsp.Key, ciphertext []byte, opts bccsp.DecrypterOpts) (plaintext []byte, err error) {
+	return k.(*zhSm2PrivateKey).adapter.Decrypt(rand.Reader, ciphertext, opts)
 }
