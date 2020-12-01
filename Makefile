@@ -311,7 +311,7 @@ $(BUILD_DIR)/image/%/$(DUMMY): Makefile $(BUILD_DIR)/image/%/payload $(BUILD_DIR
 $(BUILD_DIR)/gotools.tar.bz2: $(BUILD_DIR)/docker/gotools
 	(cd $</bin && tar -jc *) > $@
 
-$(BUILD_DIR)/goshim.tar.bz2: $(GOSHIM_DEPS) vendor
+$(BUILD_DIR)/goshim.tar.bz2: vendor $(GOSHIM_DEPS)
 	@echo "Creating $@"
 	@./scripts/goListFiles.sh $(PKGNAME)/core/chaincode/shim | sed "s|$(GOPATH)/src/||g" | tar -jhc -C $(GOPATH)/src --files-from=- > $@
 
