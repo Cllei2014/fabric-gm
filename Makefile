@@ -199,9 +199,9 @@ profile: unit-test
 test-cmd:
 	@echo "go test -tags \"$(GO_TAGS)\""
 
-docker: $(patsubst %,$(BUILD_DIR)/image/%/$(DUMMY), $(IMAGES))
+docker: vendor $(patsubst %,$(BUILD_DIR)/image/%/$(DUMMY), $(IMAGES))
 
-native: peer orderer configtxgen cryptogen idemixgen configtxlator discover clean-vendor
+native: peer orderer configtxgen cryptogen idemixgen configtxlator discover vendor-clean
 
 linter: buildenv
 	@echo "LINT: Running code checks.."
@@ -309,7 +309,7 @@ $(BUILD_DIR)/image/%/$(DUMMY): Makefile $(BUILD_DIR)/image/%/payload $(BUILD_DIR
 $(BUILD_DIR)/gotools.tar.bz2: $(BUILD_DIR)/docker/gotools
 	(cd $</bin && tar -jc *) > $@
 
-$(BUILD_DIR)/goshim.tar.bz2: $(GOSHIM_DEPS) go-vendor
+$(BUILD_DIR)/goshim.tar.bz2: $(GOSHIM_DEPS) vendor
 	@echo "Creating $@"
 	@./scripts/goListFiles.sh $(PKGNAME)/core/chaincode/shim | sed "s|$(GOPATH)/src/||g" | tar -jhc -C $(GOPATH)/src --files-from=- > $@
 
@@ -387,11 +387,11 @@ release/%/bin/peer: $(PROJECT_FILES)
 	mkdir -p $(@D)
 	$(CGO_FLAGS) GOOS=$(GOOS) GOARCH=$(GOARCH) go build -o $(abspath $@) -tags "$(GO_TAGS)" -ldflags "$(GO_LDFLAGS)" $(pkgmap.$(@F))
 
-go-vendor: clean-vendor
+vendor:
 	go mod vendor
 
-.PHONY: clean-vendor
-clean-vendor:
+.PHONY: vendor-clean
+vendor-clan:
 	@rm -rf vendor
 
 .PHONY: dist
