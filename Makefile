@@ -98,6 +98,7 @@ RELEASE_TEMPLATES = $(shell git ls-files | grep "release/templates")
 IMAGES = peer orderer ccenv buildenv tools
 RELEASE_PLATFORMS = windows-amd64 darwin-amd64 linux-amd64 linux-s390x linux-ppc64le
 RELEASE_PKGS = configtxgen cryptogen idemixgen discover configtxlator peer orderer
+GOMODE_DUMMY = $(shell md5sum go.mod | cut -d' ' -f1)
 
 pkgmap.cryptogen      := $(PKGNAME)/common/tools/cryptogen
 pkgmap.idemixgen      := $(PKGNAME)/common/tools/idemixgen
@@ -387,11 +388,14 @@ release/%/bin/peer: $(PROJECT_FILES)
 	mkdir -p $(@D)
 	$(CGO_FLAGS) GOOS=$(GOOS) GOARCH=$(GOARCH) go build -o $(abspath $@) -tags "$(GO_TAGS)" -ldflags "$(GO_LDFLAGS)" $(pkgmap.$(@F))
 
-vendor:
-	go mod vendor
+vendor: vendor/.$(GOMODE_DUMMY)
+
+vendor/.$(GOMODE_DUMMY):
+	@rm -rf vendor
+	go mod vendor && touch vendor/.$(GOMODE_DUMMY)
 
 .PHONY: vendor-clean
-vendor-clan:
+vendor-clean:
 	@rm -rf vendor
 
 .PHONY: dist
