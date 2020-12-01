@@ -440,6 +440,7 @@ docker-tag-stable: $(IMAGES:%=%-docker-tag-stable)
 
 .PHONY: clean
 clean: docker-clean unit-test-clean release-clean
+	-@chmod -R +w $(BUILD_DIR)
 	-@rm -rf $(BUILD_DIR)
 
 .PHONY: clean-all
