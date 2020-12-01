@@ -36,7 +36,7 @@ pipeline {
 
                     sh '''
                     make show-go-tag
-                    make docker
+                    make clean docker
                     '''
                 }
             }
