@@ -254,7 +254,8 @@ $(BUILD_DIR)/docker/gotools: gotools.mk
 		-v $(abspath $(BUILD_DIR)/docker/gocache):/opt/gopath/cache \
 		-e GOCACHE=/opt/gopath/cache \
 		$(BASE_DOCKER_NS)/fabric-baseimage:$(BASE_DOCKER_TAG) \
-		make -f gotools.mk GOTOOLS_BINDIR=/opt/gotools/bin GOTOOLS_GOPATH=/opt/gotools/obj
+		make -f gotools.mk GOTOOLS_BINDIR=/opt/gotools/bin GOTOOLS_GOPATH=/opt/gotools/obj \
+		|| rm -rf $@
 
 $(BUILD_DIR)/bin/%: $(PROJECT_FILES)
 	@mkdir -p $(@D)
