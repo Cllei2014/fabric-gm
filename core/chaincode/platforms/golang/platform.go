@@ -19,13 +19,13 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/pkg/errors"
+	"github.com/spf13/viper"
 	"github.com/tw-bc-group/fabric-gm/core/chaincode/platforms"
 	"github.com/tw-bc-group/fabric-gm/core/chaincode/platforms/ccmetadata"
 	"github.com/tw-bc-group/fabric-gm/core/chaincode/platforms/util"
 	cutil "github.com/tw-bc-group/fabric-gm/core/container/util"
 	pb "github.com/tw-bc-group/fabric-gm/protos/peer"
-	"github.com/pkg/errors"
-	"github.com/spf13/viper"
 )
 
 // Platform for chaincodes written in Go
@@ -488,7 +488,7 @@ func (goPlatform *Platform) GenerateDockerfile() (string, error) {
 	return dockerFileContents, nil
 }
 
-const staticLDFlagsOpts = "-ldflags \"-linkmode external -extldflags '-static'\""
+const staticLDFlagsOpts = "-ldflags \"-linkmode external -extldflags '-static' '-extldflags=-L/usr/lib'\""
 const dynamicLDFlagsOpts = ""
 
 func getLDFlagsOpts() string {
