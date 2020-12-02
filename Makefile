@@ -202,7 +202,7 @@ test-cmd:
 
 docker: vendor-clean $(patsubst %,$(BUILD_DIR)/image/%/$(DUMMY), $(IMAGES))
 
-native: peer orderer configtxgen cryptogen idemixgen configtxlator discover vendor-clean
+native: vendor-clean peer orderer configtxgen cryptogen idemixgen configtxlator discover
 
 linter: buildenv
 	@echo "LINT: Running code checks.."
