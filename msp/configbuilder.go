@@ -14,10 +14,10 @@ import (
 	"path/filepath"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/pkg/errors"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 	"github.com/tw-bc-group/fabric-gm/bccsp/factory"
 	"github.com/tw-bc-group/fabric-gm/protos/msp"
-	"github.com/pkg/errors"
 	"gopkg.in/yaml.v2"
 )
 
@@ -216,8 +216,11 @@ func getMspConfig(dir string, ID string, sigid *msp.SigningIdentityInfo) (*msp.M
 	tlsintermediatecertsDir := filepath.Join(dir, tlsintermediatecerts)
 
 	cacerts, err := getPemMaterialFromDir(cacertDir)
-	if err != nil || len(cacerts) == 0 {
+	if err != nil {
 		return nil, errors.WithMessage(err, fmt.Sprintf("could not load a valid ca certificate from directory %s", cacertDir))
+	}
+	if len(cacerts) == 0 {
+		return nil, errors.New(fmt.Sprintf("no ca certificate in directory %s", cacertDir))
 	}
 
 	admincert, err := getPemMaterialFromDir(admincertDir)
