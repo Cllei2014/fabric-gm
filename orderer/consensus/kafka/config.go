@@ -9,6 +9,7 @@ package kafka
 import (
 	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
 	"github.com/Hyperledger-TWGC/tjfoc-gm/x509"
+	"github.com/tw-bc-group/fabric-gm/bccsp/gm"
 	"github.com/tw-bc-group/fabric-gm/orderer/common/localconfig"
 	"github.com/tw-bc-group/sarama"
 )
@@ -40,9 +41,13 @@ func newBrokerConfig(
 	brokerConfig.Net.TLS.Enable = tlsConfig.Enabled
 	if brokerConfig.Net.TLS.Enable {
 		// create public/private key pair structure
-		keyPair, err := tls.X509KeyPair([]byte(tlsConfig.Certificate), []byte(tlsConfig.PrivateKey))
+		var keyPair tls.Certificate
+		keyPair, err := gm.LoadZHX509KeyPair([]byte(tlsConfig.Certificate), []byte(tlsConfig.PrivateKey))
 		if err != nil {
-			logger.Panic("Unable to decode public/private key pair:", err)
+			keyPair, err = tls.X509KeyPair([]byte(tlsConfig.Certificate), []byte(tlsConfig.PrivateKey))
+			if err != nil {
+				logger.Panic("Unable to decode public/private key pair:", err)
+			}
 		}
 		// create root CA pool
 		rootCAs := x509.NewCertPool()

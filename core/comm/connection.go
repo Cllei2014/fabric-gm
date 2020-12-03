@@ -11,6 +11,7 @@ import (
 	"encoding/base64"
 	"encoding/pem"
 	"fmt"
+	"github.com/tw-bc-group/fabric-gm/bccsp/gm"
 	"io/ioutil"
 	"os"
 	"sync"
@@ -159,7 +160,7 @@ func (cs *CredentialSupport) GetDeliverServiceCredentials(
 	// Finally, create a TLS client config with the computed TLS root CAs.
 	var creds credentials.TransportCredentials
 	tlsConfig := &tls.Config{
-		GMSupport: &tls.GMSupport{},
+		GMSupport:    &tls.GMSupport{},
 		Certificates: []tls.Certificate{cs.clientCert},
 		RootCAs:      certPool,
 	}
@@ -174,7 +175,7 @@ func (cs *CredentialSupport) GetPeerCredentials() credentials.TransportCredentia
 	defer cs.RUnlock()
 
 	tlsConfig := &tls.Config{
-		GMSupport: &tls.GMSupport{},
+		GMSupport:    &tls.GMSupport{},
 		Certificates: []tls.Certificate{cs.clientCert},
 	}
 	var certPool = x509.NewCertPool()
@@ -248,10 +249,15 @@ func InitTLSForShim(key, certStr string) credentials.TransportCredentials {
 	if err != nil {
 		commLogger.Panicf("failed decoding public key from base64, string: %s, error: %v", certStr, err)
 	}
-	cert, err := tls.X509KeyPair(pub, priv)
+	var cert tls.Certificate
+	cert, err = gm.LoadZHX509KeyPair(pub, priv)
 	if err != nil {
-		commLogger.Panicf("failed loading certificate: %v", err)
+		cert, err = tls.X509KeyPair(pub, priv)
+		if err != nil {
+			commLogger.Panicf("failed loading certificate: %v", err)
+		}
 	}
+
 	b, err := ioutil.ReadFile(config.GetPath("peer.tls.rootcert.file"))
 	if err != nil {
 		commLogger.Panicf("failed loading root ca cert: %v", err)
@@ -261,7 +267,7 @@ func InitTLSForShim(key, certStr string) credentials.TransportCredentials {
 		commLogger.Panicf("failed to append certificates")
 	}
 	return gmcredentials.NewTLS(&tls.Config{
-		GMSupport: &tls.GMSupport{},
+		GMSupport:    &tls.GMSupport{},
 		Certificates: []tls.Certificate{cert},
 		RootCAs:      cp,
 		ServerName:   sn,

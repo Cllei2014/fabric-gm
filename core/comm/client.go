@@ -8,6 +8,7 @@ package comm
 
 import (
 	"context"
+	"github.com/tw-bc-group/fabric-gm/bccsp/gm"
 	"time"
 
 	tls "github.com/Hyperledger-TWGC/tjfoc-gm/gmtls"
@@ -77,7 +78,7 @@ func (client *GRPCClient) parseSecureOptions(opts *SecureOptions) error {
 		return nil
 	}
 	client.tlsConfig = &tls.Config{
-		GMSupport: &tls.GMSupport{},
+		GMSupport:             &tls.GMSupport{},
 		VerifyPeerCertificate: opts.VerifyCertificate,
 		MinVersion:            tls.VersionGMSSL} // TLS 1.2 only
 	if len(opts.ServerRootCAs) > 0 {
@@ -95,11 +96,16 @@ func (client *GRPCClient) parseSecureOptions(opts *SecureOptions) error {
 		// make sure we have both Key and Certificate
 		if opts.Key != nil &&
 			opts.Certificate != nil {
-			cert, err := tls.X509KeyPair(opts.Certificate,
-				opts.Key)
+			var err error
+			var cert tls.Certificate
+			cert, err = gm.LoadZHX509KeyPair(opts.Certificate, opts.Key)
 			if err != nil {
-				return errors.WithMessage(err, "failed to "+
-					"load client certificate")
+				cert, err = tls.X509KeyPair(opts.Certificate,
+					opts.Key)
+				if err != nil {
+					return errors.WithMessage(err, "failed to "+
+						"load client certificate")
+				}
 			}
 			client.tlsConfig.Certificates = append(
 				client.tlsConfig.Certificates, cert)

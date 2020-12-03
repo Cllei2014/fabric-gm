@@ -10,6 +10,7 @@ import (
 	//"crypto/x509"
 	"errors"
 	"fmt"
+	"github.com/tw-bc-group/fabric-gm/bccsp/gm"
 	"net"
 	"sync"
 	"sync/atomic"
@@ -78,11 +79,18 @@ func NewGRPCServerFromListener(listener net.Listener, serverConfig ServerConfig)
 	if secureConfig.UseTLS {
 		//both key and cert are required
 		if secureConfig.Key != nil && secureConfig.Certificate != nil {
-			//load server public and private keys
-			cert, err := tls.X509KeyPair(secureConfig.Certificate, secureConfig.Key)
+			var err error
+			var cert tls.Certificate
+			//try zh key first
+			cert, err = gm.LoadZHX509KeyPair(secureConfig.Certificate, secureConfig.Key)
 			if err != nil {
-				return nil, err
+				cert, err = tls.X509KeyPair(secureConfig.Certificate, secureConfig.Key)
+				if err != nil {
+					return nil, err
+				}
 			}
+			//load server public and private keys
+
 			grpcServer.serverCertificate.Store(cert)
 
 			//set up our TLS config
@@ -93,7 +101,7 @@ func NewGRPCServerFromListener(listener net.Listener, serverConfig ServerConfig)
 			//base server certificate
 			grpcServer.tls = NewTLSConfig(&tls.Config{
 				VerifyPeerCertificate:  secureConfig.VerifyCertificate,
-				Certificates: []tls.Certificate{cert, cert},
+				Certificates:           []tls.Certificate{cert, cert},
 				SessionTicketsDisabled: true,
 				CipherSuites:           secureConfig.CipherSuites,
 			})

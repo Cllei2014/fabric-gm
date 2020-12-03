@@ -21,6 +21,7 @@ package peer
 
 import (
 	"fmt"
+	"github.com/tw-bc-group/fabric-gm/bccsp/gm"
 	"io/ioutil"
 	"net"
 	"path/filepath"
@@ -249,10 +250,13 @@ func GetClientCertificate() (tls.Certificate, error) {
 		return cert, errors.WithMessage(err,
 			"error loading client TLS certificate")
 	}
-	cert, err = tls.X509KeyPair(clientCert, clientKey)
+	cert, err = gm.LoadZHX509KeyPair(clientCert, clientKey)
 	if err != nil {
-		return cert, errors.WithMessage(err,
-			"error parsing client TLS key pair")
+		cert, err = tls.X509KeyPair(clientCert, clientKey)
+		if err != nil {
+			return cert, errors.WithMessage(err,
+				"error parsing client TLS key pair")
+		}
 	}
 	return cert, nil
 }
