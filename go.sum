@@ -277,6 +277,8 @@ github.com/tw-bc-group/zhonghuan-ce v0.1.1-hotfix h1:2cgh+1QuGfL5Wl46+7TxTtpmNqr
 github.com/tw-bc-group/zhonghuan-ce v0.1.1-hotfix/go.mod h1:24e7E3Zec5CBPFyHRtRlvWdNxCZIEvox/g3VZuOLsZk=
 github.com/tw-bc-group/zhonghuan-ce v0.1.1 h1:bOiH9Pr0+xYIIo4tclfTEmRK4GxAqu6DwYeBgQdiNX4=
 github.com/tw-bc-group/zhonghuan-ce v0.1.1/go.mod h1:24e7E3Zec5CBPFyHRtRlvWdNxCZIEvox/g3VZuOLsZk=
+github.com/tw-bc-group/zhonghuan-ce v0.2.0 h1:DpUe/ko0SoSB67LGYpg1u7MtT9+Sz9VBK4fsgQQNI8Q=
+github.com/tw-bc-group/zhonghuan-ce v0.2.0/go.mod h1:24e7E3Zec5CBPFyHRtRlvWdNxCZIEvox/g3VZuOLsZk=
 github.com/ugorji/go v1.1.1/go.mod h1:hnLbHMwcvSihnDhEfx2/BzKp2xb0Y+ErdfYcrs9tkJQ=
 github.com/urfave/cli v1.18.0/go.mod h1:70zkFmudgCuE/ngEzBv17Jvp/497gISqfk5gWijbERA=
 github.com/vektra/mockery v1.1.2 h1:uc0Yn67rJpjt8U/mAZimdCKn9AeA97BOkjpmtBSlfP4=

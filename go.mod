@@ -60,7 +60,7 @@ require (
 	github.com/tedsuo/ifrit v0.0.0-20180802180643-bea94bb476cc
 	github.com/tw-bc-group/aliyun-kms v0.1.1
 	github.com/tw-bc-group/sarama v0.0.0-20201110085058-851d51e29742
-	github.com/tw-bc-group/zhonghuan-ce v0.1.1-hotfix
+	github.com/tw-bc-group/zhonghuan-ce v0.2.0
 	github.com/vektra/mockery v1.1.2 // indirect
 	github.com/willf/bitset v1.1.9
 	go.etcd.io/etcd v0.5.0-alpha.5.0.20181228115726-23731bf9ba55
