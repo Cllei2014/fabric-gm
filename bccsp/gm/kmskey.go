@@ -3,7 +3,6 @@ package gm
 import (
 	"crypto/elliptic"
 	"crypto/sha256"
-	"github.com/pkg/errors"
 	kmssm2 "github.com/tw-bc-group/aliyun-kms/sm2"
 	"github.com/tw-bc-group/fabric-gm/bccsp"
 )
@@ -13,7 +12,7 @@ type kmsSm2PrivateKey struct {
 }
 
 func (pri *kmsSm2PrivateKey) Bytes() ([]byte, error) {
-	return nil, errors.Errorf("Unsupported")
+	return []byte(pri.adapter.KeyID()), nil
 }
 
 func (pri *kmsSm2PrivateKey) SKI() []byte {
@@ -49,7 +48,7 @@ func createKmsSm2PrivateKey() (*kmsSm2PrivateKey, error) {
 
 type kmssm2ImportKeyOptsKeyImporter struct{}
 
-func (*kmssm2ImportKeyOptsKeyImporter) KeyImport(raw interface{}, opts bccsp.KeyImportOpts) (k bccsp.Key, err error) {
+func (*kmssm2ImportKeyOptsKeyImporter) KeyImport(raw interface{}, _ bccsp.KeyImportOpts) (k bccsp.Key, err error) {
 	adapter, err := kmssm2.CreateSm2KeyAdapter(raw.(string), kmssm2.SignAndVerify)
 	if err != nil {
 		return nil, err
@@ -61,6 +60,6 @@ func (*kmssm2ImportKeyOptsKeyImporter) KeyImport(raw interface{}, opts bccsp.Key
 
 type kmssm2PrivateKeySigner struct{}
 
-func (s *kmssm2PrivateKeySigner) Sign(k bccsp.Key, digest []byte, opts bccsp.SignerOpts) (signature []byte, err error) {
+func (s *kmssm2PrivateKeySigner) Sign(k bccsp.Key, digest []byte, _ bccsp.SignerOpts) (signature []byte, err error) {
 	return k.(*kmsSm2PrivateKey).adapter.AsymmetricSign(digest)
 }
